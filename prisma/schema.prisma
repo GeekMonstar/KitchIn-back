@@ -18,7 +18,7 @@ model Recipe {
   id          String   @id @default(cuid())
   name        String
   description String
-  medias      String[]
+  medias      Media[]
   steps       Step[]
 }
 
@@ -37,7 +37,10 @@ model Media {
   type  MediaType
   src   String
   alt   String
-  steps Step[]
+  recipe Recipe?  @relation(fields: [recipe_id], references: [id])
+  recipe_id String?
+  step  Step?    @relation(fields: [step_id], references: [id])
+  step_id String?
 }
 
 enum MediaType {

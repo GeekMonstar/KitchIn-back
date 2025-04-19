@@ -1068,10 +1068,12 @@ export namespace Prisma {
    */
 
   export type RecipeCountOutputType = {
+    medias: number
     steps: number
   }
 
   export type RecipeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    medias?: boolean | RecipeCountOutputTypeCountMediasArgs
     steps?: boolean | RecipeCountOutputTypeCountStepsArgs
   }
 
@@ -1084,6 +1086,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the RecipeCountOutputType
      */
     select?: RecipeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RecipeCountOutputType without action
+   */
+  export type RecipeCountOutputTypeCountMediasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaWhereInput
   }
 
   /**
@@ -1126,37 +1135,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type MediaCountOutputType
-   */
-
-  export type MediaCountOutputType = {
-    steps: number
-  }
-
-  export type MediaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    steps?: boolean | MediaCountOutputTypeCountStepsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * MediaCountOutputType without action
-   */
-  export type MediaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaCountOutputType
-     */
-    select?: MediaCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * MediaCountOutputType without action
-   */
-  export type MediaCountOutputTypeCountStepsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StepWhereInput
-  }
-
-
-  /**
    * Models
    */
 
@@ -1186,7 +1164,6 @@ export namespace Prisma {
     id: number
     name: number
     description: number
-    medias: number
     _all: number
   }
 
@@ -1207,7 +1184,6 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    medias?: true
     _all?: true
   }
 
@@ -1287,7 +1263,6 @@ export namespace Prisma {
     id: string
     name: string
     description: string
-    medias: string[]
     _count: RecipeCountAggregateOutputType | null
     _min: RecipeMinAggregateOutputType | null
     _max: RecipeMaxAggregateOutputType | null
@@ -1311,7 +1286,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    medias?: boolean
+    medias?: boolean | Recipe$mediasArgs<ExtArgs>
     steps?: boolean | Recipe$stepsArgs<ExtArgs>
     _count?: boolean | RecipeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["recipe"]>
@@ -1320,25 +1295,23 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    medias?: boolean
   }, ExtArgs["result"]["recipe"]>
 
   export type RecipeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
-    medias?: boolean
   }, ExtArgs["result"]["recipe"]>
 
   export type RecipeSelectScalar = {
     id?: boolean
     name?: boolean
     description?: boolean
-    medias?: boolean
   }
 
-  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "medias", ExtArgs["result"]["recipe"]>
+  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["recipe"]>
   export type RecipeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    medias?: boolean | Recipe$mediasArgs<ExtArgs>
     steps?: boolean | Recipe$stepsArgs<ExtArgs>
     _count?: boolean | RecipeCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1348,13 +1321,13 @@ export namespace Prisma {
   export type $RecipePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Recipe"
     objects: {
+      medias: Prisma.$MediaPayload<ExtArgs>[]
       steps: Prisma.$StepPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       description: string
-      medias: string[]
     }, ExtArgs["result"]["recipe"]>
     composites: {}
   }
@@ -1749,6 +1722,7 @@ export namespace Prisma {
    */
   export interface Prisma__RecipeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    medias<T extends Recipe$mediasArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$mediasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     steps<T extends Recipe$stepsArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1782,7 +1756,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Recipe", 'String'>
     readonly name: FieldRef<"Recipe", 'String'>
     readonly description: FieldRef<"Recipe", 'String'>
-    readonly medias: FieldRef<"Recipe", 'String[]'>
   }
     
 
@@ -2168,6 +2141,30 @@ export namespace Prisma {
      * Limit how many Recipes to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Recipe.medias
+   */
+  export type Recipe$mediasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Media
+     */
+    select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null
+    where?: MediaWhereInput
+    orderBy?: MediaOrderByWithRelationInput | MediaOrderByWithRelationInput[]
+    cursor?: MediaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaScalarFieldEnum | MediaScalarFieldEnum[]
   }
 
   /**
@@ -3350,6 +3347,8 @@ export namespace Prisma {
     type: $Enums.MediaType | null
     src: string | null
     alt: string | null
+    recipe_id: string | null
+    step_id: string | null
   }
 
   export type MediaMaxAggregateOutputType = {
@@ -3357,6 +3356,8 @@ export namespace Prisma {
     type: $Enums.MediaType | null
     src: string | null
     alt: string | null
+    recipe_id: string | null
+    step_id: string | null
   }
 
   export type MediaCountAggregateOutputType = {
@@ -3364,6 +3365,8 @@ export namespace Prisma {
     type: number
     src: number
     alt: number
+    recipe_id: number
+    step_id: number
     _all: number
   }
 
@@ -3373,6 +3376,8 @@ export namespace Prisma {
     type?: true
     src?: true
     alt?: true
+    recipe_id?: true
+    step_id?: true
   }
 
   export type MediaMaxAggregateInputType = {
@@ -3380,6 +3385,8 @@ export namespace Prisma {
     type?: true
     src?: true
     alt?: true
+    recipe_id?: true
+    step_id?: true
   }
 
   export type MediaCountAggregateInputType = {
@@ -3387,6 +3394,8 @@ export namespace Prisma {
     type?: true
     src?: true
     alt?: true
+    recipe_id?: true
+    step_id?: true
     _all?: true
   }
 
@@ -3467,6 +3476,8 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
+    recipe_id: string | null
+    step_id: string | null
     _count: MediaCountAggregateOutputType | null
     _min: MediaMinAggregateOutputType | null
     _max: MediaMaxAggregateOutputType | null
@@ -3491,8 +3502,10 @@ export namespace Prisma {
     type?: boolean
     src?: boolean
     alt?: boolean
-    steps?: boolean | Media$stepsArgs<ExtArgs>
-    _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
+    recipe_id?: boolean
+    step_id?: boolean
+    recipe?: boolean | Media$recipeArgs<ExtArgs>
+    step?: boolean | Media$stepArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3500,6 +3513,10 @@ export namespace Prisma {
     type?: boolean
     src?: boolean
     alt?: boolean
+    recipe_id?: boolean
+    step_id?: boolean
+    recipe?: boolean | Media$recipeArgs<ExtArgs>
+    step?: boolean | Media$stepArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3507,6 +3524,10 @@ export namespace Prisma {
     type?: boolean
     src?: boolean
     alt?: boolean
+    recipe_id?: boolean
+    step_id?: boolean
+    recipe?: boolean | Media$recipeArgs<ExtArgs>
+    step?: boolean | Media$stepArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectScalar = {
@@ -3514,26 +3535,37 @@ export namespace Prisma {
     type?: boolean
     src?: boolean
     alt?: boolean
+    recipe_id?: boolean
+    step_id?: boolean
   }
 
-  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "src" | "alt", ExtArgs["result"]["media"]>
+  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "src" | "alt" | "recipe_id" | "step_id", ExtArgs["result"]["media"]>
   export type MediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    steps?: boolean | Media$stepsArgs<ExtArgs>
-    _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
+    recipe?: boolean | Media$recipeArgs<ExtArgs>
+    step?: boolean | Media$stepArgs<ExtArgs>
   }
-  export type MediaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type MediaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MediaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recipe?: boolean | Media$recipeArgs<ExtArgs>
+    step?: boolean | Media$stepArgs<ExtArgs>
+  }
+  export type MediaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recipe?: boolean | Media$recipeArgs<ExtArgs>
+    step?: boolean | Media$stepArgs<ExtArgs>
+  }
 
   export type $MediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Media"
     objects: {
-      steps: Prisma.$StepPayload<ExtArgs>[]
+      recipe: Prisma.$RecipePayload<ExtArgs> | null
+      step: Prisma.$StepPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       type: $Enums.MediaType
       src: string
       alt: string
+      recipe_id: string | null
+      step_id: string | null
     }, ExtArgs["result"]["media"]>
     composites: {}
   }
@@ -3928,7 +3960,8 @@ export namespace Prisma {
    */
   export interface Prisma__MediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    steps<T extends Media$stepsArgs<ExtArgs> = {}>(args?: Subset<T, Media$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recipe<T extends Media$recipeArgs<ExtArgs> = {}>(args?: Subset<T, Media$recipeArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    step<T extends Media$stepArgs<ExtArgs> = {}>(args?: Subset<T, Media$stepArgs<ExtArgs>>): Prisma__StepClient<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3962,6 +3995,8 @@ export namespace Prisma {
     readonly type: FieldRef<"Media", 'MediaType'>
     readonly src: FieldRef<"Media", 'String'>
     readonly alt: FieldRef<"Media", 'String'>
+    readonly recipe_id: FieldRef<"Media", 'String'>
+    readonly step_id: FieldRef<"Media", 'String'>
   }
     
 
@@ -4211,6 +4246,10 @@ export namespace Prisma {
      */
     data: MediaCreateManyInput | MediaCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4281,6 +4320,10 @@ export namespace Prisma {
      * Limit how many Media to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4350,9 +4393,28 @@ export namespace Prisma {
   }
 
   /**
-   * Media.steps
+   * Media.recipe
    */
-  export type Media$stepsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$recipeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    where?: RecipeWhereInput
+  }
+
+  /**
+   * Media.step
+   */
+  export type Media$stepArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Step
      */
@@ -4366,11 +4428,6 @@ export namespace Prisma {
      */
     include?: StepInclude<ExtArgs> | null
     where?: StepWhereInput
-    orderBy?: StepOrderByWithRelationInput | StepOrderByWithRelationInput[]
-    cursor?: StepWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StepScalarFieldEnum | StepScalarFieldEnum[]
   }
 
   /**
@@ -4409,8 +4466,7 @@ export namespace Prisma {
   export const RecipeScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    description: 'description',
-    medias: 'medias'
+    description: 'description'
   };
 
   export type RecipeScalarFieldEnum = (typeof RecipeScalarFieldEnum)[keyof typeof RecipeScalarFieldEnum]
@@ -4431,7 +4487,9 @@ export namespace Prisma {
     id: 'id',
     type: 'type',
     src: 'src',
-    alt: 'alt'
+    alt: 'alt',
+    recipe_id: 'recipe_id',
+    step_id: 'step_id'
   };
 
   export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
@@ -4451,6 +4509,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -4524,7 +4590,7 @@ export namespace Prisma {
     id?: StringFilter<"Recipe"> | string
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
-    medias?: StringNullableListFilter<"Recipe">
+    medias?: MediaListRelationFilter
     steps?: StepListRelationFilter
   }
 
@@ -4532,7 +4598,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    medias?: SortOrder
+    medias?: MediaOrderByRelationAggregateInput
     steps?: StepOrderByRelationAggregateInput
   }
 
@@ -4543,7 +4609,7 @@ export namespace Prisma {
     NOT?: RecipeWhereInput | RecipeWhereInput[]
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
-    medias?: StringNullableListFilter<"Recipe">
+    medias?: MediaListRelationFilter
     steps?: StepListRelationFilter
   }, "id">
 
@@ -4551,7 +4617,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    medias?: SortOrder
     _count?: RecipeCountOrderByAggregateInput
     _max?: RecipeMaxOrderByAggregateInput
     _min?: RecipeMinOrderByAggregateInput
@@ -4564,7 +4629,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Recipe"> | string
     name?: StringWithAggregatesFilter<"Recipe"> | string
     description?: StringWithAggregatesFilter<"Recipe"> | string
-    medias?: StringNullableListFilter<"Recipe">
   }
 
   export type StepWhereInput = {
@@ -4635,7 +4699,10 @@ export namespace Prisma {
     type?: EnumMediaTypeFilter<"Media"> | $Enums.MediaType
     src?: StringFilter<"Media"> | string
     alt?: StringFilter<"Media"> | string
-    steps?: StepListRelationFilter
+    recipe_id?: StringNullableFilter<"Media"> | string | null
+    step_id?: StringNullableFilter<"Media"> | string | null
+    recipe?: XOR<RecipeNullableScalarRelationFilter, RecipeWhereInput> | null
+    step?: XOR<StepNullableScalarRelationFilter, StepWhereInput> | null
   }
 
   export type MediaOrderByWithRelationInput = {
@@ -4643,7 +4710,10 @@ export namespace Prisma {
     type?: SortOrder
     src?: SortOrder
     alt?: SortOrder
-    steps?: StepOrderByRelationAggregateInput
+    recipe_id?: SortOrderInput | SortOrder
+    step_id?: SortOrderInput | SortOrder
+    recipe?: RecipeOrderByWithRelationInput
+    step?: StepOrderByWithRelationInput
   }
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -4654,7 +4724,10 @@ export namespace Prisma {
     type?: EnumMediaTypeFilter<"Media"> | $Enums.MediaType
     src?: StringFilter<"Media"> | string
     alt?: StringFilter<"Media"> | string
-    steps?: StepListRelationFilter
+    recipe_id?: StringNullableFilter<"Media"> | string | null
+    step_id?: StringNullableFilter<"Media"> | string | null
+    recipe?: XOR<RecipeNullableScalarRelationFilter, RecipeWhereInput> | null
+    step?: XOR<StepNullableScalarRelationFilter, StepWhereInput> | null
   }, "id">
 
   export type MediaOrderByWithAggregationInput = {
@@ -4662,6 +4735,8 @@ export namespace Prisma {
     type?: SortOrder
     src?: SortOrder
     alt?: SortOrder
+    recipe_id?: SortOrderInput | SortOrder
+    step_id?: SortOrderInput | SortOrder
     _count?: MediaCountOrderByAggregateInput
     _max?: MediaMaxOrderByAggregateInput
     _min?: MediaMinOrderByAggregateInput
@@ -4675,13 +4750,15 @@ export namespace Prisma {
     type?: EnumMediaTypeWithAggregatesFilter<"Media"> | $Enums.MediaType
     src?: StringWithAggregatesFilter<"Media"> | string
     alt?: StringWithAggregatesFilter<"Media"> | string
+    recipe_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
+    step_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
   }
 
   export type RecipeCreateInput = {
     id?: string
     name: string
     description: string
-    medias?: RecipeCreatemediasInput | string[]
+    medias?: MediaCreateNestedManyWithoutRecipeInput
     steps?: StepCreateNestedManyWithoutRecipeInput
   }
 
@@ -4689,7 +4766,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    medias?: RecipeCreatemediasInput | string[]
+    medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
     steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
   }
 
@@ -4697,7 +4774,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    medias?: RecipeUpdatemediasInput | string[]
+    medias?: MediaUpdateManyWithoutRecipeNestedInput
     steps?: StepUpdateManyWithoutRecipeNestedInput
   }
 
@@ -4705,7 +4782,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    medias?: RecipeUpdatemediasInput | string[]
+    medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
     steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
@@ -4713,21 +4790,18 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    medias?: RecipeCreatemediasInput | string[]
   }
 
   export type RecipeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    medias?: RecipeUpdatemediasInput | string[]
   }
 
   export type RecipeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    medias?: RecipeUpdatemediasInput | string[]
   }
 
   export type StepCreateInput = {
@@ -4735,7 +4809,7 @@ export namespace Prisma {
     name: string
     description: string
     rank: number
-    medias?: MediaCreateNestedManyWithoutStepsInput
+    medias?: MediaCreateNestedManyWithoutStepInput
     recipe: RecipeCreateNestedOneWithoutStepsInput
   }
 
@@ -4745,7 +4819,7 @@ export namespace Prisma {
     description: string
     rank: number
     recipe_id: string
-    medias?: MediaUncheckedCreateNestedManyWithoutStepsInput
+    medias?: MediaUncheckedCreateNestedManyWithoutStepInput
   }
 
   export type StepUpdateInput = {
@@ -4753,7 +4827,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    medias?: MediaUpdateManyWithoutStepsNestedInput
+    medias?: MediaUpdateManyWithoutStepNestedInput
     recipe?: RecipeUpdateOneRequiredWithoutStepsNestedInput
   }
 
@@ -4763,7 +4837,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
     recipe_id?: StringFieldUpdateOperationsInput | string
-    medias?: MediaUncheckedUpdateManyWithoutStepsNestedInput
+    medias?: MediaUncheckedUpdateManyWithoutStepNestedInput
   }
 
   export type StepCreateManyInput = {
@@ -4794,7 +4868,8 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
-    steps?: StepCreateNestedManyWithoutMediasInput
+    recipe?: RecipeCreateNestedOneWithoutMediasInput
+    step?: StepCreateNestedOneWithoutMediasInput
   }
 
   export type MediaUncheckedCreateInput = {
@@ -4802,7 +4877,8 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
-    steps?: StepUncheckedCreateNestedManyWithoutMediasInput
+    recipe_id?: string | null
+    step_id?: string | null
   }
 
   export type MediaUpdateInput = {
@@ -4810,7 +4886,8 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
-    steps?: StepUpdateManyWithoutMediasNestedInput
+    recipe?: RecipeUpdateOneWithoutMediasNestedInput
+    step?: StepUpdateOneWithoutMediasNestedInput
   }
 
   export type MediaUncheckedUpdateInput = {
@@ -4818,7 +4895,8 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
-    steps?: StepUncheckedUpdateManyWithoutMediasNestedInput
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MediaCreateManyInput = {
@@ -4826,6 +4904,8 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
+    recipe_id?: string | null
+    step_id?: string | null
   }
 
   export type MediaUpdateManyMutationInput = {
@@ -4840,6 +4920,8 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4857,18 +4939,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
+  export type MediaListRelationFilter = {
+    every?: MediaWhereInput
+    some?: MediaWhereInput
+    none?: MediaWhereInput
   }
 
   export type StepListRelationFilter = {
     every?: StepWhereInput
     some?: StepWhereInput
     none?: StepWhereInput
+  }
+
+  export type MediaOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type StepOrderByRelationAggregateInput = {
@@ -4879,7 +4963,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    medias?: SortOrder
   }
 
   export type RecipeMaxOrderByAggregateInput = {
@@ -4923,19 +5006,9 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type MediaListRelationFilter = {
-    every?: MediaWhereInput
-    some?: MediaWhereInput
-    none?: MediaWhereInput
-  }
-
   export type RecipeScalarRelationFilter = {
     is?: RecipeWhereInput
     isNot?: RecipeWhereInput
-  }
-
-  export type MediaOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type StepCountOrderByAggregateInput = {
@@ -4993,11 +5066,43 @@ export namespace Prisma {
     not?: NestedEnumMediaTypeFilter<$PrismaModel> | $Enums.MediaType
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type RecipeNullableScalarRelationFilter = {
+    is?: RecipeWhereInput | null
+    isNot?: RecipeWhereInput | null
+  }
+
+  export type StepNullableScalarRelationFilter = {
+    is?: StepWhereInput | null
+    isNot?: StepWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type MediaCountOrderByAggregateInput = {
     id?: SortOrder
     type?: SortOrder
     src?: SortOrder
     alt?: SortOrder
+    recipe_id?: SortOrder
+    step_id?: SortOrder
   }
 
   export type MediaMaxOrderByAggregateInput = {
@@ -5005,6 +5110,8 @@ export namespace Prisma {
     type?: SortOrder
     src?: SortOrder
     alt?: SortOrder
+    recipe_id?: SortOrder
+    step_id?: SortOrder
   }
 
   export type MediaMinOrderByAggregateInput = {
@@ -5012,6 +5119,8 @@ export namespace Prisma {
     type?: SortOrder
     src?: SortOrder
     alt?: SortOrder
+    recipe_id?: SortOrder
+    step_id?: SortOrder
   }
 
   export type EnumMediaTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5024,8 +5133,29 @@ export namespace Prisma {
     _max?: NestedEnumMediaTypeFilter<$PrismaModel>
   }
 
-  export type RecipeCreatemediasInput = {
-    set: string[]
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type MediaCreateNestedManyWithoutRecipeInput = {
+    create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
+    createMany?: MediaCreateManyRecipeInputEnvelope
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
   }
 
   export type StepCreateNestedManyWithoutRecipeInput = {
@@ -5033,6 +5163,13 @@ export namespace Prisma {
     connectOrCreate?: StepCreateOrConnectWithoutRecipeInput | StepCreateOrConnectWithoutRecipeInput[]
     createMany?: StepCreateManyRecipeInputEnvelope
     connect?: StepWhereUniqueInput | StepWhereUniqueInput[]
+  }
+
+  export type MediaUncheckedCreateNestedManyWithoutRecipeInput = {
+    create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
+    createMany?: MediaCreateManyRecipeInputEnvelope
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
   }
 
   export type StepUncheckedCreateNestedManyWithoutRecipeInput = {
@@ -5046,9 +5183,18 @@ export namespace Prisma {
     set?: string
   }
 
-  export type RecipeUpdatemediasInput = {
-    set?: string[]
-    push?: string | string[]
+  export type MediaUpdateManyWithoutRecipeNestedInput = {
+    create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutRecipeInput | MediaUpsertWithWhereUniqueWithoutRecipeInput[]
+    createMany?: MediaCreateManyRecipeInputEnvelope
+    set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutRecipeInput | MediaUpdateWithWhereUniqueWithoutRecipeInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutRecipeInput | MediaUpdateManyWithWhereWithoutRecipeInput[]
+    deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
   }
 
   export type StepUpdateManyWithoutRecipeNestedInput = {
@@ -5065,6 +5211,20 @@ export namespace Prisma {
     deleteMany?: StepScalarWhereInput | StepScalarWhereInput[]
   }
 
+  export type MediaUncheckedUpdateManyWithoutRecipeNestedInput = {
+    create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutRecipeInput | MediaUpsertWithWhereUniqueWithoutRecipeInput[]
+    createMany?: MediaCreateManyRecipeInputEnvelope
+    set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutRecipeInput | MediaUpdateWithWhereUniqueWithoutRecipeInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutRecipeInput | MediaUpdateManyWithWhereWithoutRecipeInput[]
+    deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
+  }
+
   export type StepUncheckedUpdateManyWithoutRecipeNestedInput = {
     create?: XOR<StepCreateWithoutRecipeInput, StepUncheckedCreateWithoutRecipeInput> | StepCreateWithoutRecipeInput[] | StepUncheckedCreateWithoutRecipeInput[]
     connectOrCreate?: StepCreateOrConnectWithoutRecipeInput | StepCreateOrConnectWithoutRecipeInput[]
@@ -5079,9 +5239,10 @@ export namespace Prisma {
     deleteMany?: StepScalarWhereInput | StepScalarWhereInput[]
   }
 
-  export type MediaCreateNestedManyWithoutStepsInput = {
-    create?: XOR<MediaCreateWithoutStepsInput, MediaUncheckedCreateWithoutStepsInput> | MediaCreateWithoutStepsInput[] | MediaUncheckedCreateWithoutStepsInput[]
-    connectOrCreate?: MediaCreateOrConnectWithoutStepsInput | MediaCreateOrConnectWithoutStepsInput[]
+  export type MediaCreateNestedManyWithoutStepInput = {
+    create?: XOR<MediaCreateWithoutStepInput, MediaUncheckedCreateWithoutStepInput> | MediaCreateWithoutStepInput[] | MediaUncheckedCreateWithoutStepInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutStepInput | MediaCreateOrConnectWithoutStepInput[]
+    createMany?: MediaCreateManyStepInputEnvelope
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
   }
 
@@ -5091,9 +5252,10 @@ export namespace Prisma {
     connect?: RecipeWhereUniqueInput
   }
 
-  export type MediaUncheckedCreateNestedManyWithoutStepsInput = {
-    create?: XOR<MediaCreateWithoutStepsInput, MediaUncheckedCreateWithoutStepsInput> | MediaCreateWithoutStepsInput[] | MediaUncheckedCreateWithoutStepsInput[]
-    connectOrCreate?: MediaCreateOrConnectWithoutStepsInput | MediaCreateOrConnectWithoutStepsInput[]
+  export type MediaUncheckedCreateNestedManyWithoutStepInput = {
+    create?: XOR<MediaCreateWithoutStepInput, MediaUncheckedCreateWithoutStepInput> | MediaCreateWithoutStepInput[] | MediaUncheckedCreateWithoutStepInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutStepInput | MediaCreateOrConnectWithoutStepInput[]
+    createMany?: MediaCreateManyStepInputEnvelope
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
   }
 
@@ -5105,16 +5267,17 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type MediaUpdateManyWithoutStepsNestedInput = {
-    create?: XOR<MediaCreateWithoutStepsInput, MediaUncheckedCreateWithoutStepsInput> | MediaCreateWithoutStepsInput[] | MediaUncheckedCreateWithoutStepsInput[]
-    connectOrCreate?: MediaCreateOrConnectWithoutStepsInput | MediaCreateOrConnectWithoutStepsInput[]
-    upsert?: MediaUpsertWithWhereUniqueWithoutStepsInput | MediaUpsertWithWhereUniqueWithoutStepsInput[]
+  export type MediaUpdateManyWithoutStepNestedInput = {
+    create?: XOR<MediaCreateWithoutStepInput, MediaUncheckedCreateWithoutStepInput> | MediaCreateWithoutStepInput[] | MediaUncheckedCreateWithoutStepInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutStepInput | MediaCreateOrConnectWithoutStepInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutStepInput | MediaUpsertWithWhereUniqueWithoutStepInput[]
+    createMany?: MediaCreateManyStepInputEnvelope
     set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
     disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
     delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-    update?: MediaUpdateWithWhereUniqueWithoutStepsInput | MediaUpdateWithWhereUniqueWithoutStepsInput[]
-    updateMany?: MediaUpdateManyWithWhereWithoutStepsInput | MediaUpdateManyWithWhereWithoutStepsInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutStepInput | MediaUpdateWithWhereUniqueWithoutStepInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutStepInput | MediaUpdateManyWithWhereWithoutStepInput[]
     deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
   }
 
@@ -5126,59 +5289,58 @@ export namespace Prisma {
     update?: XOR<XOR<RecipeUpdateToOneWithWhereWithoutStepsInput, RecipeUpdateWithoutStepsInput>, RecipeUncheckedUpdateWithoutStepsInput>
   }
 
-  export type MediaUncheckedUpdateManyWithoutStepsNestedInput = {
-    create?: XOR<MediaCreateWithoutStepsInput, MediaUncheckedCreateWithoutStepsInput> | MediaCreateWithoutStepsInput[] | MediaUncheckedCreateWithoutStepsInput[]
-    connectOrCreate?: MediaCreateOrConnectWithoutStepsInput | MediaCreateOrConnectWithoutStepsInput[]
-    upsert?: MediaUpsertWithWhereUniqueWithoutStepsInput | MediaUpsertWithWhereUniqueWithoutStepsInput[]
+  export type MediaUncheckedUpdateManyWithoutStepNestedInput = {
+    create?: XOR<MediaCreateWithoutStepInput, MediaUncheckedCreateWithoutStepInput> | MediaCreateWithoutStepInput[] | MediaUncheckedCreateWithoutStepInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutStepInput | MediaCreateOrConnectWithoutStepInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutStepInput | MediaUpsertWithWhereUniqueWithoutStepInput[]
+    createMany?: MediaCreateManyStepInputEnvelope
     set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
     disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
     delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
     connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
-    update?: MediaUpdateWithWhereUniqueWithoutStepsInput | MediaUpdateWithWhereUniqueWithoutStepsInput[]
-    updateMany?: MediaUpdateManyWithWhereWithoutStepsInput | MediaUpdateManyWithWhereWithoutStepsInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutStepInput | MediaUpdateWithWhereUniqueWithoutStepInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutStepInput | MediaUpdateManyWithWhereWithoutStepInput[]
     deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
   }
 
-  export type StepCreateNestedManyWithoutMediasInput = {
-    create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput> | StepCreateWithoutMediasInput[] | StepUncheckedCreateWithoutMediasInput[]
-    connectOrCreate?: StepCreateOrConnectWithoutMediasInput | StepCreateOrConnectWithoutMediasInput[]
-    connect?: StepWhereUniqueInput | StepWhereUniqueInput[]
+  export type RecipeCreateNestedOneWithoutMediasInput = {
+    create?: XOR<RecipeCreateWithoutMediasInput, RecipeUncheckedCreateWithoutMediasInput>
+    connectOrCreate?: RecipeCreateOrConnectWithoutMediasInput
+    connect?: RecipeWhereUniqueInput
   }
 
-  export type StepUncheckedCreateNestedManyWithoutMediasInput = {
-    create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput> | StepCreateWithoutMediasInput[] | StepUncheckedCreateWithoutMediasInput[]
-    connectOrCreate?: StepCreateOrConnectWithoutMediasInput | StepCreateOrConnectWithoutMediasInput[]
-    connect?: StepWhereUniqueInput | StepWhereUniqueInput[]
+  export type StepCreateNestedOneWithoutMediasInput = {
+    create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput>
+    connectOrCreate?: StepCreateOrConnectWithoutMediasInput
+    connect?: StepWhereUniqueInput
   }
 
   export type EnumMediaTypeFieldUpdateOperationsInput = {
     set?: $Enums.MediaType
   }
 
-  export type StepUpdateManyWithoutMediasNestedInput = {
-    create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput> | StepCreateWithoutMediasInput[] | StepUncheckedCreateWithoutMediasInput[]
-    connectOrCreate?: StepCreateOrConnectWithoutMediasInput | StepCreateOrConnectWithoutMediasInput[]
-    upsert?: StepUpsertWithWhereUniqueWithoutMediasInput | StepUpsertWithWhereUniqueWithoutMediasInput[]
-    set?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    disconnect?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    delete?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    connect?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    update?: StepUpdateWithWhereUniqueWithoutMediasInput | StepUpdateWithWhereUniqueWithoutMediasInput[]
-    updateMany?: StepUpdateManyWithWhereWithoutMediasInput | StepUpdateManyWithWhereWithoutMediasInput[]
-    deleteMany?: StepScalarWhereInput | StepScalarWhereInput[]
+  export type RecipeUpdateOneWithoutMediasNestedInput = {
+    create?: XOR<RecipeCreateWithoutMediasInput, RecipeUncheckedCreateWithoutMediasInput>
+    connectOrCreate?: RecipeCreateOrConnectWithoutMediasInput
+    upsert?: RecipeUpsertWithoutMediasInput
+    disconnect?: RecipeWhereInput | boolean
+    delete?: RecipeWhereInput | boolean
+    connect?: RecipeWhereUniqueInput
+    update?: XOR<XOR<RecipeUpdateToOneWithWhereWithoutMediasInput, RecipeUpdateWithoutMediasInput>, RecipeUncheckedUpdateWithoutMediasInput>
   }
 
-  export type StepUncheckedUpdateManyWithoutMediasNestedInput = {
-    create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput> | StepCreateWithoutMediasInput[] | StepUncheckedCreateWithoutMediasInput[]
-    connectOrCreate?: StepCreateOrConnectWithoutMediasInput | StepCreateOrConnectWithoutMediasInput[]
-    upsert?: StepUpsertWithWhereUniqueWithoutMediasInput | StepUpsertWithWhereUniqueWithoutMediasInput[]
-    set?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    disconnect?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    delete?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    connect?: StepWhereUniqueInput | StepWhereUniqueInput[]
-    update?: StepUpdateWithWhereUniqueWithoutMediasInput | StepUpdateWithWhereUniqueWithoutMediasInput[]
-    updateMany?: StepUpdateManyWithWhereWithoutMediasInput | StepUpdateManyWithWhereWithoutMediasInput[]
-    deleteMany?: StepScalarWhereInput | StepScalarWhereInput[]
+  export type StepUpdateOneWithoutMediasNestedInput = {
+    create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput>
+    connectOrCreate?: StepCreateOrConnectWithoutMediasInput
+    upsert?: StepUpsertWithoutMediasInput
+    disconnect?: StepWhereInput | boolean
+    delete?: StepWhereInput | boolean
+    connect?: StepWhereUniqueInput
+    update?: XOR<XOR<StepUpdateToOneWithWhereWithoutMediasInput, StepUpdateWithoutMediasInput>, StepUncheckedUpdateWithoutMediasInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5257,6 +5419,20 @@ export namespace Prisma {
     not?: NestedEnumMediaTypeFilter<$PrismaModel> | $Enums.MediaType
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumMediaTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.MediaType | EnumMediaTypeFieldRefInput<$PrismaModel>
     in?: $Enums.MediaType[] | ListEnumMediaTypeFieldRefInput<$PrismaModel>
@@ -5267,12 +5443,66 @@ export namespace Prisma {
     _max?: NestedEnumMediaTypeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type MediaCreateWithoutRecipeInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    step?: StepCreateNestedOneWithoutMediasInput
+  }
+
+  export type MediaUncheckedCreateWithoutRecipeInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    step_id?: string | null
+  }
+
+  export type MediaCreateOrConnectWithoutRecipeInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput>
+  }
+
+  export type MediaCreateManyRecipeInputEnvelope = {
+    data: MediaCreateManyRecipeInput | MediaCreateManyRecipeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StepCreateWithoutRecipeInput = {
     id?: string
     name: string
     description: string
     rank: number
-    medias?: MediaCreateNestedManyWithoutStepsInput
+    medias?: MediaCreateNestedManyWithoutStepInput
   }
 
   export type StepUncheckedCreateWithoutRecipeInput = {
@@ -5280,7 +5510,7 @@ export namespace Prisma {
     name: string
     description: string
     rank: number
-    medias?: MediaUncheckedCreateNestedManyWithoutStepsInput
+    medias?: MediaUncheckedCreateNestedManyWithoutStepInput
   }
 
   export type StepCreateOrConnectWithoutRecipeInput = {
@@ -5291,6 +5521,34 @@ export namespace Prisma {
   export type StepCreateManyRecipeInputEnvelope = {
     data: StepCreateManyRecipeInput | StepCreateManyRecipeInput[]
     skipDuplicates?: boolean
+  }
+
+  export type MediaUpsertWithWhereUniqueWithoutRecipeInput = {
+    where: MediaWhereUniqueInput
+    update: XOR<MediaUpdateWithoutRecipeInput, MediaUncheckedUpdateWithoutRecipeInput>
+    create: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput>
+  }
+
+  export type MediaUpdateWithWhereUniqueWithoutRecipeInput = {
+    where: MediaWhereUniqueInput
+    data: XOR<MediaUpdateWithoutRecipeInput, MediaUncheckedUpdateWithoutRecipeInput>
+  }
+
+  export type MediaUpdateManyWithWhereWithoutRecipeInput = {
+    where: MediaScalarWhereInput
+    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyWithoutRecipeInput>
+  }
+
+  export type MediaScalarWhereInput = {
+    AND?: MediaScalarWhereInput | MediaScalarWhereInput[]
+    OR?: MediaScalarWhereInput[]
+    NOT?: MediaScalarWhereInput | MediaScalarWhereInput[]
+    id?: StringFilter<"Media"> | string
+    type?: EnumMediaTypeFilter<"Media"> | $Enums.MediaType
+    src?: StringFilter<"Media"> | string
+    alt?: StringFilter<"Media"> | string
+    recipe_id?: StringNullableFilter<"Media"> | string | null
+    step_id?: StringNullableFilter<"Media"> | string | null
   }
 
   export type StepUpsertWithWhereUniqueWithoutRecipeInput = {
@@ -5320,37 +5578,44 @@ export namespace Prisma {
     recipe_id?: StringFilter<"Step"> | string
   }
 
-  export type MediaCreateWithoutStepsInput = {
+  export type MediaCreateWithoutStepInput = {
     id?: string
     type: $Enums.MediaType
     src: string
     alt: string
+    recipe?: RecipeCreateNestedOneWithoutMediasInput
   }
 
-  export type MediaUncheckedCreateWithoutStepsInput = {
+  export type MediaUncheckedCreateWithoutStepInput = {
     id?: string
     type: $Enums.MediaType
     src: string
     alt: string
+    recipe_id?: string | null
   }
 
-  export type MediaCreateOrConnectWithoutStepsInput = {
+  export type MediaCreateOrConnectWithoutStepInput = {
     where: MediaWhereUniqueInput
-    create: XOR<MediaCreateWithoutStepsInput, MediaUncheckedCreateWithoutStepsInput>
+    create: XOR<MediaCreateWithoutStepInput, MediaUncheckedCreateWithoutStepInput>
+  }
+
+  export type MediaCreateManyStepInputEnvelope = {
+    data: MediaCreateManyStepInput | MediaCreateManyStepInput[]
+    skipDuplicates?: boolean
   }
 
   export type RecipeCreateWithoutStepsInput = {
     id?: string
     name: string
     description: string
-    medias?: RecipeCreatemediasInput | string[]
+    medias?: MediaCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutStepsInput = {
     id?: string
     name: string
     description: string
-    medias?: RecipeCreatemediasInput | string[]
+    medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutStepsInput = {
@@ -5358,30 +5623,20 @@ export namespace Prisma {
     create: XOR<RecipeCreateWithoutStepsInput, RecipeUncheckedCreateWithoutStepsInput>
   }
 
-  export type MediaUpsertWithWhereUniqueWithoutStepsInput = {
+  export type MediaUpsertWithWhereUniqueWithoutStepInput = {
     where: MediaWhereUniqueInput
-    update: XOR<MediaUpdateWithoutStepsInput, MediaUncheckedUpdateWithoutStepsInput>
-    create: XOR<MediaCreateWithoutStepsInput, MediaUncheckedCreateWithoutStepsInput>
+    update: XOR<MediaUpdateWithoutStepInput, MediaUncheckedUpdateWithoutStepInput>
+    create: XOR<MediaCreateWithoutStepInput, MediaUncheckedCreateWithoutStepInput>
   }
 
-  export type MediaUpdateWithWhereUniqueWithoutStepsInput = {
+  export type MediaUpdateWithWhereUniqueWithoutStepInput = {
     where: MediaWhereUniqueInput
-    data: XOR<MediaUpdateWithoutStepsInput, MediaUncheckedUpdateWithoutStepsInput>
+    data: XOR<MediaUpdateWithoutStepInput, MediaUncheckedUpdateWithoutStepInput>
   }
 
-  export type MediaUpdateManyWithWhereWithoutStepsInput = {
+  export type MediaUpdateManyWithWhereWithoutStepInput = {
     where: MediaScalarWhereInput
-    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyWithoutStepsInput>
-  }
-
-  export type MediaScalarWhereInput = {
-    AND?: MediaScalarWhereInput | MediaScalarWhereInput[]
-    OR?: MediaScalarWhereInput[]
-    NOT?: MediaScalarWhereInput | MediaScalarWhereInput[]
-    id?: StringFilter<"Media"> | string
-    type?: EnumMediaTypeFilter<"Media"> | $Enums.MediaType
-    src?: StringFilter<"Media"> | string
-    alt?: StringFilter<"Media"> | string
+    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyWithoutStepInput>
   }
 
   export type RecipeUpsertWithoutStepsInput = {
@@ -5399,14 +5654,33 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    medias?: RecipeUpdatemediasInput | string[]
+    medias?: MediaUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    medias?: RecipeUpdatemediasInput | string[]
+    medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type RecipeCreateWithoutMediasInput = {
+    id?: string
+    name: string
+    description: string
+    steps?: StepCreateNestedManyWithoutRecipeInput
+  }
+
+  export type RecipeUncheckedCreateWithoutMediasInput = {
+    id?: string
+    name: string
+    description: string
+    steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
+  }
+
+  export type RecipeCreateOrConnectWithoutMediasInput = {
+    where: RecipeWhereUniqueInput
+    create: XOR<RecipeCreateWithoutMediasInput, RecipeUncheckedCreateWithoutMediasInput>
   }
 
   export type StepCreateWithoutMediasInput = {
@@ -5430,71 +5704,40 @@ export namespace Prisma {
     create: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput>
   }
 
-  export type StepUpsertWithWhereUniqueWithoutMediasInput = {
-    where: StepWhereUniqueInput
+  export type RecipeUpsertWithoutMediasInput = {
+    update: XOR<RecipeUpdateWithoutMediasInput, RecipeUncheckedUpdateWithoutMediasInput>
+    create: XOR<RecipeCreateWithoutMediasInput, RecipeUncheckedCreateWithoutMediasInput>
+    where?: RecipeWhereInput
+  }
+
+  export type RecipeUpdateToOneWithWhereWithoutMediasInput = {
+    where?: RecipeWhereInput
+    data: XOR<RecipeUpdateWithoutMediasInput, RecipeUncheckedUpdateWithoutMediasInput>
+  }
+
+  export type RecipeUpdateWithoutMediasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    steps?: StepUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type RecipeUncheckedUpdateWithoutMediasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type StepUpsertWithoutMediasInput = {
     update: XOR<StepUpdateWithoutMediasInput, StepUncheckedUpdateWithoutMediasInput>
     create: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput>
+    where?: StepWhereInput
   }
 
-  export type StepUpdateWithWhereUniqueWithoutMediasInput = {
-    where: StepWhereUniqueInput
+  export type StepUpdateToOneWithWhereWithoutMediasInput = {
+    where?: StepWhereInput
     data: XOR<StepUpdateWithoutMediasInput, StepUncheckedUpdateWithoutMediasInput>
-  }
-
-  export type StepUpdateManyWithWhereWithoutMediasInput = {
-    where: StepScalarWhereInput
-    data: XOR<StepUpdateManyMutationInput, StepUncheckedUpdateManyWithoutMediasInput>
-  }
-
-  export type StepCreateManyRecipeInput = {
-    id?: string
-    name: string
-    description: string
-    rank: number
-  }
-
-  export type StepUpdateWithoutRecipeInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    rank?: IntFieldUpdateOperationsInput | number
-    medias?: MediaUpdateManyWithoutStepsNestedInput
-  }
-
-  export type StepUncheckedUpdateWithoutRecipeInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    rank?: IntFieldUpdateOperationsInput | number
-    medias?: MediaUncheckedUpdateManyWithoutStepsNestedInput
-  }
-
-  export type StepUncheckedUpdateManyWithoutRecipeInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    rank?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type MediaUpdateWithoutStepsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
-    src?: StringFieldUpdateOperationsInput | string
-    alt?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type MediaUncheckedUpdateWithoutStepsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
-    src?: StringFieldUpdateOperationsInput | string
-    alt?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type MediaUncheckedUpdateManyWithoutStepsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
-    src?: StringFieldUpdateOperationsInput | string
-    alt?: StringFieldUpdateOperationsInput | string
   }
 
   export type StepUpdateWithoutMediasInput = {
@@ -5513,12 +5756,98 @@ export namespace Prisma {
     recipe_id?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StepUncheckedUpdateManyWithoutMediasInput = {
+  export type MediaCreateManyRecipeInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    step_id?: string | null
+  }
+
+  export type StepCreateManyRecipeInput = {
+    id?: string
+    name: string
+    description: string
+    rank: number
+  }
+
+  export type MediaUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    step?: StepUpdateOneWithoutMediasNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MediaUncheckedUpdateManyWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StepUpdateWithoutRecipeInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    recipe_id?: StringFieldUpdateOperationsInput | string
+    medias?: MediaUpdateManyWithoutStepNestedInput
+  }
+
+  export type StepUncheckedUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    medias?: MediaUncheckedUpdateManyWithoutStepNestedInput
+  }
+
+  export type StepUncheckedUpdateManyWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MediaCreateManyStepInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    recipe_id?: string | null
+  }
+
+  export type MediaUpdateWithoutStepInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe?: RecipeUpdateOneWithoutMediasNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutStepInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MediaUncheckedUpdateManyWithoutStepInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

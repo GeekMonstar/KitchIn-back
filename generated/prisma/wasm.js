@@ -120,8 +120,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.RecipeScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
-  medias: 'medias'
+  description: 'description'
 };
 
 exports.Prisma.StepScalarFieldEnum = {
@@ -136,7 +135,9 @@ exports.Prisma.MediaScalarFieldEnum = {
   id: 'id',
   type: 'type',
   src: 'src',
-  alt: 'alt'
+  alt: 'alt',
+  recipe_id: 'recipe_id',
+  step_id: 'step_id'
 };
 
 exports.Prisma.SortOrder = {
@@ -147,6 +148,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 exports.MediaType = exports.$Enums.MediaType = {
   image: 'image',
