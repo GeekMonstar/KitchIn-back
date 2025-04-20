@@ -29,6 +29,15 @@ export async function getStep(id: string): Promise<Step> {
     }
 }
 
+export async function getStepsByRecipe(recipeId: string): Promise<Step[]> {
+    try {
+        const steps = await stepRepository.getStepsByRecipe(recipeId);
+        return steps;
+    } catch (err) {
+        throw new Error((err as Error).message);
+    }
+}
+
 export async function updateStep(step: Step): Promise<Step> {
     try {
         const updatedStep = await stepRepository.updateStep(step);
@@ -50,6 +59,15 @@ export async function deleteStep(id: string): Promise<Step> {
 export async function deleteAllSteps(): Promise<Prisma.BatchPayload> {
     try {
         const deletedSteps = await stepRepository.deleteAllSteps();
+        return deletedSteps;
+    } catch (err) {
+        throw new Error((err as Error).message);
+    }
+}
+
+export async function deleteStepsByRecipe(recipeId: string): Promise<Prisma.BatchPayload> {
+    try {
+        const deletedSteps = await stepRepository.deleteStepsByRecipe(recipeId);
         return deletedSteps;
     } catch (err) {
         throw new Error((err as Error).message);
