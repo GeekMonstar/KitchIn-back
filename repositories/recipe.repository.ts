@@ -1,5 +1,6 @@
 import type { Prisma, Recipe } from "../generated/prisma";
 import prisma from "../utils/prisma";
+import type { IngredientParams } from "./ingredient.repository";
 import type { MediaParams } from "./media.reposotory";
 import type { StepParams } from "./step.repository";
 
@@ -18,7 +19,7 @@ export async function createRecipe(recipes: RecipeParams[]): Promise<Recipe[]> {
                             return {
                                 name: step.name,
                                 description: step.description,
-                                rank: step.rank,
+                                order: step.order,
                                 medias: {
                                     create: step.medias
                                 }
@@ -109,4 +110,5 @@ export interface RecipeParams {
     description: string,
     medias: MediaParams[],
     steps: StepParams[]
+    ingredients: IngredientParams[]
 }

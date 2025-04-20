@@ -120,15 +120,47 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.RecipeScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.StepScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  rank: 'rank',
-  recipe_id: 'recipe_id'
+  order: 'order',
+  recipe_id: 'recipe_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AlimentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  image: 'image',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.IngredientScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  quantity: 'quantity',
+  unit: 'unit',
+  aliment_id: 'aliment_id',
+  recipe_id: 'recipe_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.UstensilScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  image: 'image',
+  description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.MediaScalarFieldEnum = {
@@ -137,7 +169,9 @@ exports.Prisma.MediaScalarFieldEnum = {
   src: 'src',
   alt: 'alt',
   recipe_id: 'recipe_id',
-  step_id: 'step_id'
+  step_id: 'step_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -154,6 +188,23 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Unit = exports.$Enums.Unit = {
+  g: 'g',
+  kg: 'kg',
+  l: 'l',
+  cl: 'cl',
+  ml: 'ml',
+  tsp: 'tsp',
+  tbsp: 'tbsp',
+  cup: 'cup',
+  pinch: 'pinch',
+  slice: 'slice',
+  piece: 'piece',
+  bunch: 'bunch',
+  sprig: 'sprig',
+  leaf: 'leaf'
+};
+
 exports.MediaType = exports.$Enums.MediaType = {
   image: 'image',
   video: 'video'
@@ -162,6 +213,9 @@ exports.MediaType = exports.$Enums.MediaType = {
 exports.Prisma.ModelName = {
   Recipe: 'Recipe',
   Step: 'Step',
+  Aliment: 'Aliment',
+  Ingredient: 'Ingredient',
+  Ustensil: 'Ustensil',
   Media: 'Media'
 };
 

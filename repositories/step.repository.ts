@@ -9,7 +9,7 @@ export async function createSteps(steps: StepParams[]): Promise<Step[]> {
                 data: {
                     name: step.name,
                     description: step.description,
-                    rank: step.rank,
+                    order: step.order,
                     recipe: {
                         connect: {
                             id: step.recipeId
@@ -92,7 +92,7 @@ export async function deleteAllSteps(): Promise<Prisma.BatchPayload> {
 export interface StepParams {
     name: string,
     description: string,
-    rank: number,
+    order: number,
     medias: MediaParams[],
     recipeId: string
 }
