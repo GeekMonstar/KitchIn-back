@@ -3,13 +3,16 @@ import alimentRouter from './routes/aliment.route';
 import ingredientRouter from './routes/ingredients.route';
 import recipeRouter from './routes/recipe.route';
 import stepRouter from './routes/step.route';
+import authRouter from './routes/auth.route';
 
 const app = express()
 
 app
+    .set("trust proxy", true)
     .use(express.static('public'))
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
+    .use('/auth', authRouter)
     .use('/aliments', alimentRouter)
     .use('/ingredients', ingredientRouter)
     .use('/recipes', recipeRouter)
