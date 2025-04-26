@@ -64,6 +64,16 @@ export type Ingredient = $Result.DefaultSelection<Prisma.$IngredientPayload>
  */
 export type Ustensil = $Result.DefaultSelection<Prisma.$UstensilPayload>
 /**
+ * Model Post
+ * 
+ */
+export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
+/**
+ * Model Reaction
+ * 
+ */
+export type Reaction = $Result.DefaultSelection<Prisma.$ReactionPayload>
+/**
  * Model Media
  * 
  */
@@ -100,6 +110,18 @@ export const Unit: {
 
 export type Unit = (typeof Unit)[keyof typeof Unit]
 
+
+export const ReactionType: {
+  like: 'like',
+  love: 'love',
+  haha: 'haha',
+  wow: 'wow',
+  sad: 'sad',
+  angry: 'angry'
+};
+
+export type ReactionType = (typeof ReactionType)[keyof typeof ReactionType]
+
 }
 
 export type MediaType = $Enums.MediaType
@@ -109,6 +131,10 @@ export const MediaType: typeof $Enums.MediaType
 export type Unit = $Enums.Unit
 
 export const Unit: typeof $Enums.Unit
+
+export type ReactionType = $Enums.ReactionType
+
+export const ReactionType: typeof $Enums.ReactionType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -334,6 +360,26 @@ export class PrismaClient<
     * ```
     */
   get ustensil(): Prisma.UstensilDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.post`: Exposes CRUD operations for the **Post** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Posts
+    * const posts = await prisma.post.findMany()
+    * ```
+    */
+  get post(): Prisma.PostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.reaction`: Exposes CRUD operations for the **Reaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Reactions
+    * const reactions = await prisma.reaction.findMany()
+    * ```
+    */
+  get reaction(): Prisma.ReactionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.media`: Exposes CRUD operations for the **Media** model.
@@ -794,6 +840,8 @@ export namespace Prisma {
     Aliment: 'Aliment',
     Ingredient: 'Ingredient',
     Ustensil: 'Ustensil',
+    Post: 'Post',
+    Reaction: 'Reaction',
     Media: 'Media'
   };
 
@@ -813,7 +861,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "recipe" | "step" | "aliment" | "ingredient" | "ustensil" | "media"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "recipe" | "step" | "aliment" | "ingredient" | "ustensil" | "post" | "reaction" | "media"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1557,6 +1605,154 @@ export namespace Prisma {
           }
         }
       }
+      Post: {
+        payload: Prisma.$PostPayload<ExtArgs>
+        fields: Prisma.PostFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          findFirst: {
+            args: Prisma.PostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          findMany: {
+            args: Prisma.PostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
+          }
+          create: {
+            args: Prisma.PostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          createMany: {
+            args: Prisma.PostCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PostCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
+          }
+          delete: {
+            args: Prisma.PostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          update: {
+            args: Prisma.PostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          deleteMany: {
+            args: Prisma.PostDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PostUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PostUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
+          }
+          upsert: {
+            args: Prisma.PostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          aggregate: {
+            args: Prisma.PostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePost>
+          }
+          groupBy: {
+            args: Prisma.PostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PostCountArgs<ExtArgs>
+            result: $Utils.Optional<PostCountAggregateOutputType> | number
+          }
+        }
+      }
+      Reaction: {
+        payload: Prisma.$ReactionPayload<ExtArgs>
+        fields: Prisma.ReactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>
+          }
+          findFirst: {
+            args: Prisma.ReactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>
+          }
+          findMany: {
+            args: Prisma.ReactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>[]
+          }
+          create: {
+            args: Prisma.ReactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>
+          }
+          createMany: {
+            args: Prisma.ReactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ReactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>[]
+          }
+          delete: {
+            args: Prisma.ReactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>
+          }
+          update: {
+            args: Prisma.ReactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ReactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>[]
+          }
+          upsert: {
+            args: Prisma.ReactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReactionPayload>
+          }
+          aggregate: {
+            args: Prisma.ReactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReaction>
+          }
+          groupBy: {
+            args: Prisma.ReactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReactionCountArgs<ExtArgs>
+            result: $Utils.Optional<ReactionCountAggregateOutputType> | number
+          }
+        }
+      }
       Media: {
         payload: Prisma.$MediaPayload<ExtArgs>
         fields: Prisma.MediaFieldRefs
@@ -1725,6 +1921,8 @@ export namespace Prisma {
     aliment?: AlimentOmit
     ingredient?: IngredientOmit
     ustensil?: UstensilOmit
+    post?: PostOmit
+    reaction?: ReactionOmit
     media?: MediaOmit
   }
 
@@ -1823,12 +2021,18 @@ export namespace Prisma {
     accounts: number
     sessions: number
     Authenticator: number
+    Recipes: number
+    Posts: number
+    Reactions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     Authenticator?: boolean | UserCountOutputTypeCountAuthenticatorArgs
+    Recipes?: boolean | UserCountOutputTypeCountRecipesArgs
+    Posts?: boolean | UserCountOutputTypeCountPostsArgs
+    Reactions?: boolean | UserCountOutputTypeCountReactionsArgs
   }
 
   // Custom InputTypes
@@ -1863,6 +2067,27 @@ export namespace Prisma {
     where?: AuthenticatorWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRecipesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecipeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReactionWhereInput
+  }
+
 
   /**
    * Count Type RecipeCountOutputType
@@ -1873,6 +2098,7 @@ export namespace Prisma {
     steps: number
     ingredients: number
     ustensils: number
+    posts: number
   }
 
   export type RecipeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1880,6 +2106,7 @@ export namespace Prisma {
     steps?: boolean | RecipeCountOutputTypeCountStepsArgs
     ingredients?: boolean | RecipeCountOutputTypeCountIngredientsArgs
     ustensils?: boolean | RecipeCountOutputTypeCountUstensilsArgs
+    posts?: boolean | RecipeCountOutputTypeCountPostsArgs
   }
 
   // Custom InputTypes
@@ -1919,6 +2146,13 @@ export namespace Prisma {
    */
   export type RecipeCountOutputTypeCountUstensilsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UstensilWhereInput
+  }
+
+  /**
+   * RecipeCountOutputType without action
+   */
+  export type RecipeCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
   }
 
 
@@ -2048,6 +2282,64 @@ export namespace Prisma {
    */
   export type UstensilCountOutputTypeCountStepsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StepWhereInput
+  }
+
+
+  /**
+   * Count Type PostCountOutputType
+   */
+
+  export type PostCountOutputType = {
+    medias: number
+    reposts: number
+    responses: number
+    reactions: number
+  }
+
+  export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    medias?: boolean | PostCountOutputTypeCountMediasArgs
+    reposts?: boolean | PostCountOutputTypeCountRepostsArgs
+    responses?: boolean | PostCountOutputTypeCountResponsesArgs
+    reactions?: boolean | PostCountOutputTypeCountReactionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostCountOutputType
+     */
+    select?: PostCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeCountMediasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaWhereInput
+  }
+
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeCountRepostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
+  }
+
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeCountResponsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
+  }
+
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeCountReactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReactionWhereInput
   }
 
 
@@ -2238,6 +2530,9 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Authenticator?: boolean | User$AuthenticatorArgs<ExtArgs>
+    Recipes?: boolean | User$RecipesArgs<ExtArgs>
+    Posts?: boolean | User$PostsArgs<ExtArgs>
+    Reactions?: boolean | User$ReactionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2276,6 +2571,9 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Authenticator?: boolean | User$AuthenticatorArgs<ExtArgs>
+    Recipes?: boolean | User$RecipesArgs<ExtArgs>
+    Posts?: boolean | User$PostsArgs<ExtArgs>
+    Reactions?: boolean | User$ReactionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2287,6 +2585,9 @@ export namespace Prisma {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       Authenticator: Prisma.$AuthenticatorPayload<ExtArgs>[]
+      Recipes: Prisma.$RecipePayload<ExtArgs>[]
+      Posts: Prisma.$PostPayload<ExtArgs>[]
+      Reactions: Prisma.$ReactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2693,6 +2994,9 @@ export namespace Prisma {
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Authenticator<T extends User$AuthenticatorArgs<ExtArgs> = {}>(args?: Subset<T, User$AuthenticatorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Recipes<T extends User$RecipesArgs<ExtArgs> = {}>(args?: Subset<T, User$RecipesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Posts<T extends User$PostsArgs<ExtArgs> = {}>(args?: Subset<T, User$PostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Reactions<T extends User$ReactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ReactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3186,6 +3490,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AuthenticatorScalarFieldEnum | AuthenticatorScalarFieldEnum[]
+  }
+
+  /**
+   * User.Recipes
+   */
+  export type User$RecipesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    where?: RecipeWhereInput
+    orderBy?: RecipeOrderByWithRelationInput | RecipeOrderByWithRelationInput[]
+    cursor?: RecipeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecipeScalarFieldEnum | RecipeScalarFieldEnum[]
+  }
+
+  /**
+   * User.Posts
+   */
+  export type User$PostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * User.Reactions
+   */
+  export type User$ReactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    where?: ReactionWhereInput
+    orderBy?: ReactionOrderByWithRelationInput | ReactionOrderByWithRelationInput[]
+    cursor?: ReactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReactionScalarFieldEnum | ReactionScalarFieldEnum[]
   }
 
   /**
@@ -7575,6 +7951,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    authorId: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -7583,6 +7960,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    authorId: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -7591,6 +7969,7 @@ export namespace Prisma {
     id: number
     name: number
     description: number
+    authorId: number
     created_at: number
     updated_at: number
     _all: number
@@ -7601,6 +7980,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    authorId?: true
     created_at?: true
     updated_at?: true
   }
@@ -7609,6 +7989,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    authorId?: true
     created_at?: true
     updated_at?: true
   }
@@ -7617,6 +7998,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    authorId?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -7698,6 +8080,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    authorId: string | null
     created_at: Date
     updated_at: Date
     _count: RecipeCountAggregateOutputType | null
@@ -7723,12 +8106,15 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
     medias?: boolean | Recipe$mediasArgs<ExtArgs>
     steps?: boolean | Recipe$stepsArgs<ExtArgs>
     ingredients?: boolean | Recipe$ingredientsArgs<ExtArgs>
     ustensils?: boolean | Recipe$ustensilsArgs<ExtArgs>
+    posts?: boolean | Recipe$postsArgs<ExtArgs>
+    author?: boolean | Recipe$authorArgs<ExtArgs>
     _count?: boolean | RecipeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["recipe"]>
 
@@ -7736,36 +8122,47 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
+    author?: boolean | Recipe$authorArgs<ExtArgs>
   }, ExtArgs["result"]["recipe"]>
 
   export type RecipeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
+    authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
+    author?: boolean | Recipe$authorArgs<ExtArgs>
   }, ExtArgs["result"]["recipe"]>
 
   export type RecipeSelectScalar = {
     id?: boolean
     name?: boolean
     description?: boolean
+    authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "created_at" | "updated_at", ExtArgs["result"]["recipe"]>
+  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "authorId" | "created_at" | "updated_at", ExtArgs["result"]["recipe"]>
   export type RecipeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     medias?: boolean | Recipe$mediasArgs<ExtArgs>
     steps?: boolean | Recipe$stepsArgs<ExtArgs>
     ingredients?: boolean | Recipe$ingredientsArgs<ExtArgs>
     ustensils?: boolean | Recipe$ustensilsArgs<ExtArgs>
+    posts?: boolean | Recipe$postsArgs<ExtArgs>
+    author?: boolean | Recipe$authorArgs<ExtArgs>
     _count?: boolean | RecipeCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type RecipeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type RecipeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type RecipeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | Recipe$authorArgs<ExtArgs>
+  }
+  export type RecipeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | Recipe$authorArgs<ExtArgs>
+  }
 
   export type $RecipePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Recipe"
@@ -7774,11 +8171,14 @@ export namespace Prisma {
       steps: Prisma.$StepPayload<ExtArgs>[]
       ingredients: Prisma.$IngredientPayload<ExtArgs>[]
       ustensils: Prisma.$UstensilPayload<ExtArgs>[]
+      posts: Prisma.$PostPayload<ExtArgs>[]
+      author: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       description: string
+      authorId: string | null
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["recipe"]>
@@ -8179,6 +8579,8 @@ export namespace Prisma {
     steps<T extends Recipe$stepsArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ingredients<T extends Recipe$ingredientsArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$ingredientsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IngredientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ustensils<T extends Recipe$ustensilsArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$ustensilsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UstensilPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    posts<T extends Recipe$postsArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    author<T extends Recipe$authorArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8211,6 +8613,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Recipe", 'String'>
     readonly name: FieldRef<"Recipe", 'String'>
     readonly description: FieldRef<"Recipe", 'String'>
+    readonly authorId: FieldRef<"Recipe", 'String'>
     readonly created_at: FieldRef<"Recipe", 'DateTime'>
     readonly updated_at: FieldRef<"Recipe", 'DateTime'>
   }
@@ -8462,6 +8865,10 @@ export namespace Prisma {
      */
     data: RecipeCreateManyInput | RecipeCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8532,6 +8939,10 @@ export namespace Prisma {
      * Limit how many Recipes to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8694,6 +9105,49 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UstensilScalarFieldEnum | UstensilScalarFieldEnum[]
+  }
+
+  /**
+   * Recipe.posts
+   */
+  export type Recipe$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * Recipe.author
+   */
+  export type Recipe$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -9932,7 +10386,7 @@ export namespace Prisma {
   export type AlimentMinAggregateOutputType = {
     id: string | null
     name: string | null
-    image: string | null
+    image_id: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -9940,7 +10394,7 @@ export namespace Prisma {
   export type AlimentMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    image: string | null
+    image_id: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -9948,7 +10402,7 @@ export namespace Prisma {
   export type AlimentCountAggregateOutputType = {
     id: number
     name: number
-    image: number
+    image_id: number
     created_at: number
     updated_at: number
     _all: number
@@ -9958,7 +10412,7 @@ export namespace Prisma {
   export type AlimentMinAggregateInputType = {
     id?: true
     name?: true
-    image?: true
+    image_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -9966,7 +10420,7 @@ export namespace Prisma {
   export type AlimentMaxAggregateInputType = {
     id?: true
     name?: true
-    image?: true
+    image_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -9974,7 +10428,7 @@ export namespace Prisma {
   export type AlimentCountAggregateInputType = {
     id?: true
     name?: true
-    image?: true
+    image_id?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -10055,7 +10509,7 @@ export namespace Prisma {
   export type AlimentGroupByOutputType = {
     id: string
     name: string
-    image: string
+    image_id: string
     created_at: Date
     updated_at: Date
     _count: AlimentCountAggregateOutputType | null
@@ -10080,9 +10534,10 @@ export namespace Prisma {
   export type AlimentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    image?: boolean | MediaDefaultArgs<ExtArgs>
     steps?: boolean | Aliment$stepsArgs<ExtArgs>
     ingredients?: boolean | Aliment$ingredientsArgs<ExtArgs>
     _count?: boolean | AlimentCountOutputTypeDefaultArgs<ExtArgs>
@@ -10091,46 +10546,54 @@ export namespace Prisma {
   export type AlimentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    image?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["aliment"]>
 
   export type AlimentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    image?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["aliment"]>
 
   export type AlimentSelectScalar = {
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type AlimentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "created_at" | "updated_at", ExtArgs["result"]["aliment"]>
+  export type AlimentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image_id" | "created_at" | "updated_at", ExtArgs["result"]["aliment"]>
   export type AlimentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    image?: boolean | MediaDefaultArgs<ExtArgs>
     steps?: boolean | Aliment$stepsArgs<ExtArgs>
     ingredients?: boolean | Aliment$ingredientsArgs<ExtArgs>
     _count?: boolean | AlimentCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type AlimentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type AlimentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AlimentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    image?: boolean | MediaDefaultArgs<ExtArgs>
+  }
+  export type AlimentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    image?: boolean | MediaDefaultArgs<ExtArgs>
+  }
 
   export type $AlimentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Aliment"
     objects: {
+      image: Prisma.$MediaPayload<ExtArgs>
       steps: Prisma.$StepPayload<ExtArgs>[]
       ingredients: Prisma.$IngredientPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      image: string
+      image_id: string
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["aliment"]>
@@ -10527,6 +10990,7 @@ export namespace Prisma {
    */
   export interface Prisma__AlimentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    image<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     steps<T extends Aliment$stepsArgs<ExtArgs> = {}>(args?: Subset<T, Aliment$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ingredients<T extends Aliment$ingredientsArgs<ExtArgs> = {}>(args?: Subset<T, Aliment$ingredientsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IngredientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -10560,7 +11024,7 @@ export namespace Prisma {
   interface AlimentFieldRefs {
     readonly id: FieldRef<"Aliment", 'String'>
     readonly name: FieldRef<"Aliment", 'String'>
-    readonly image: FieldRef<"Aliment", 'String'>
+    readonly image_id: FieldRef<"Aliment", 'String'>
     readonly created_at: FieldRef<"Aliment", 'DateTime'>
     readonly updated_at: FieldRef<"Aliment", 'DateTime'>
   }
@@ -10812,6 +11276,10 @@ export namespace Prisma {
      */
     data: AlimentCreateManyInput | AlimentCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlimentIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -10882,6 +11350,10 @@ export namespace Prisma {
      * Limit how many Aliments to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlimentIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -12169,7 +12641,7 @@ export namespace Prisma {
   export type UstensilMinAggregateOutputType = {
     id: string | null
     name: string | null
-    image: string | null
+    image_id: string | null
     description: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -12178,7 +12650,7 @@ export namespace Prisma {
   export type UstensilMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    image: string | null
+    image_id: string | null
     description: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -12187,7 +12659,7 @@ export namespace Prisma {
   export type UstensilCountAggregateOutputType = {
     id: number
     name: number
-    image: number
+    image_id: number
     description: number
     created_at: number
     updated_at: number
@@ -12198,7 +12670,7 @@ export namespace Prisma {
   export type UstensilMinAggregateInputType = {
     id?: true
     name?: true
-    image?: true
+    image_id?: true
     description?: true
     created_at?: true
     updated_at?: true
@@ -12207,7 +12679,7 @@ export namespace Prisma {
   export type UstensilMaxAggregateInputType = {
     id?: true
     name?: true
-    image?: true
+    image_id?: true
     description?: true
     created_at?: true
     updated_at?: true
@@ -12216,7 +12688,7 @@ export namespace Prisma {
   export type UstensilCountAggregateInputType = {
     id?: true
     name?: true
-    image?: true
+    image_id?: true
     description?: true
     created_at?: true
     updated_at?: true
@@ -12298,7 +12770,7 @@ export namespace Prisma {
   export type UstensilGroupByOutputType = {
     id: string
     name: string
-    image: string
+    image_id: string
     description: string
     created_at: Date
     updated_at: Date
@@ -12324,10 +12796,11 @@ export namespace Prisma {
   export type UstensilSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     description?: boolean
     created_at?: boolean
     updated_at?: boolean
+    image?: boolean | MediaDefaultArgs<ExtArgs>
     recipes?: boolean | Ustensil$recipesArgs<ExtArgs>
     steps?: boolean | Ustensil$stepsArgs<ExtArgs>
     _count?: boolean | UstensilCountOutputTypeDefaultArgs<ExtArgs>
@@ -12336,49 +12809,57 @@ export namespace Prisma {
   export type UstensilSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     description?: boolean
     created_at?: boolean
     updated_at?: boolean
+    image?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ustensil"]>
 
   export type UstensilSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     description?: boolean
     created_at?: boolean
     updated_at?: boolean
+    image?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ustensil"]>
 
   export type UstensilSelectScalar = {
     id?: boolean
     name?: boolean
-    image?: boolean
+    image_id?: boolean
     description?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type UstensilOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "description" | "created_at" | "updated_at", ExtArgs["result"]["ustensil"]>
+  export type UstensilOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image_id" | "description" | "created_at" | "updated_at", ExtArgs["result"]["ustensil"]>
   export type UstensilInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    image?: boolean | MediaDefaultArgs<ExtArgs>
     recipes?: boolean | Ustensil$recipesArgs<ExtArgs>
     steps?: boolean | Ustensil$stepsArgs<ExtArgs>
     _count?: boolean | UstensilCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type UstensilIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UstensilIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UstensilIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    image?: boolean | MediaDefaultArgs<ExtArgs>
+  }
+  export type UstensilIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    image?: boolean | MediaDefaultArgs<ExtArgs>
+  }
 
   export type $UstensilPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Ustensil"
     objects: {
+      image: Prisma.$MediaPayload<ExtArgs>
       recipes: Prisma.$RecipePayload<ExtArgs>[]
       steps: Prisma.$StepPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      image: string
+      image_id: string
       description: string
       created_at: Date
       updated_at: Date
@@ -12776,6 +13257,7 @@ export namespace Prisma {
    */
   export interface Prisma__UstensilClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    image<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     recipes<T extends Ustensil$recipesArgs<ExtArgs> = {}>(args?: Subset<T, Ustensil$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     steps<T extends Ustensil$stepsArgs<ExtArgs> = {}>(args?: Subset<T, Ustensil$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -12809,7 +13291,7 @@ export namespace Prisma {
   interface UstensilFieldRefs {
     readonly id: FieldRef<"Ustensil", 'String'>
     readonly name: FieldRef<"Ustensil", 'String'>
-    readonly image: FieldRef<"Ustensil", 'String'>
+    readonly image_id: FieldRef<"Ustensil", 'String'>
     readonly description: FieldRef<"Ustensil", 'String'>
     readonly created_at: FieldRef<"Ustensil", 'DateTime'>
     readonly updated_at: FieldRef<"Ustensil", 'DateTime'>
@@ -13062,6 +13544,10 @@ export namespace Prisma {
      */
     data: UstensilCreateManyInput | UstensilCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UstensilIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -13132,6 +13618,10 @@ export namespace Prisma {
      * Limit how many Ustensils to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UstensilIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -13268,6 +13758,2409 @@ export namespace Prisma {
 
 
   /**
+   * Model Post
+   */
+
+  export type AggregatePost = {
+    _count: PostCountAggregateOutputType | null
+    _min: PostMinAggregateOutputType | null
+    _max: PostMaxAggregateOutputType | null
+  }
+
+  export type PostMinAggregateOutputType = {
+    id: string | null
+    content: string | null
+    published: boolean | null
+    recipeId: string | null
+    authorId: string | null
+    repostOfId: string | null
+    responseToId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type PostMaxAggregateOutputType = {
+    id: string | null
+    content: string | null
+    published: boolean | null
+    recipeId: string | null
+    authorId: string | null
+    repostOfId: string | null
+    responseToId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type PostCountAggregateOutputType = {
+    id: number
+    content: number
+    published: number
+    recipeId: number
+    authorId: number
+    repostOfId: number
+    responseToId: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type PostMinAggregateInputType = {
+    id?: true
+    content?: true
+    published?: true
+    recipeId?: true
+    authorId?: true
+    repostOfId?: true
+    responseToId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type PostMaxAggregateInputType = {
+    id?: true
+    content?: true
+    published?: true
+    recipeId?: true
+    authorId?: true
+    repostOfId?: true
+    responseToId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type PostCountAggregateInputType = {
+    id?: true
+    content?: true
+    published?: true
+    recipeId?: true
+    authorId?: true
+    repostOfId?: true
+    responseToId?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type PostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Post to aggregate.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Posts
+    **/
+    _count?: true | PostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PostMaxAggregateInputType
+  }
+
+  export type GetPostAggregateType<T extends PostAggregateArgs> = {
+        [P in keyof T & keyof AggregatePost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePost[P]>
+      : GetScalarType<T[P], AggregatePost[P]>
+  }
+
+
+
+
+  export type PostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithAggregationInput | PostOrderByWithAggregationInput[]
+    by: PostScalarFieldEnum[] | PostScalarFieldEnum
+    having?: PostScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PostCountAggregateInputType | true
+    _min?: PostMinAggregateInputType
+    _max?: PostMaxAggregateInputType
+  }
+
+  export type PostGroupByOutputType = {
+    id: string
+    content: string
+    published: boolean
+    recipeId: string | null
+    authorId: string | null
+    repostOfId: string | null
+    responseToId: string | null
+    created_at: Date
+    updated_at: Date
+    _count: PostCountAggregateOutputType | null
+    _min: PostMinAggregateOutputType | null
+    _max: PostMaxAggregateOutputType | null
+  }
+
+  type GetPostGroupByPayload<T extends PostGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PostGroupByOutputType[P]>
+            : GetScalarType<T[P], PostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    content?: boolean
+    published?: boolean
+    recipeId?: boolean
+    authorId?: boolean
+    repostOfId?: boolean
+    responseToId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    medias?: boolean | Post$mediasArgs<ExtArgs>
+    recipe?: boolean | Post$recipeArgs<ExtArgs>
+    author?: boolean | Post$authorArgs<ExtArgs>
+    repostOf?: boolean | Post$repostOfArgs<ExtArgs>
+    reposts?: boolean | Post$repostsArgs<ExtArgs>
+    responseTo?: boolean | Post$responseToArgs<ExtArgs>
+    responses?: boolean | Post$responsesArgs<ExtArgs>
+    reactions?: boolean | Post$reactionsArgs<ExtArgs>
+    _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["post"]>
+
+  export type PostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    content?: boolean
+    published?: boolean
+    recipeId?: boolean
+    authorId?: boolean
+    repostOfId?: boolean
+    responseToId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    recipe?: boolean | Post$recipeArgs<ExtArgs>
+    author?: boolean | Post$authorArgs<ExtArgs>
+    repostOf?: boolean | Post$repostOfArgs<ExtArgs>
+    responseTo?: boolean | Post$responseToArgs<ExtArgs>
+  }, ExtArgs["result"]["post"]>
+
+  export type PostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    content?: boolean
+    published?: boolean
+    recipeId?: boolean
+    authorId?: boolean
+    repostOfId?: boolean
+    responseToId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    recipe?: boolean | Post$recipeArgs<ExtArgs>
+    author?: boolean | Post$authorArgs<ExtArgs>
+    repostOf?: boolean | Post$repostOfArgs<ExtArgs>
+    responseTo?: boolean | Post$responseToArgs<ExtArgs>
+  }, ExtArgs["result"]["post"]>
+
+  export type PostSelectScalar = {
+    id?: boolean
+    content?: boolean
+    published?: boolean
+    recipeId?: boolean
+    authorId?: boolean
+    repostOfId?: boolean
+    responseToId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "published" | "recipeId" | "authorId" | "repostOfId" | "responseToId" | "created_at" | "updated_at", ExtArgs["result"]["post"]>
+  export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    medias?: boolean | Post$mediasArgs<ExtArgs>
+    recipe?: boolean | Post$recipeArgs<ExtArgs>
+    author?: boolean | Post$authorArgs<ExtArgs>
+    repostOf?: boolean | Post$repostOfArgs<ExtArgs>
+    reposts?: boolean | Post$repostsArgs<ExtArgs>
+    responseTo?: boolean | Post$responseToArgs<ExtArgs>
+    responses?: boolean | Post$responsesArgs<ExtArgs>
+    reactions?: boolean | Post$reactionsArgs<ExtArgs>
+    _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recipe?: boolean | Post$recipeArgs<ExtArgs>
+    author?: boolean | Post$authorArgs<ExtArgs>
+    repostOf?: boolean | Post$repostOfArgs<ExtArgs>
+    responseTo?: boolean | Post$responseToArgs<ExtArgs>
+  }
+  export type PostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recipe?: boolean | Post$recipeArgs<ExtArgs>
+    author?: boolean | Post$authorArgs<ExtArgs>
+    repostOf?: boolean | Post$repostOfArgs<ExtArgs>
+    responseTo?: boolean | Post$responseToArgs<ExtArgs>
+  }
+
+  export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Post"
+    objects: {
+      medias: Prisma.$MediaPayload<ExtArgs>[]
+      recipe: Prisma.$RecipePayload<ExtArgs> | null
+      author: Prisma.$UserPayload<ExtArgs> | null
+      repostOf: Prisma.$PostPayload<ExtArgs> | null
+      reposts: Prisma.$PostPayload<ExtArgs>[]
+      responseTo: Prisma.$PostPayload<ExtArgs> | null
+      responses: Prisma.$PostPayload<ExtArgs>[]
+      reactions: Prisma.$ReactionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      content: string
+      published: boolean
+      recipeId: string | null
+      authorId: string | null
+      repostOfId: string | null
+      responseToId: string | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["post"]>
+    composites: {}
+  }
+
+  type PostGetPayload<S extends boolean | null | undefined | PostDefaultArgs> = $Result.GetResult<Prisma.$PostPayload, S>
+
+  type PostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PostCountAggregateInputType | true
+    }
+
+  export interface PostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Post'], meta: { name: 'Post' } }
+    /**
+     * Find zero or one Post that matches the filter.
+     * @param {PostFindUniqueArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PostFindUniqueArgs>(args: SelectSubset<T, PostFindUniqueArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Post that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PostFindUniqueOrThrowArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PostFindUniqueOrThrowArgs>(args: SelectSubset<T, PostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Post that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostFindFirstArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PostFindFirstArgs>(args?: SelectSubset<T, PostFindFirstArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Post that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostFindFirstOrThrowArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PostFindFirstOrThrowArgs>(args?: SelectSubset<T, PostFindFirstOrThrowArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Posts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Posts
+     * const posts = await prisma.post.findMany()
+     * 
+     * // Get first 10 Posts
+     * const posts = await prisma.post.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const postWithIdOnly = await prisma.post.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PostFindManyArgs>(args?: SelectSubset<T, PostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Post.
+     * @param {PostCreateArgs} args - Arguments to create a Post.
+     * @example
+     * // Create one Post
+     * const Post = await prisma.post.create({
+     *   data: {
+     *     // ... data to create a Post
+     *   }
+     * })
+     * 
+     */
+    create<T extends PostCreateArgs>(args: SelectSubset<T, PostCreateArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Posts.
+     * @param {PostCreateManyArgs} args - Arguments to create many Posts.
+     * @example
+     * // Create many Posts
+     * const post = await prisma.post.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PostCreateManyArgs>(args?: SelectSubset<T, PostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Posts and returns the data saved in the database.
+     * @param {PostCreateManyAndReturnArgs} args - Arguments to create many Posts.
+     * @example
+     * // Create many Posts
+     * const post = await prisma.post.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Posts and only return the `id`
+     * const postWithIdOnly = await prisma.post.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PostCreateManyAndReturnArgs>(args?: SelectSubset<T, PostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Post.
+     * @param {PostDeleteArgs} args - Arguments to delete one Post.
+     * @example
+     * // Delete one Post
+     * const Post = await prisma.post.delete({
+     *   where: {
+     *     // ... filter to delete one Post
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PostDeleteArgs>(args: SelectSubset<T, PostDeleteArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Post.
+     * @param {PostUpdateArgs} args - Arguments to update one Post.
+     * @example
+     * // Update one Post
+     * const post = await prisma.post.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PostUpdateArgs>(args: SelectSubset<T, PostUpdateArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Posts.
+     * @param {PostDeleteManyArgs} args - Arguments to filter Posts to delete.
+     * @example
+     * // Delete a few Posts
+     * const { count } = await prisma.post.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PostDeleteManyArgs>(args?: SelectSubset<T, PostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Posts
+     * const post = await prisma.post.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PostUpdateManyArgs>(args: SelectSubset<T, PostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Posts and returns the data updated in the database.
+     * @param {PostUpdateManyAndReturnArgs} args - Arguments to update many Posts.
+     * @example
+     * // Update many Posts
+     * const post = await prisma.post.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Posts and only return the `id`
+     * const postWithIdOnly = await prisma.post.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PostUpdateManyAndReturnArgs>(args: SelectSubset<T, PostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Post.
+     * @param {PostUpsertArgs} args - Arguments to update or create a Post.
+     * @example
+     * // Update or create a Post
+     * const post = await prisma.post.upsert({
+     *   create: {
+     *     // ... data to create a Post
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Post we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PostUpsertArgs>(args: SelectSubset<T, PostUpsertArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostCountArgs} args - Arguments to filter Posts to count.
+     * @example
+     * // Count the number of Posts
+     * const count = await prisma.post.count({
+     *   where: {
+     *     // ... the filter for the Posts we want to count
+     *   }
+     * })
+    **/
+    count<T extends PostCountArgs>(
+      args?: Subset<T, PostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Post.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PostAggregateArgs>(args: Subset<T, PostAggregateArgs>): Prisma.PrismaPromise<GetPostAggregateType<T>>
+
+    /**
+     * Group by Post.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PostGroupByArgs['orderBy'] }
+        : { orderBy?: PostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Post model
+   */
+  readonly fields: PostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Post.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    medias<T extends Post$mediasArgs<ExtArgs> = {}>(args?: Subset<T, Post$mediasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recipe<T extends Post$recipeArgs<ExtArgs> = {}>(args?: Subset<T, Post$recipeArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    author<T extends Post$authorArgs<ExtArgs> = {}>(args?: Subset<T, Post$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    repostOf<T extends Post$repostOfArgs<ExtArgs> = {}>(args?: Subset<T, Post$repostOfArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    reposts<T extends Post$repostsArgs<ExtArgs> = {}>(args?: Subset<T, Post$repostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    responseTo<T extends Post$responseToArgs<ExtArgs> = {}>(args?: Subset<T, Post$responseToArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    responses<T extends Post$responsesArgs<ExtArgs> = {}>(args?: Subset<T, Post$responsesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reactions<T extends Post$reactionsArgs<ExtArgs> = {}>(args?: Subset<T, Post$reactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Post model
+   */
+  interface PostFieldRefs {
+    readonly id: FieldRef<"Post", 'String'>
+    readonly content: FieldRef<"Post", 'String'>
+    readonly published: FieldRef<"Post", 'Boolean'>
+    readonly recipeId: FieldRef<"Post", 'String'>
+    readonly authorId: FieldRef<"Post", 'String'>
+    readonly repostOfId: FieldRef<"Post", 'String'>
+    readonly responseToId: FieldRef<"Post", 'String'>
+    readonly created_at: FieldRef<"Post", 'DateTime'>
+    readonly updated_at: FieldRef<"Post", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Post findUnique
+   */
+  export type PostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where: PostWhereUniqueInput
+  }
+
+  /**
+   * Post findUniqueOrThrow
+   */
+  export type PostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where: PostWhereUniqueInput
+  }
+
+  /**
+   * Post findFirst
+   */
+  export type PostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Posts.
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Posts.
+     */
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * Post findFirstOrThrow
+   */
+  export type PostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Posts.
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Posts.
+     */
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * Post findMany
+   */
+  export type PostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Posts.
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * Post create
+   */
+  export type PostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Post.
+     */
+    data: XOR<PostCreateInput, PostUncheckedCreateInput>
+  }
+
+  /**
+   * Post createMany
+   */
+  export type PostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Posts.
+     */
+    data: PostCreateManyInput | PostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Post createManyAndReturn
+   */
+  export type PostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * The data used to create many Posts.
+     */
+    data: PostCreateManyInput | PostCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Post update
+   */
+  export type PostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Post.
+     */
+    data: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+    /**
+     * Choose, which Post to update.
+     */
+    where: PostWhereUniqueInput
+  }
+
+  /**
+   * Post updateMany
+   */
+  export type PostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Posts.
+     */
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyInput>
+    /**
+     * Filter which Posts to update
+     */
+    where?: PostWhereInput
+    /**
+     * Limit how many Posts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Post updateManyAndReturn
+   */
+  export type PostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * The data used to update Posts.
+     */
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyInput>
+    /**
+     * Filter which Posts to update
+     */
+    where?: PostWhereInput
+    /**
+     * Limit how many Posts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Post upsert
+   */
+  export type PostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Post to update in case it exists.
+     */
+    where: PostWhereUniqueInput
+    /**
+     * In case the Post found by the `where` argument doesn't exist, create a new Post with this data.
+     */
+    create: XOR<PostCreateInput, PostUncheckedCreateInput>
+    /**
+     * In case the Post was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+  }
+
+  /**
+   * Post delete
+   */
+  export type PostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter which Post to delete.
+     */
+    where: PostWhereUniqueInput
+  }
+
+  /**
+   * Post deleteMany
+   */
+  export type PostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Posts to delete
+     */
+    where?: PostWhereInput
+    /**
+     * Limit how many Posts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Post.medias
+   */
+  export type Post$mediasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Media
+     */
+    select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null
+    where?: MediaWhereInput
+    orderBy?: MediaOrderByWithRelationInput | MediaOrderByWithRelationInput[]
+    cursor?: MediaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaScalarFieldEnum | MediaScalarFieldEnum[]
+  }
+
+  /**
+   * Post.recipe
+   */
+  export type Post$recipeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    where?: RecipeWhereInput
+  }
+
+  /**
+   * Post.author
+   */
+  export type Post$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Post.repostOf
+   */
+  export type Post$repostOfArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+  }
+
+  /**
+   * Post.reposts
+   */
+  export type Post$repostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * Post.responseTo
+   */
+  export type Post$responseToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+  }
+
+  /**
+   * Post.responses
+   */
+  export type Post$responsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * Post.reactions
+   */
+  export type Post$reactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    where?: ReactionWhereInput
+    orderBy?: ReactionOrderByWithRelationInput | ReactionOrderByWithRelationInput[]
+    cursor?: ReactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReactionScalarFieldEnum | ReactionScalarFieldEnum[]
+  }
+
+  /**
+   * Post without action
+   */
+  export type PostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Reaction
+   */
+
+  export type AggregateReaction = {
+    _count: ReactionCountAggregateOutputType | null
+    _min: ReactionMinAggregateOutputType | null
+    _max: ReactionMaxAggregateOutputType | null
+  }
+
+  export type ReactionMinAggregateOutputType = {
+    id: string | null
+    type: $Enums.ReactionType | null
+    postId: string | null
+    userId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ReactionMaxAggregateOutputType = {
+    id: string | null
+    type: $Enums.ReactionType | null
+    postId: string | null
+    userId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ReactionCountAggregateOutputType = {
+    id: number
+    type: number
+    postId: number
+    userId: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type ReactionMinAggregateInputType = {
+    id?: true
+    type?: true
+    postId?: true
+    userId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ReactionMaxAggregateInputType = {
+    id?: true
+    type?: true
+    postId?: true
+    userId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ReactionCountAggregateInputType = {
+    id?: true
+    type?: true
+    postId?: true
+    userId?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type ReactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Reaction to aggregate.
+     */
+    where?: ReactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reactions to fetch.
+     */
+    orderBy?: ReactionOrderByWithRelationInput | ReactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Reactions
+    **/
+    _count?: true | ReactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReactionMaxAggregateInputType
+  }
+
+  export type GetReactionAggregateType<T extends ReactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateReaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReaction[P]>
+      : GetScalarType<T[P], AggregateReaction[P]>
+  }
+
+
+
+
+  export type ReactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReactionWhereInput
+    orderBy?: ReactionOrderByWithAggregationInput | ReactionOrderByWithAggregationInput[]
+    by: ReactionScalarFieldEnum[] | ReactionScalarFieldEnum
+    having?: ReactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReactionCountAggregateInputType | true
+    _min?: ReactionMinAggregateInputType
+    _max?: ReactionMaxAggregateInputType
+  }
+
+  export type ReactionGroupByOutputType = {
+    id: string
+    type: $Enums.ReactionType
+    postId: string
+    userId: string
+    created_at: Date
+    updated_at: Date
+    _count: ReactionCountAggregateOutputType | null
+    _min: ReactionMinAggregateOutputType | null
+    _max: ReactionMaxAggregateOutputType | null
+  }
+
+  type GetReactionGroupByPayload<T extends ReactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReactionGroupByOutputType[P]>
+            : GetScalarType<T[P], ReactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    postId?: boolean
+    userId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reaction"]>
+
+  export type ReactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    postId?: boolean
+    userId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reaction"]>
+
+  export type ReactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    postId?: boolean
+    userId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reaction"]>
+
+  export type ReactionSelectScalar = {
+    id?: boolean
+    type?: boolean
+    postId?: boolean
+    userId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type ReactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "postId" | "userId" | "created_at" | "updated_at", ExtArgs["result"]["reaction"]>
+  export type ReactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReactionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ReactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Reaction"
+    objects: {
+      post: Prisma.$PostPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: $Enums.ReactionType
+      postId: string
+      userId: string
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["reaction"]>
+    composites: {}
+  }
+
+  type ReactionGetPayload<S extends boolean | null | undefined | ReactionDefaultArgs> = $Result.GetResult<Prisma.$ReactionPayload, S>
+
+  type ReactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReactionCountAggregateInputType | true
+    }
+
+  export interface ReactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Reaction'], meta: { name: 'Reaction' } }
+    /**
+     * Find zero or one Reaction that matches the filter.
+     * @param {ReactionFindUniqueArgs} args - Arguments to find a Reaction
+     * @example
+     * // Get one Reaction
+     * const reaction = await prisma.reaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReactionFindUniqueArgs>(args: SelectSubset<T, ReactionFindUniqueArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Reaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReactionFindUniqueOrThrowArgs} args - Arguments to find a Reaction
+     * @example
+     * // Get one Reaction
+     * const reaction = await prisma.reaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReactionFindUniqueOrThrowArgs>(args: SelectSubset<T, ReactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Reaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionFindFirstArgs} args - Arguments to find a Reaction
+     * @example
+     * // Get one Reaction
+     * const reaction = await prisma.reaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReactionFindFirstArgs>(args?: SelectSubset<T, ReactionFindFirstArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Reaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionFindFirstOrThrowArgs} args - Arguments to find a Reaction
+     * @example
+     * // Get one Reaction
+     * const reaction = await prisma.reaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReactionFindFirstOrThrowArgs>(args?: SelectSubset<T, ReactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Reactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Reactions
+     * const reactions = await prisma.reaction.findMany()
+     * 
+     * // Get first 10 Reactions
+     * const reactions = await prisma.reaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const reactionWithIdOnly = await prisma.reaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReactionFindManyArgs>(args?: SelectSubset<T, ReactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Reaction.
+     * @param {ReactionCreateArgs} args - Arguments to create a Reaction.
+     * @example
+     * // Create one Reaction
+     * const Reaction = await prisma.reaction.create({
+     *   data: {
+     *     // ... data to create a Reaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReactionCreateArgs>(args: SelectSubset<T, ReactionCreateArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Reactions.
+     * @param {ReactionCreateManyArgs} args - Arguments to create many Reactions.
+     * @example
+     * // Create many Reactions
+     * const reaction = await prisma.reaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReactionCreateManyArgs>(args?: SelectSubset<T, ReactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Reactions and returns the data saved in the database.
+     * @param {ReactionCreateManyAndReturnArgs} args - Arguments to create many Reactions.
+     * @example
+     * // Create many Reactions
+     * const reaction = await prisma.reaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Reactions and only return the `id`
+     * const reactionWithIdOnly = await prisma.reaction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ReactionCreateManyAndReturnArgs>(args?: SelectSubset<T, ReactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Reaction.
+     * @param {ReactionDeleteArgs} args - Arguments to delete one Reaction.
+     * @example
+     * // Delete one Reaction
+     * const Reaction = await prisma.reaction.delete({
+     *   where: {
+     *     // ... filter to delete one Reaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReactionDeleteArgs>(args: SelectSubset<T, ReactionDeleteArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Reaction.
+     * @param {ReactionUpdateArgs} args - Arguments to update one Reaction.
+     * @example
+     * // Update one Reaction
+     * const reaction = await prisma.reaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReactionUpdateArgs>(args: SelectSubset<T, ReactionUpdateArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Reactions.
+     * @param {ReactionDeleteManyArgs} args - Arguments to filter Reactions to delete.
+     * @example
+     * // Delete a few Reactions
+     * const { count } = await prisma.reaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReactionDeleteManyArgs>(args?: SelectSubset<T, ReactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Reactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Reactions
+     * const reaction = await prisma.reaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReactionUpdateManyArgs>(args: SelectSubset<T, ReactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Reactions and returns the data updated in the database.
+     * @param {ReactionUpdateManyAndReturnArgs} args - Arguments to update many Reactions.
+     * @example
+     * // Update many Reactions
+     * const reaction = await prisma.reaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Reactions and only return the `id`
+     * const reactionWithIdOnly = await prisma.reaction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ReactionUpdateManyAndReturnArgs>(args: SelectSubset<T, ReactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Reaction.
+     * @param {ReactionUpsertArgs} args - Arguments to update or create a Reaction.
+     * @example
+     * // Update or create a Reaction
+     * const reaction = await prisma.reaction.upsert({
+     *   create: {
+     *     // ... data to create a Reaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Reaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReactionUpsertArgs>(args: SelectSubset<T, ReactionUpsertArgs<ExtArgs>>): Prisma__ReactionClient<$Result.GetResult<Prisma.$ReactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Reactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionCountArgs} args - Arguments to filter Reactions to count.
+     * @example
+     * // Count the number of Reactions
+     * const count = await prisma.reaction.count({
+     *   where: {
+     *     // ... the filter for the Reactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReactionCountArgs>(
+      args?: Subset<T, ReactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Reaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReactionAggregateArgs>(args: Subset<T, ReactionAggregateArgs>): Prisma.PrismaPromise<GetReactionAggregateType<T>>
+
+    /**
+     * Group by Reaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReactionGroupByArgs['orderBy'] }
+        : { orderBy?: ReactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Reaction model
+   */
+  readonly fields: ReactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Reaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Reaction model
+   */
+  interface ReactionFieldRefs {
+    readonly id: FieldRef<"Reaction", 'String'>
+    readonly type: FieldRef<"Reaction", 'ReactionType'>
+    readonly postId: FieldRef<"Reaction", 'String'>
+    readonly userId: FieldRef<"Reaction", 'String'>
+    readonly created_at: FieldRef<"Reaction", 'DateTime'>
+    readonly updated_at: FieldRef<"Reaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Reaction findUnique
+   */
+  export type ReactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Reaction to fetch.
+     */
+    where: ReactionWhereUniqueInput
+  }
+
+  /**
+   * Reaction findUniqueOrThrow
+   */
+  export type ReactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Reaction to fetch.
+     */
+    where: ReactionWhereUniqueInput
+  }
+
+  /**
+   * Reaction findFirst
+   */
+  export type ReactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Reaction to fetch.
+     */
+    where?: ReactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reactions to fetch.
+     */
+    orderBy?: ReactionOrderByWithRelationInput | ReactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Reactions.
+     */
+    cursor?: ReactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Reactions.
+     */
+    distinct?: ReactionScalarFieldEnum | ReactionScalarFieldEnum[]
+  }
+
+  /**
+   * Reaction findFirstOrThrow
+   */
+  export type ReactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Reaction to fetch.
+     */
+    where?: ReactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reactions to fetch.
+     */
+    orderBy?: ReactionOrderByWithRelationInput | ReactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Reactions.
+     */
+    cursor?: ReactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Reactions.
+     */
+    distinct?: ReactionScalarFieldEnum | ReactionScalarFieldEnum[]
+  }
+
+  /**
+   * Reaction findMany
+   */
+  export type ReactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Reactions to fetch.
+     */
+    where?: ReactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reactions to fetch.
+     */
+    orderBy?: ReactionOrderByWithRelationInput | ReactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Reactions.
+     */
+    cursor?: ReactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reactions.
+     */
+    skip?: number
+    distinct?: ReactionScalarFieldEnum | ReactionScalarFieldEnum[]
+  }
+
+  /**
+   * Reaction create
+   */
+  export type ReactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Reaction.
+     */
+    data: XOR<ReactionCreateInput, ReactionUncheckedCreateInput>
+  }
+
+  /**
+   * Reaction createMany
+   */
+  export type ReactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Reactions.
+     */
+    data: ReactionCreateManyInput | ReactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Reaction createManyAndReturn
+   */
+  export type ReactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Reactions.
+     */
+    data: ReactionCreateManyInput | ReactionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Reaction update
+   */
+  export type ReactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Reaction.
+     */
+    data: XOR<ReactionUpdateInput, ReactionUncheckedUpdateInput>
+    /**
+     * Choose, which Reaction to update.
+     */
+    where: ReactionWhereUniqueInput
+  }
+
+  /**
+   * Reaction updateMany
+   */
+  export type ReactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Reactions.
+     */
+    data: XOR<ReactionUpdateManyMutationInput, ReactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Reactions to update
+     */
+    where?: ReactionWhereInput
+    /**
+     * Limit how many Reactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Reaction updateManyAndReturn
+   */
+  export type ReactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * The data used to update Reactions.
+     */
+    data: XOR<ReactionUpdateManyMutationInput, ReactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Reactions to update
+     */
+    where?: ReactionWhereInput
+    /**
+     * Limit how many Reactions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Reaction upsert
+   */
+  export type ReactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Reaction to update in case it exists.
+     */
+    where: ReactionWhereUniqueInput
+    /**
+     * In case the Reaction found by the `where` argument doesn't exist, create a new Reaction with this data.
+     */
+    create: XOR<ReactionCreateInput, ReactionUncheckedCreateInput>
+    /**
+     * In case the Reaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReactionUpdateInput, ReactionUncheckedUpdateInput>
+  }
+
+  /**
+   * Reaction delete
+   */
+  export type ReactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+    /**
+     * Filter which Reaction to delete.
+     */
+    where: ReactionWhereUniqueInput
+  }
+
+  /**
+   * Reaction deleteMany
+   */
+  export type ReactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Reactions to delete
+     */
+    where?: ReactionWhereInput
+    /**
+     * Limit how many Reactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Reaction without action
+   */
+  export type ReactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reaction
+     */
+    select?: ReactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reaction
+     */
+    omit?: ReactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReactionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Media
    */
 
@@ -13284,6 +16177,9 @@ export namespace Prisma {
     alt: string | null
     recipe_id: string | null
     step_id: string | null
+    aliment_id: string | null
+    ustensil_id: string | null
+    post_id: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -13295,6 +16191,9 @@ export namespace Prisma {
     alt: string | null
     recipe_id: string | null
     step_id: string | null
+    aliment_id: string | null
+    ustensil_id: string | null
+    post_id: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -13306,6 +16205,9 @@ export namespace Prisma {
     alt: number
     recipe_id: number
     step_id: number
+    aliment_id: number
+    ustensil_id: number
+    post_id: number
     created_at: number
     updated_at: number
     _all: number
@@ -13319,6 +16221,9 @@ export namespace Prisma {
     alt?: true
     recipe_id?: true
     step_id?: true
+    aliment_id?: true
+    ustensil_id?: true
+    post_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -13330,6 +16235,9 @@ export namespace Prisma {
     alt?: true
     recipe_id?: true
     step_id?: true
+    aliment_id?: true
+    ustensil_id?: true
+    post_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -13341,6 +16249,9 @@ export namespace Prisma {
     alt?: true
     recipe_id?: true
     step_id?: true
+    aliment_id?: true
+    ustensil_id?: true
+    post_id?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -13425,6 +16336,9 @@ export namespace Prisma {
     alt: string
     recipe_id: string | null
     step_id: string | null
+    aliment_id: string | null
+    ustensil_id: string | null
+    post_id: string | null
     created_at: Date
     updated_at: Date
     _count: MediaCountAggregateOutputType | null
@@ -13453,10 +16367,16 @@ export namespace Prisma {
     alt?: boolean
     recipe_id?: boolean
     step_id?: boolean
+    aliment_id?: boolean
+    ustensil_id?: boolean
+    post_id?: boolean
     created_at?: boolean
     updated_at?: boolean
     recipe?: boolean | Media$recipeArgs<ExtArgs>
     step?: boolean | Media$stepArgs<ExtArgs>
+    aliment?: boolean | Media$alimentArgs<ExtArgs>
+    ustensil?: boolean | Media$ustensilArgs<ExtArgs>
+    post?: boolean | Media$postArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13466,10 +16386,14 @@ export namespace Prisma {
     alt?: boolean
     recipe_id?: boolean
     step_id?: boolean
+    aliment_id?: boolean
+    ustensil_id?: boolean
+    post_id?: boolean
     created_at?: boolean
     updated_at?: boolean
     recipe?: boolean | Media$recipeArgs<ExtArgs>
     step?: boolean | Media$stepArgs<ExtArgs>
+    post?: boolean | Media$postArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13479,10 +16403,14 @@ export namespace Prisma {
     alt?: boolean
     recipe_id?: boolean
     step_id?: boolean
+    aliment_id?: boolean
+    ustensil_id?: boolean
+    post_id?: boolean
     created_at?: boolean
     updated_at?: boolean
     recipe?: boolean | Media$recipeArgs<ExtArgs>
     step?: boolean | Media$stepArgs<ExtArgs>
+    post?: boolean | Media$postArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
   export type MediaSelectScalar = {
@@ -13492,22 +16420,30 @@ export namespace Prisma {
     alt?: boolean
     recipe_id?: boolean
     step_id?: boolean
+    aliment_id?: boolean
+    ustensil_id?: boolean
+    post_id?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "src" | "alt" | "recipe_id" | "step_id" | "created_at" | "updated_at", ExtArgs["result"]["media"]>
+  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "src" | "alt" | "recipe_id" | "step_id" | "aliment_id" | "ustensil_id" | "post_id" | "created_at" | "updated_at", ExtArgs["result"]["media"]>
   export type MediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     recipe?: boolean | Media$recipeArgs<ExtArgs>
     step?: boolean | Media$stepArgs<ExtArgs>
+    aliment?: boolean | Media$alimentArgs<ExtArgs>
+    ustensil?: boolean | Media$ustensilArgs<ExtArgs>
+    post?: boolean | Media$postArgs<ExtArgs>
   }
   export type MediaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     recipe?: boolean | Media$recipeArgs<ExtArgs>
     step?: boolean | Media$stepArgs<ExtArgs>
+    post?: boolean | Media$postArgs<ExtArgs>
   }
   export type MediaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     recipe?: boolean | Media$recipeArgs<ExtArgs>
     step?: boolean | Media$stepArgs<ExtArgs>
+    post?: boolean | Media$postArgs<ExtArgs>
   }
 
   export type $MediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13515,6 +16451,9 @@ export namespace Prisma {
     objects: {
       recipe: Prisma.$RecipePayload<ExtArgs> | null
       step: Prisma.$StepPayload<ExtArgs> | null
+      aliment: Prisma.$AlimentPayload<ExtArgs> | null
+      ustensil: Prisma.$UstensilPayload<ExtArgs> | null
+      post: Prisma.$PostPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13523,6 +16462,9 @@ export namespace Prisma {
       alt: string
       recipe_id: string | null
       step_id: string | null
+      aliment_id: string | null
+      ustensil_id: string | null
+      post_id: string | null
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["media"]>
@@ -13921,6 +16863,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     recipe<T extends Media$recipeArgs<ExtArgs> = {}>(args?: Subset<T, Media$recipeArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     step<T extends Media$stepArgs<ExtArgs> = {}>(args?: Subset<T, Media$stepArgs<ExtArgs>>): Prisma__StepClient<$Result.GetResult<Prisma.$StepPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    aliment<T extends Media$alimentArgs<ExtArgs> = {}>(args?: Subset<T, Media$alimentArgs<ExtArgs>>): Prisma__AlimentClient<$Result.GetResult<Prisma.$AlimentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    ustensil<T extends Media$ustensilArgs<ExtArgs> = {}>(args?: Subset<T, Media$ustensilArgs<ExtArgs>>): Prisma__UstensilClient<$Result.GetResult<Prisma.$UstensilPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    post<T extends Media$postArgs<ExtArgs> = {}>(args?: Subset<T, Media$postArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13956,6 +16901,9 @@ export namespace Prisma {
     readonly alt: FieldRef<"Media", 'String'>
     readonly recipe_id: FieldRef<"Media", 'String'>
     readonly step_id: FieldRef<"Media", 'String'>
+    readonly aliment_id: FieldRef<"Media", 'String'>
+    readonly ustensil_id: FieldRef<"Media", 'String'>
+    readonly post_id: FieldRef<"Media", 'String'>
     readonly created_at: FieldRef<"Media", 'DateTime'>
     readonly updated_at: FieldRef<"Media", 'DateTime'>
   }
@@ -14392,6 +17340,63 @@ export namespace Prisma {
   }
 
   /**
+   * Media.aliment
+   */
+  export type Media$alimentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Aliment
+     */
+    select?: AlimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Aliment
+     */
+    omit?: AlimentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlimentInclude<ExtArgs> | null
+    where?: AlimentWhereInput
+  }
+
+  /**
+   * Media.ustensil
+   */
+  export type Media$ustensilArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ustensil
+     */
+    select?: UstensilSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ustensil
+     */
+    omit?: UstensilOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UstensilInclude<ExtArgs> | null
+    where?: UstensilWhereInput
+  }
+
+  /**
+   * Media.post
+   */
+  export type Media$postArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+  }
+
+  /**
    * Media without action
    */
   export type MediaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14494,6 +17499,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
+    authorId: 'authorId',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -14517,7 +17523,7 @@ export namespace Prisma {
   export const AlimentScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    image: 'image',
+    image_id: 'image_id',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -14542,13 +17548,40 @@ export namespace Prisma {
   export const UstensilScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    image: 'image',
+    image_id: 'image_id',
     description: 'description',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
   export type UstensilScalarFieldEnum = (typeof UstensilScalarFieldEnum)[keyof typeof UstensilScalarFieldEnum]
+
+
+  export const PostScalarFieldEnum: {
+    id: 'id',
+    content: 'content',
+    published: 'published',
+    recipeId: 'recipeId',
+    authorId: 'authorId',
+    repostOfId: 'repostOfId',
+    responseToId: 'responseToId',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+  export const ReactionScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    postId: 'postId',
+    userId: 'userId',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type ReactionScalarFieldEnum = (typeof ReactionScalarFieldEnum)[keyof typeof ReactionScalarFieldEnum]
 
 
   export const MediaScalarFieldEnum: {
@@ -14558,6 +17591,9 @@ export namespace Prisma {
     alt: 'alt',
     recipe_id: 'recipe_id',
     step_id: 'step_id',
+    aliment_id: 'aliment_id',
+    ustensil_id: 'ustensil_id',
+    post_id: 'post_id',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -14672,6 +17708,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ReactionType'
+   */
+  export type EnumReactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReactionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ReactionType[]'
+   */
+  export type ListEnumReactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReactionType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'MediaType'
    */
   export type EnumMediaTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MediaType'>
@@ -14702,6 +17752,9 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     Authenticator?: AuthenticatorListRelationFilter
+    Recipes?: RecipeListRelationFilter
+    Posts?: PostListRelationFilter
+    Reactions?: ReactionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14715,6 +17768,9 @@ export namespace Prisma {
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     Authenticator?: AuthenticatorOrderByRelationAggregateInput
+    Recipes?: RecipeOrderByRelationAggregateInput
+    Posts?: PostOrderByRelationAggregateInput
+    Reactions?: ReactionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14731,6 +17787,9 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     Authenticator?: AuthenticatorListRelationFilter
+    Recipes?: RecipeListRelationFilter
+    Posts?: PostListRelationFilter
+    Reactions?: ReactionListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -15035,24 +18094,30 @@ export namespace Prisma {
     id?: StringFilter<"Recipe"> | string
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
+    authorId?: StringNullableFilter<"Recipe"> | string | null
     created_at?: DateTimeFilter<"Recipe"> | Date | string
     updated_at?: DateTimeFilter<"Recipe"> | Date | string
     medias?: MediaListRelationFilter
     steps?: StepListRelationFilter
     ingredients?: IngredientListRelationFilter
     ustensils?: UstensilListRelationFilter
+    posts?: PostListRelationFilter
+    author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type RecipeOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    authorId?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     medias?: MediaOrderByRelationAggregateInput
     steps?: StepOrderByRelationAggregateInput
     ingredients?: IngredientOrderByRelationAggregateInput
     ustensils?: UstensilOrderByRelationAggregateInput
+    posts?: PostOrderByRelationAggregateInput
+    author?: UserOrderByWithRelationInput
   }
 
   export type RecipeWhereUniqueInput = Prisma.AtLeast<{
@@ -15062,18 +18127,22 @@ export namespace Prisma {
     NOT?: RecipeWhereInput | RecipeWhereInput[]
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
+    authorId?: StringNullableFilter<"Recipe"> | string | null
     created_at?: DateTimeFilter<"Recipe"> | Date | string
     updated_at?: DateTimeFilter<"Recipe"> | Date | string
     medias?: MediaListRelationFilter
     steps?: StepListRelationFilter
     ingredients?: IngredientListRelationFilter
     ustensils?: UstensilListRelationFilter
+    posts?: PostListRelationFilter
+    author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type RecipeOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    authorId?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: RecipeCountOrderByAggregateInput
@@ -15088,6 +18157,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Recipe"> | string
     name?: StringWithAggregatesFilter<"Recipe"> | string
     description?: StringWithAggregatesFilter<"Recipe"> | string
+    authorId?: StringNullableWithAggregatesFilter<"Recipe"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"Recipe"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Recipe"> | Date | string
   }
@@ -15174,9 +18244,10 @@ export namespace Prisma {
     NOT?: AlimentWhereInput | AlimentWhereInput[]
     id?: StringFilter<"Aliment"> | string
     name?: StringFilter<"Aliment"> | string
-    image?: StringFilter<"Aliment"> | string
+    image_id?: StringFilter<"Aliment"> | string
     created_at?: DateTimeFilter<"Aliment"> | Date | string
     updated_at?: DateTimeFilter<"Aliment"> | Date | string
+    image?: XOR<MediaScalarRelationFilter, MediaWhereInput>
     steps?: StepListRelationFilter
     ingredients?: IngredientListRelationFilter
   }
@@ -15184,30 +18255,32 @@ export namespace Prisma {
   export type AlimentOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    image?: MediaOrderByWithRelationInput
     steps?: StepOrderByRelationAggregateInput
     ingredients?: IngredientOrderByRelationAggregateInput
   }
 
   export type AlimentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    image_id?: string
     AND?: AlimentWhereInput | AlimentWhereInput[]
     OR?: AlimentWhereInput[]
     NOT?: AlimentWhereInput | AlimentWhereInput[]
     name?: StringFilter<"Aliment"> | string
-    image?: StringFilter<"Aliment"> | string
     created_at?: DateTimeFilter<"Aliment"> | Date | string
     updated_at?: DateTimeFilter<"Aliment"> | Date | string
+    image?: XOR<MediaScalarRelationFilter, MediaWhereInput>
     steps?: StepListRelationFilter
     ingredients?: IngredientListRelationFilter
-  }, "id">
+  }, "id" | "image_id">
 
   export type AlimentOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: AlimentCountOrderByAggregateInput
@@ -15221,7 +18294,7 @@ export namespace Prisma {
     NOT?: AlimentScalarWhereWithAggregatesInput | AlimentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Aliment"> | string
     name?: StringWithAggregatesFilter<"Aliment"> | string
-    image?: StringWithAggregatesFilter<"Aliment"> | string
+    image_id?: StringWithAggregatesFilter<"Aliment"> | string
     created_at?: DateTimeWithAggregatesFilter<"Aliment"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Aliment"> | Date | string
   }
@@ -15307,10 +18380,11 @@ export namespace Prisma {
     NOT?: UstensilWhereInput | UstensilWhereInput[]
     id?: StringFilter<"Ustensil"> | string
     name?: StringFilter<"Ustensil"> | string
-    image?: StringFilter<"Ustensil"> | string
+    image_id?: StringFilter<"Ustensil"> | string
     description?: StringFilter<"Ustensil"> | string
     created_at?: DateTimeFilter<"Ustensil"> | Date | string
     updated_at?: DateTimeFilter<"Ustensil"> | Date | string
+    image?: XOR<MediaScalarRelationFilter, MediaWhereInput>
     recipes?: RecipeListRelationFilter
     steps?: StepListRelationFilter
   }
@@ -15318,32 +18392,34 @@ export namespace Prisma {
   export type UstensilOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     description?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    image?: MediaOrderByWithRelationInput
     recipes?: RecipeOrderByRelationAggregateInput
     steps?: StepOrderByRelationAggregateInput
   }
 
   export type UstensilWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    image_id?: string
     AND?: UstensilWhereInput | UstensilWhereInput[]
     OR?: UstensilWhereInput[]
     NOT?: UstensilWhereInput | UstensilWhereInput[]
     name?: StringFilter<"Ustensil"> | string
-    image?: StringFilter<"Ustensil"> | string
     description?: StringFilter<"Ustensil"> | string
     created_at?: DateTimeFilter<"Ustensil"> | Date | string
     updated_at?: DateTimeFilter<"Ustensil"> | Date | string
+    image?: XOR<MediaScalarRelationFilter, MediaWhereInput>
     recipes?: RecipeListRelationFilter
     steps?: StepListRelationFilter
-  }, "id">
+  }, "id" | "image_id">
 
   export type UstensilOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     description?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -15358,10 +18434,169 @@ export namespace Prisma {
     NOT?: UstensilScalarWhereWithAggregatesInput | UstensilScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Ustensil"> | string
     name?: StringWithAggregatesFilter<"Ustensil"> | string
-    image?: StringWithAggregatesFilter<"Ustensil"> | string
+    image_id?: StringWithAggregatesFilter<"Ustensil"> | string
     description?: StringWithAggregatesFilter<"Ustensil"> | string
     created_at?: DateTimeWithAggregatesFilter<"Ustensil"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Ustensil"> | Date | string
+  }
+
+  export type PostWhereInput = {
+    AND?: PostWhereInput | PostWhereInput[]
+    OR?: PostWhereInput[]
+    NOT?: PostWhereInput | PostWhereInput[]
+    id?: StringFilter<"Post"> | string
+    content?: StringFilter<"Post"> | string
+    published?: BoolFilter<"Post"> | boolean
+    recipeId?: StringNullableFilter<"Post"> | string | null
+    authorId?: StringNullableFilter<"Post"> | string | null
+    repostOfId?: StringNullableFilter<"Post"> | string | null
+    responseToId?: StringNullableFilter<"Post"> | string | null
+    created_at?: DateTimeFilter<"Post"> | Date | string
+    updated_at?: DateTimeFilter<"Post"> | Date | string
+    medias?: MediaListRelationFilter
+    recipe?: XOR<RecipeNullableScalarRelationFilter, RecipeWhereInput> | null
+    author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    repostOf?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
+    reposts?: PostListRelationFilter
+    responseTo?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
+    responses?: PostListRelationFilter
+    reactions?: ReactionListRelationFilter
+  }
+
+  export type PostOrderByWithRelationInput = {
+    id?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    recipeId?: SortOrderInput | SortOrder
+    authorId?: SortOrderInput | SortOrder
+    repostOfId?: SortOrderInput | SortOrder
+    responseToId?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    medias?: MediaOrderByRelationAggregateInput
+    recipe?: RecipeOrderByWithRelationInput
+    author?: UserOrderByWithRelationInput
+    repostOf?: PostOrderByWithRelationInput
+    reposts?: PostOrderByRelationAggregateInput
+    responseTo?: PostOrderByWithRelationInput
+    responses?: PostOrderByRelationAggregateInput
+    reactions?: ReactionOrderByRelationAggregateInput
+  }
+
+  export type PostWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PostWhereInput | PostWhereInput[]
+    OR?: PostWhereInput[]
+    NOT?: PostWhereInput | PostWhereInput[]
+    content?: StringFilter<"Post"> | string
+    published?: BoolFilter<"Post"> | boolean
+    recipeId?: StringNullableFilter<"Post"> | string | null
+    authorId?: StringNullableFilter<"Post"> | string | null
+    repostOfId?: StringNullableFilter<"Post"> | string | null
+    responseToId?: StringNullableFilter<"Post"> | string | null
+    created_at?: DateTimeFilter<"Post"> | Date | string
+    updated_at?: DateTimeFilter<"Post"> | Date | string
+    medias?: MediaListRelationFilter
+    recipe?: XOR<RecipeNullableScalarRelationFilter, RecipeWhereInput> | null
+    author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    repostOf?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
+    reposts?: PostListRelationFilter
+    responseTo?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
+    responses?: PostListRelationFilter
+    reactions?: ReactionListRelationFilter
+  }, "id">
+
+  export type PostOrderByWithAggregationInput = {
+    id?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    recipeId?: SortOrderInput | SortOrder
+    authorId?: SortOrderInput | SortOrder
+    repostOfId?: SortOrderInput | SortOrder
+    responseToId?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: PostCountOrderByAggregateInput
+    _max?: PostMaxOrderByAggregateInput
+    _min?: PostMinOrderByAggregateInput
+  }
+
+  export type PostScalarWhereWithAggregatesInput = {
+    AND?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
+    OR?: PostScalarWhereWithAggregatesInput[]
+    NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Post"> | string
+    content?: StringWithAggregatesFilter<"Post"> | string
+    published?: BoolWithAggregatesFilter<"Post"> | boolean
+    recipeId?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    authorId?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    repostOfId?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    responseToId?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+  }
+
+  export type ReactionWhereInput = {
+    AND?: ReactionWhereInput | ReactionWhereInput[]
+    OR?: ReactionWhereInput[]
+    NOT?: ReactionWhereInput | ReactionWhereInput[]
+    id?: StringFilter<"Reaction"> | string
+    type?: EnumReactionTypeFilter<"Reaction"> | $Enums.ReactionType
+    postId?: StringFilter<"Reaction"> | string
+    userId?: StringFilter<"Reaction"> | string
+    created_at?: DateTimeFilter<"Reaction"> | Date | string
+    updated_at?: DateTimeFilter<"Reaction"> | Date | string
+    post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ReactionOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    postId?: SortOrder
+    userId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    post?: PostOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ReactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ReactionWhereInput | ReactionWhereInput[]
+    OR?: ReactionWhereInput[]
+    NOT?: ReactionWhereInput | ReactionWhereInput[]
+    type?: EnumReactionTypeFilter<"Reaction"> | $Enums.ReactionType
+    postId?: StringFilter<"Reaction"> | string
+    userId?: StringFilter<"Reaction"> | string
+    created_at?: DateTimeFilter<"Reaction"> | Date | string
+    updated_at?: DateTimeFilter<"Reaction"> | Date | string
+    post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ReactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    postId?: SortOrder
+    userId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: ReactionCountOrderByAggregateInput
+    _max?: ReactionMaxOrderByAggregateInput
+    _min?: ReactionMinOrderByAggregateInput
+  }
+
+  export type ReactionScalarWhereWithAggregatesInput = {
+    AND?: ReactionScalarWhereWithAggregatesInput | ReactionScalarWhereWithAggregatesInput[]
+    OR?: ReactionScalarWhereWithAggregatesInput[]
+    NOT?: ReactionScalarWhereWithAggregatesInput | ReactionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Reaction"> | string
+    type?: EnumReactionTypeWithAggregatesFilter<"Reaction"> | $Enums.ReactionType
+    postId?: StringWithAggregatesFilter<"Reaction"> | string
+    userId?: StringWithAggregatesFilter<"Reaction"> | string
+    created_at?: DateTimeWithAggregatesFilter<"Reaction"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"Reaction"> | Date | string
   }
 
   export type MediaWhereInput = {
@@ -15374,10 +18609,16 @@ export namespace Prisma {
     alt?: StringFilter<"Media"> | string
     recipe_id?: StringNullableFilter<"Media"> | string | null
     step_id?: StringNullableFilter<"Media"> | string | null
+    aliment_id?: StringNullableFilter<"Media"> | string | null
+    ustensil_id?: StringNullableFilter<"Media"> | string | null
+    post_id?: StringNullableFilter<"Media"> | string | null
     created_at?: DateTimeFilter<"Media"> | Date | string
     updated_at?: DateTimeFilter<"Media"> | Date | string
     recipe?: XOR<RecipeNullableScalarRelationFilter, RecipeWhereInput> | null
     step?: XOR<StepNullableScalarRelationFilter, StepWhereInput> | null
+    aliment?: XOR<AlimentNullableScalarRelationFilter, AlimentWhereInput> | null
+    ustensil?: XOR<UstensilNullableScalarRelationFilter, UstensilWhereInput> | null
+    post?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
   }
 
   export type MediaOrderByWithRelationInput = {
@@ -15387,10 +18628,16 @@ export namespace Prisma {
     alt?: SortOrder
     recipe_id?: SortOrderInput | SortOrder
     step_id?: SortOrderInput | SortOrder
+    aliment_id?: SortOrderInput | SortOrder
+    ustensil_id?: SortOrderInput | SortOrder
+    post_id?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     recipe?: RecipeOrderByWithRelationInput
     step?: StepOrderByWithRelationInput
+    aliment?: AlimentOrderByWithRelationInput
+    ustensil?: UstensilOrderByWithRelationInput
+    post?: PostOrderByWithRelationInput
   }
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -15403,10 +18650,16 @@ export namespace Prisma {
     alt?: StringFilter<"Media"> | string
     recipe_id?: StringNullableFilter<"Media"> | string | null
     step_id?: StringNullableFilter<"Media"> | string | null
+    aliment_id?: StringNullableFilter<"Media"> | string | null
+    ustensil_id?: StringNullableFilter<"Media"> | string | null
+    post_id?: StringNullableFilter<"Media"> | string | null
     created_at?: DateTimeFilter<"Media"> | Date | string
     updated_at?: DateTimeFilter<"Media"> | Date | string
     recipe?: XOR<RecipeNullableScalarRelationFilter, RecipeWhereInput> | null
     step?: XOR<StepNullableScalarRelationFilter, StepWhereInput> | null
+    aliment?: XOR<AlimentNullableScalarRelationFilter, AlimentWhereInput> | null
+    ustensil?: XOR<UstensilNullableScalarRelationFilter, UstensilWhereInput> | null
+    post?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
   }, "id">
 
   export type MediaOrderByWithAggregationInput = {
@@ -15416,6 +18669,9 @@ export namespace Prisma {
     alt?: SortOrder
     recipe_id?: SortOrderInput | SortOrder
     step_id?: SortOrderInput | SortOrder
+    aliment_id?: SortOrderInput | SortOrder
+    ustensil_id?: SortOrderInput | SortOrder
+    post_id?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: MediaCountOrderByAggregateInput
@@ -15433,6 +18689,9 @@ export namespace Prisma {
     alt?: StringWithAggregatesFilter<"Media"> | string
     recipe_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
     step_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
+    aliment_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
+    ustensil_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
+    post_id?: StringNullableWithAggregatesFilter<"Media"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"Media"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Media"> | Date | string
   }
@@ -15448,6 +18707,9 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    Recipes?: RecipeCreateNestedManyWithoutAuthorInput
+    Posts?: PostCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -15461,6 +18723,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    Recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
+    Posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -15474,6 +18739,9 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -15487,6 +18755,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -15813,18 +19084,22 @@ export namespace Prisma {
     steps?: StepCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilCreateNestedManyWithoutRecipesInput
+    posts?: PostCreateNestedManyWithoutRecipeInput
+    author?: UserCreateNestedOneWithoutRecipesInput
   }
 
   export type RecipeUncheckedCreateInput = {
     id?: string
     name: string
     description: string
+    authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
     steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientUncheckedCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilUncheckedCreateNestedManyWithoutRecipesInput
+    posts?: PostUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUpdateInput = {
@@ -15837,24 +19112,29 @@ export namespace Prisma {
     steps?: StepUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUpdateManyWithoutRecipesNestedInput
+    posts?: PostUpdateManyWithoutRecipeNestedInput
+    author?: UserUpdateOneWithoutRecipesNestedInput
   }
 
   export type RecipeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
     steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUncheckedUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUncheckedUpdateManyWithoutRecipesNestedInput
+    posts?: PostUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeCreateManyInput = {
     id?: string
     name: string
     description: string
+    authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -15871,6 +19151,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15959,9 +19240,9 @@ export namespace Prisma {
   export type AlimentCreateInput = {
     id?: string
     name: string
-    image: string
     created_at?: Date | string
     updated_at?: Date | string
+    image: MediaCreateNestedOneWithoutAlimentInput
     steps?: StepCreateNestedManyWithoutAlimentsInput
     ingredients?: IngredientCreateNestedManyWithoutAlimentInput
   }
@@ -15969,7 +19250,7 @@ export namespace Prisma {
   export type AlimentUncheckedCreateInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     created_at?: Date | string
     updated_at?: Date | string
     steps?: StepUncheckedCreateNestedManyWithoutAlimentsInput
@@ -15979,9 +19260,9 @@ export namespace Prisma {
   export type AlimentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: MediaUpdateOneRequiredWithoutAlimentNestedInput
     steps?: StepUpdateManyWithoutAlimentsNestedInput
     ingredients?: IngredientUpdateManyWithoutAlimentNestedInput
   }
@@ -15989,7 +19270,7 @@ export namespace Prisma {
   export type AlimentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     steps?: StepUncheckedUpdateManyWithoutAlimentsNestedInput
@@ -15999,7 +19280,7 @@ export namespace Prisma {
   export type AlimentCreateManyInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -16007,7 +19288,6 @@ export namespace Prisma {
   export type AlimentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16015,7 +19295,7 @@ export namespace Prisma {
   export type AlimentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16098,10 +19378,10 @@ export namespace Prisma {
   export type UstensilCreateInput = {
     id?: string
     name: string
-    image: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
+    image: MediaCreateNestedOneWithoutUstensilInput
     recipes?: RecipeCreateNestedManyWithoutUstensilsInput
     steps?: StepCreateNestedManyWithoutUstensilsInput
   }
@@ -16109,7 +19389,7 @@ export namespace Prisma {
   export type UstensilUncheckedCreateInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -16120,10 +19400,10 @@ export namespace Prisma {
   export type UstensilUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: MediaUpdateOneRequiredWithoutUstensilNestedInput
     recipes?: RecipeUpdateManyWithoutUstensilsNestedInput
     steps?: StepUpdateManyWithoutUstensilsNestedInput
   }
@@ -16131,7 +19411,7 @@ export namespace Prisma {
   export type UstensilUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16142,7 +19422,7 @@ export namespace Prisma {
   export type UstensilCreateManyInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -16151,7 +19431,6 @@ export namespace Prisma {
   export type UstensilUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16160,8 +19439,165 @@ export namespace Prisma {
   export type UstensilUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostCreateInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostCreateManyInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type PostUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionCreateInput = {
+    id?: string
+    type: $Enums.ReactionType
+    created_at?: Date | string
+    updated_at?: Date | string
+    post: PostCreateNestedOneWithoutReactionsInput
+    user: UserCreateNestedOneWithoutReactionsInput
+  }
+
+  export type ReactionUncheckedCreateInput = {
+    id?: string
+    type: $Enums.ReactionType
+    postId: string
+    userId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ReactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: PostUpdateOneRequiredWithoutReactionsNestedInput
+    user?: UserUpdateOneRequiredWithoutReactionsNestedInput
+  }
+
+  export type ReactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    postId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionCreateManyInput = {
+    id?: string
+    type: $Enums.ReactionType
+    postId: string
+    userId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ReactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    postId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16171,10 +19607,15 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
+    aliment_id?: string | null
+    ustensil_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     recipe?: RecipeCreateNestedOneWithoutMediasInput
     step?: StepCreateNestedOneWithoutMediasInput
+    aliment?: AlimentCreateNestedOneWithoutImageInput
+    ustensil?: UstensilCreateNestedOneWithoutImageInput
+    post?: PostCreateNestedOneWithoutMediasInput
   }
 
   export type MediaUncheckedCreateInput = {
@@ -16184,8 +19625,13 @@ export namespace Prisma {
     alt: string
     recipe_id?: string | null
     step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    aliment?: AlimentUncheckedCreateNestedOneWithoutImageInput
+    ustensil?: UstensilUncheckedCreateNestedOneWithoutImageInput
   }
 
   export type MediaUpdateInput = {
@@ -16193,10 +19639,15 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     recipe?: RecipeUpdateOneWithoutMediasNestedInput
     step?: StepUpdateOneWithoutMediasNestedInput
+    aliment?: AlimentUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUpdateOneWithoutImageNestedInput
+    post?: PostUpdateOneWithoutMediasNestedInput
   }
 
   export type MediaUncheckedUpdateInput = {
@@ -16206,8 +19657,13 @@ export namespace Prisma {
     alt?: StringFieldUpdateOperationsInput | string
     recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
     step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    aliment?: AlimentUncheckedUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUncheckedUpdateOneWithoutImageNestedInput
   }
 
   export type MediaCreateManyInput = {
@@ -16217,6 +19673,9 @@ export namespace Prisma {
     alt: string
     recipe_id?: string | null
     step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -16226,6 +19685,8 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16237,6 +19698,9 @@ export namespace Prisma {
     alt?: StringFieldUpdateOperationsInput | string
     recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
     step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16311,6 +19775,24 @@ export namespace Prisma {
     none?: AuthenticatorWhereInput
   }
 
+  export type RecipeListRelationFilter = {
+    every?: RecipeWhereInput
+    some?: RecipeWhereInput
+    none?: RecipeWhereInput
+  }
+
+  export type PostListRelationFilter = {
+    every?: PostWhereInput
+    some?: PostWhereInput
+    none?: PostWhereInput
+  }
+
+  export type ReactionListRelationFilter = {
+    every?: ReactionWhereInput
+    some?: ReactionWhereInput
+    none?: ReactionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -16325,6 +19807,18 @@ export namespace Prisma {
   }
 
   export type AuthenticatorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RecipeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReactionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16672,6 +20166,11 @@ export namespace Prisma {
     none?: UstensilWhereInput
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type MediaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -16692,6 +20191,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    authorId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16700,6 +20200,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    authorId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16708,6 +20209,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    authorId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16765,10 +20267,15 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type MediaScalarRelationFilter = {
+    is?: MediaWhereInput
+    isNot?: MediaWhereInput
+  }
+
   export type AlimentCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16776,7 +20283,7 @@ export namespace Prisma {
   export type AlimentMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16784,7 +20291,7 @@ export namespace Prisma {
   export type AlimentMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16879,20 +20386,10 @@ export namespace Prisma {
     _max?: NestedEnumUnitFilter<$PrismaModel>
   }
 
-  export type RecipeListRelationFilter = {
-    every?: RecipeWhereInput
-    some?: RecipeWhereInput
-    none?: RecipeWhereInput
-  }
-
-  export type RecipeOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UstensilCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     description?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -16901,7 +20398,7 @@ export namespace Prisma {
   export type UstensilMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     description?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -16910,10 +20407,105 @@ export namespace Prisma {
   export type UstensilMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    image?: SortOrder
+    image_id?: SortOrder
     description?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+  }
+
+  export type RecipeNullableScalarRelationFilter = {
+    is?: RecipeWhereInput | null
+    isNot?: RecipeWhereInput | null
+  }
+
+  export type PostNullableScalarRelationFilter = {
+    is?: PostWhereInput | null
+    isNot?: PostWhereInput | null
+  }
+
+  export type PostCountOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    recipeId?: SortOrder
+    authorId?: SortOrder
+    repostOfId?: SortOrder
+    responseToId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PostMaxOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    recipeId?: SortOrder
+    authorId?: SortOrder
+    repostOfId?: SortOrder
+    responseToId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PostMinOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    recipeId?: SortOrder
+    authorId?: SortOrder
+    repostOfId?: SortOrder
+    responseToId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type EnumReactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumReactionTypeFilter<$PrismaModel> | $Enums.ReactionType
+  }
+
+  export type PostScalarRelationFilter = {
+    is?: PostWhereInput
+    isNot?: PostWhereInput
+  }
+
+  export type ReactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    postId?: SortOrder
+    userId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ReactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    postId?: SortOrder
+    userId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ReactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    postId?: SortOrder
+    userId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type EnumReactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumReactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.ReactionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumReactionTypeFilter<$PrismaModel>
+    _max?: NestedEnumReactionTypeFilter<$PrismaModel>
   }
 
   export type EnumMediaTypeFilter<$PrismaModel = never> = {
@@ -16923,14 +20515,19 @@ export namespace Prisma {
     not?: NestedEnumMediaTypeFilter<$PrismaModel> | $Enums.MediaType
   }
 
-  export type RecipeNullableScalarRelationFilter = {
-    is?: RecipeWhereInput | null
-    isNot?: RecipeWhereInput | null
-  }
-
   export type StepNullableScalarRelationFilter = {
     is?: StepWhereInput | null
     isNot?: StepWhereInput | null
+  }
+
+  export type AlimentNullableScalarRelationFilter = {
+    is?: AlimentWhereInput | null
+    isNot?: AlimentWhereInput | null
+  }
+
+  export type UstensilNullableScalarRelationFilter = {
+    is?: UstensilWhereInput | null
+    isNot?: UstensilWhereInput | null
   }
 
   export type MediaCountOrderByAggregateInput = {
@@ -16940,6 +20537,9 @@ export namespace Prisma {
     alt?: SortOrder
     recipe_id?: SortOrder
     step_id?: SortOrder
+    aliment_id?: SortOrder
+    ustensil_id?: SortOrder
+    post_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16951,6 +20551,9 @@ export namespace Prisma {
     alt?: SortOrder
     recipe_id?: SortOrder
     step_id?: SortOrder
+    aliment_id?: SortOrder
+    ustensil_id?: SortOrder
+    post_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16962,6 +20565,9 @@ export namespace Prisma {
     alt?: SortOrder
     recipe_id?: SortOrder
     step_id?: SortOrder
+    aliment_id?: SortOrder
+    ustensil_id?: SortOrder
+    post_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -16997,6 +20603,27 @@ export namespace Prisma {
     connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
   }
 
+  export type RecipeCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+  }
+
+  export type PostCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type ReactionCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReactionCreateWithoutUserInput, ReactionUncheckedCreateWithoutUserInput> | ReactionCreateWithoutUserInput[] | ReactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutUserInput | ReactionCreateOrConnectWithoutUserInput[]
+    createMany?: ReactionCreateManyUserInputEnvelope
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -17016,6 +20643,27 @@ export namespace Prisma {
     connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
     createMany?: AuthenticatorCreateManyUserInputEnvelope
     connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+  }
+
+  export type RecipeUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+  }
+
+  export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type ReactionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReactionCreateWithoutUserInput, ReactionUncheckedCreateWithoutUserInput> | ReactionCreateWithoutUserInput[] | ReactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutUserInput | ReactionCreateOrConnectWithoutUserInput[]
+    createMany?: ReactionCreateManyUserInputEnvelope
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17076,6 +20724,48 @@ export namespace Prisma {
     deleteMany?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
   }
 
+  export type RecipeUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    upsert?: RecipeUpsertWithWhereUniqueWithoutAuthorInput | RecipeUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    set?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    disconnect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    delete?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    update?: RecipeUpdateWithWhereUniqueWithoutAuthorInput | RecipeUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: RecipeUpdateManyWithWhereWithoutAuthorInput | RecipeUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+  }
+
+  export type PostUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type ReactionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReactionCreateWithoutUserInput, ReactionUncheckedCreateWithoutUserInput> | ReactionCreateWithoutUserInput[] | ReactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutUserInput | ReactionCreateOrConnectWithoutUserInput[]
+    upsert?: ReactionUpsertWithWhereUniqueWithoutUserInput | ReactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReactionCreateManyUserInputEnvelope
+    set?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    disconnect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    delete?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    update?: ReactionUpdateWithWhereUniqueWithoutUserInput | ReactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReactionUpdateManyWithWhereWithoutUserInput | ReactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReactionScalarWhereInput | ReactionScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -17116,6 +20806,48 @@ export namespace Prisma {
     update?: AuthenticatorUpdateWithWhereUniqueWithoutUserInput | AuthenticatorUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AuthenticatorUpdateManyWithWhereWithoutUserInput | AuthenticatorUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
+  }
+
+  export type RecipeUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    upsert?: RecipeUpsertWithWhereUniqueWithoutAuthorInput | RecipeUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    set?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    disconnect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    delete?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    update?: RecipeUpdateWithWhereUniqueWithoutAuthorInput | RecipeUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: RecipeUpdateManyWithWhereWithoutAuthorInput | RecipeUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type ReactionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReactionCreateWithoutUserInput, ReactionUncheckedCreateWithoutUserInput> | ReactionCreateWithoutUserInput[] | ReactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutUserInput | ReactionCreateOrConnectWithoutUserInput[]
+    upsert?: ReactionUpsertWithWhereUniqueWithoutUserInput | ReactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReactionCreateManyUserInputEnvelope
+    set?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    disconnect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    delete?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    update?: ReactionUpdateWithWhereUniqueWithoutUserInput | ReactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReactionUpdateManyWithWhereWithoutUserInput | ReactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReactionScalarWhereInput | ReactionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -17207,6 +20939,19 @@ export namespace Prisma {
     connect?: UstensilWhereUniqueInput | UstensilWhereUniqueInput[]
   }
 
+  export type PostCreateNestedManyWithoutRecipeInput = {
+    create?: XOR<PostCreateWithoutRecipeInput, PostUncheckedCreateWithoutRecipeInput> | PostCreateWithoutRecipeInput[] | PostUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRecipeInput | PostCreateOrConnectWithoutRecipeInput[]
+    createMany?: PostCreateManyRecipeInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutRecipesInput = {
+    create?: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecipesInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type MediaUncheckedCreateNestedManyWithoutRecipeInput = {
     create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
@@ -17232,6 +20977,13 @@ export namespace Prisma {
     create?: XOR<UstensilCreateWithoutRecipesInput, UstensilUncheckedCreateWithoutRecipesInput> | UstensilCreateWithoutRecipesInput[] | UstensilUncheckedCreateWithoutRecipesInput[]
     connectOrCreate?: UstensilCreateOrConnectWithoutRecipesInput | UstensilCreateOrConnectWithoutRecipesInput[]
     connect?: UstensilWhereUniqueInput | UstensilWhereUniqueInput[]
+  }
+
+  export type PostUncheckedCreateNestedManyWithoutRecipeInput = {
+    create?: XOR<PostCreateWithoutRecipeInput, PostUncheckedCreateWithoutRecipeInput> | PostCreateWithoutRecipeInput[] | PostUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRecipeInput | PostCreateOrConnectWithoutRecipeInput[]
+    createMany?: PostCreateManyRecipeInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
   export type MediaUpdateManyWithoutRecipeNestedInput = {
@@ -17289,6 +21041,30 @@ export namespace Prisma {
     deleteMany?: UstensilScalarWhereInput | UstensilScalarWhereInput[]
   }
 
+  export type PostUpdateManyWithoutRecipeNestedInput = {
+    create?: XOR<PostCreateWithoutRecipeInput, PostUncheckedCreateWithoutRecipeInput> | PostCreateWithoutRecipeInput[] | PostUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRecipeInput | PostCreateOrConnectWithoutRecipeInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutRecipeInput | PostUpsertWithWhereUniqueWithoutRecipeInput[]
+    createMany?: PostCreateManyRecipeInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutRecipeInput | PostUpdateWithWhereUniqueWithoutRecipeInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutRecipeInput | PostUpdateManyWithWhereWithoutRecipeInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type UserUpdateOneWithoutRecipesNestedInput = {
+    create?: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecipesInput
+    upsert?: UserUpsertWithoutRecipesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRecipesInput, UserUpdateWithoutRecipesInput>, UserUncheckedUpdateWithoutRecipesInput>
+  }
+
   export type MediaUncheckedUpdateManyWithoutRecipeNestedInput = {
     create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
@@ -17342,6 +21118,20 @@ export namespace Prisma {
     update?: UstensilUpdateWithWhereUniqueWithoutRecipesInput | UstensilUpdateWithWhereUniqueWithoutRecipesInput[]
     updateMany?: UstensilUpdateManyWithWhereWithoutRecipesInput | UstensilUpdateManyWithWhereWithoutRecipesInput[]
     deleteMany?: UstensilScalarWhereInput | UstensilScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutRecipeNestedInput = {
+    create?: XOR<PostCreateWithoutRecipeInput, PostUncheckedCreateWithoutRecipeInput> | PostCreateWithoutRecipeInput[] | PostUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRecipeInput | PostCreateOrConnectWithoutRecipeInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutRecipeInput | PostUpsertWithWhereUniqueWithoutRecipeInput[]
+    createMany?: PostCreateManyRecipeInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutRecipeInput | PostUpdateWithWhereUniqueWithoutRecipeInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutRecipeInput | PostUpdateManyWithWhereWithoutRecipeInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
   export type MediaCreateNestedManyWithoutStepInput = {
@@ -17476,6 +21266,12 @@ export namespace Prisma {
     deleteMany?: UstensilScalarWhereInput | UstensilScalarWhereInput[]
   }
 
+  export type MediaCreateNestedOneWithoutAlimentInput = {
+    create?: XOR<MediaCreateWithoutAlimentInput, MediaUncheckedCreateWithoutAlimentInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutAlimentInput
+    connect?: MediaWhereUniqueInput
+  }
+
   export type StepCreateNestedManyWithoutAlimentsInput = {
     create?: XOR<StepCreateWithoutAlimentsInput, StepUncheckedCreateWithoutAlimentsInput> | StepCreateWithoutAlimentsInput[] | StepUncheckedCreateWithoutAlimentsInput[]
     connectOrCreate?: StepCreateOrConnectWithoutAlimentsInput | StepCreateOrConnectWithoutAlimentsInput[]
@@ -17500,6 +21296,14 @@ export namespace Prisma {
     connectOrCreate?: IngredientCreateOrConnectWithoutAlimentInput | IngredientCreateOrConnectWithoutAlimentInput[]
     createMany?: IngredientCreateManyAlimentInputEnvelope
     connect?: IngredientWhereUniqueInput | IngredientWhereUniqueInput[]
+  }
+
+  export type MediaUpdateOneRequiredWithoutAlimentNestedInput = {
+    create?: XOR<MediaCreateWithoutAlimentInput, MediaUncheckedCreateWithoutAlimentInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutAlimentInput
+    upsert?: MediaUpsertWithoutAlimentInput
+    connect?: MediaWhereUniqueInput
+    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutAlimentInput, MediaUpdateWithoutAlimentInput>, MediaUncheckedUpdateWithoutAlimentInput>
   }
 
   export type StepUpdateManyWithoutAlimentsNestedInput = {
@@ -17596,6 +21400,12 @@ export namespace Prisma {
     update?: XOR<XOR<RecipeUpdateToOneWithWhereWithoutIngredientsInput, RecipeUpdateWithoutIngredientsInput>, RecipeUncheckedUpdateWithoutIngredientsInput>
   }
 
+  export type MediaCreateNestedOneWithoutUstensilInput = {
+    create?: XOR<MediaCreateWithoutUstensilInput, MediaUncheckedCreateWithoutUstensilInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutUstensilInput
+    connect?: MediaWhereUniqueInput
+  }
+
   export type RecipeCreateNestedManyWithoutUstensilsInput = {
     create?: XOR<RecipeCreateWithoutUstensilsInput, RecipeUncheckedCreateWithoutUstensilsInput> | RecipeCreateWithoutUstensilsInput[] | RecipeUncheckedCreateWithoutUstensilsInput[]
     connectOrCreate?: RecipeCreateOrConnectWithoutUstensilsInput | RecipeCreateOrConnectWithoutUstensilsInput[]
@@ -17618,6 +21428,14 @@ export namespace Prisma {
     create?: XOR<StepCreateWithoutUstensilsInput, StepUncheckedCreateWithoutUstensilsInput> | StepCreateWithoutUstensilsInput[] | StepUncheckedCreateWithoutUstensilsInput[]
     connectOrCreate?: StepCreateOrConnectWithoutUstensilsInput | StepCreateOrConnectWithoutUstensilsInput[]
     connect?: StepWhereUniqueInput | StepWhereUniqueInput[]
+  }
+
+  export type MediaUpdateOneRequiredWithoutUstensilNestedInput = {
+    create?: XOR<MediaCreateWithoutUstensilInput, MediaUncheckedCreateWithoutUstensilInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutUstensilInput
+    upsert?: MediaUpsertWithoutUstensilInput
+    connect?: MediaWhereUniqueInput
+    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutUstensilInput, MediaUpdateWithoutUstensilInput>, MediaUncheckedUpdateWithoutUstensilInput>
   }
 
   export type RecipeUpdateManyWithoutUstensilsNestedInput = {
@@ -17672,6 +21490,270 @@ export namespace Prisma {
     deleteMany?: StepScalarWhereInput | StepScalarWhereInput[]
   }
 
+  export type MediaCreateNestedManyWithoutPostInput = {
+    create?: XOR<MediaCreateWithoutPostInput, MediaUncheckedCreateWithoutPostInput> | MediaCreateWithoutPostInput[] | MediaUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutPostInput | MediaCreateOrConnectWithoutPostInput[]
+    createMany?: MediaCreateManyPostInputEnvelope
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+  }
+
+  export type RecipeCreateNestedOneWithoutPostsInput = {
+    create?: XOR<RecipeCreateWithoutPostsInput, RecipeUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: RecipeCreateOrConnectWithoutPostsInput
+    connect?: RecipeWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutPostsInput = {
+    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PostCreateNestedOneWithoutRepostsInput = {
+    create?: XOR<PostCreateWithoutRepostsInput, PostUncheckedCreateWithoutRepostsInput>
+    connectOrCreate?: PostCreateOrConnectWithoutRepostsInput
+    connect?: PostWhereUniqueInput
+  }
+
+  export type PostCreateNestedManyWithoutRepostOfInput = {
+    create?: XOR<PostCreateWithoutRepostOfInput, PostUncheckedCreateWithoutRepostOfInput> | PostCreateWithoutRepostOfInput[] | PostUncheckedCreateWithoutRepostOfInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRepostOfInput | PostCreateOrConnectWithoutRepostOfInput[]
+    createMany?: PostCreateManyRepostOfInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type PostCreateNestedOneWithoutResponsesInput = {
+    create?: XOR<PostCreateWithoutResponsesInput, PostUncheckedCreateWithoutResponsesInput>
+    connectOrCreate?: PostCreateOrConnectWithoutResponsesInput
+    connect?: PostWhereUniqueInput
+  }
+
+  export type PostCreateNestedManyWithoutResponseToInput = {
+    create?: XOR<PostCreateWithoutResponseToInput, PostUncheckedCreateWithoutResponseToInput> | PostCreateWithoutResponseToInput[] | PostUncheckedCreateWithoutResponseToInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutResponseToInput | PostCreateOrConnectWithoutResponseToInput[]
+    createMany?: PostCreateManyResponseToInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type ReactionCreateNestedManyWithoutPostInput = {
+    create?: XOR<ReactionCreateWithoutPostInput, ReactionUncheckedCreateWithoutPostInput> | ReactionCreateWithoutPostInput[] | ReactionUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutPostInput | ReactionCreateOrConnectWithoutPostInput[]
+    createMany?: ReactionCreateManyPostInputEnvelope
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+  }
+
+  export type MediaUncheckedCreateNestedManyWithoutPostInput = {
+    create?: XOR<MediaCreateWithoutPostInput, MediaUncheckedCreateWithoutPostInput> | MediaCreateWithoutPostInput[] | MediaUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutPostInput | MediaCreateOrConnectWithoutPostInput[]
+    createMany?: MediaCreateManyPostInputEnvelope
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+  }
+
+  export type PostUncheckedCreateNestedManyWithoutRepostOfInput = {
+    create?: XOR<PostCreateWithoutRepostOfInput, PostUncheckedCreateWithoutRepostOfInput> | PostCreateWithoutRepostOfInput[] | PostUncheckedCreateWithoutRepostOfInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRepostOfInput | PostCreateOrConnectWithoutRepostOfInput[]
+    createMany?: PostCreateManyRepostOfInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type PostUncheckedCreateNestedManyWithoutResponseToInput = {
+    create?: XOR<PostCreateWithoutResponseToInput, PostUncheckedCreateWithoutResponseToInput> | PostCreateWithoutResponseToInput[] | PostUncheckedCreateWithoutResponseToInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutResponseToInput | PostCreateOrConnectWithoutResponseToInput[]
+    createMany?: PostCreateManyResponseToInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type ReactionUncheckedCreateNestedManyWithoutPostInput = {
+    create?: XOR<ReactionCreateWithoutPostInput, ReactionUncheckedCreateWithoutPostInput> | ReactionCreateWithoutPostInput[] | ReactionUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutPostInput | ReactionCreateOrConnectWithoutPostInput[]
+    createMany?: ReactionCreateManyPostInputEnvelope
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+  }
+
+  export type MediaUpdateManyWithoutPostNestedInput = {
+    create?: XOR<MediaCreateWithoutPostInput, MediaUncheckedCreateWithoutPostInput> | MediaCreateWithoutPostInput[] | MediaUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutPostInput | MediaCreateOrConnectWithoutPostInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutPostInput | MediaUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: MediaCreateManyPostInputEnvelope
+    set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutPostInput | MediaUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutPostInput | MediaUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
+  }
+
+  export type RecipeUpdateOneWithoutPostsNestedInput = {
+    create?: XOR<RecipeCreateWithoutPostsInput, RecipeUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: RecipeCreateOrConnectWithoutPostsInput
+    upsert?: RecipeUpsertWithoutPostsInput
+    disconnect?: RecipeWhereInput | boolean
+    delete?: RecipeWhereInput | boolean
+    connect?: RecipeWhereUniqueInput
+    update?: XOR<XOR<RecipeUpdateToOneWithWhereWithoutPostsInput, RecipeUpdateWithoutPostsInput>, RecipeUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type UserUpdateOneWithoutPostsNestedInput = {
+    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
+    upsert?: UserUpsertWithoutPostsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type PostUpdateOneWithoutRepostsNestedInput = {
+    create?: XOR<PostCreateWithoutRepostsInput, PostUncheckedCreateWithoutRepostsInput>
+    connectOrCreate?: PostCreateOrConnectWithoutRepostsInput
+    upsert?: PostUpsertWithoutRepostsInput
+    disconnect?: PostWhereInput | boolean
+    delete?: PostWhereInput | boolean
+    connect?: PostWhereUniqueInput
+    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutRepostsInput, PostUpdateWithoutRepostsInput>, PostUncheckedUpdateWithoutRepostsInput>
+  }
+
+  export type PostUpdateManyWithoutRepostOfNestedInput = {
+    create?: XOR<PostCreateWithoutRepostOfInput, PostUncheckedCreateWithoutRepostOfInput> | PostCreateWithoutRepostOfInput[] | PostUncheckedCreateWithoutRepostOfInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRepostOfInput | PostCreateOrConnectWithoutRepostOfInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutRepostOfInput | PostUpsertWithWhereUniqueWithoutRepostOfInput[]
+    createMany?: PostCreateManyRepostOfInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutRepostOfInput | PostUpdateWithWhereUniqueWithoutRepostOfInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutRepostOfInput | PostUpdateManyWithWhereWithoutRepostOfInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type PostUpdateOneWithoutResponsesNestedInput = {
+    create?: XOR<PostCreateWithoutResponsesInput, PostUncheckedCreateWithoutResponsesInput>
+    connectOrCreate?: PostCreateOrConnectWithoutResponsesInput
+    upsert?: PostUpsertWithoutResponsesInput
+    disconnect?: PostWhereInput | boolean
+    delete?: PostWhereInput | boolean
+    connect?: PostWhereUniqueInput
+    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutResponsesInput, PostUpdateWithoutResponsesInput>, PostUncheckedUpdateWithoutResponsesInput>
+  }
+
+  export type PostUpdateManyWithoutResponseToNestedInput = {
+    create?: XOR<PostCreateWithoutResponseToInput, PostUncheckedCreateWithoutResponseToInput> | PostCreateWithoutResponseToInput[] | PostUncheckedCreateWithoutResponseToInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutResponseToInput | PostCreateOrConnectWithoutResponseToInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutResponseToInput | PostUpsertWithWhereUniqueWithoutResponseToInput[]
+    createMany?: PostCreateManyResponseToInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutResponseToInput | PostUpdateWithWhereUniqueWithoutResponseToInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutResponseToInput | PostUpdateManyWithWhereWithoutResponseToInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type ReactionUpdateManyWithoutPostNestedInput = {
+    create?: XOR<ReactionCreateWithoutPostInput, ReactionUncheckedCreateWithoutPostInput> | ReactionCreateWithoutPostInput[] | ReactionUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutPostInput | ReactionCreateOrConnectWithoutPostInput[]
+    upsert?: ReactionUpsertWithWhereUniqueWithoutPostInput | ReactionUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: ReactionCreateManyPostInputEnvelope
+    set?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    disconnect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    delete?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    update?: ReactionUpdateWithWhereUniqueWithoutPostInput | ReactionUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: ReactionUpdateManyWithWhereWithoutPostInput | ReactionUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: ReactionScalarWhereInput | ReactionScalarWhereInput[]
+  }
+
+  export type MediaUncheckedUpdateManyWithoutPostNestedInput = {
+    create?: XOR<MediaCreateWithoutPostInput, MediaUncheckedCreateWithoutPostInput> | MediaCreateWithoutPostInput[] | MediaUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: MediaCreateOrConnectWithoutPostInput | MediaCreateOrConnectWithoutPostInput[]
+    upsert?: MediaUpsertWithWhereUniqueWithoutPostInput | MediaUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: MediaCreateManyPostInputEnvelope
+    set?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    disconnect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    delete?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    connect?: MediaWhereUniqueInput | MediaWhereUniqueInput[]
+    update?: MediaUpdateWithWhereUniqueWithoutPostInput | MediaUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: MediaUpdateManyWithWhereWithoutPostInput | MediaUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: MediaScalarWhereInput | MediaScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutRepostOfNestedInput = {
+    create?: XOR<PostCreateWithoutRepostOfInput, PostUncheckedCreateWithoutRepostOfInput> | PostCreateWithoutRepostOfInput[] | PostUncheckedCreateWithoutRepostOfInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutRepostOfInput | PostCreateOrConnectWithoutRepostOfInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutRepostOfInput | PostUpsertWithWhereUniqueWithoutRepostOfInput[]
+    createMany?: PostCreateManyRepostOfInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutRepostOfInput | PostUpdateWithWhereUniqueWithoutRepostOfInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutRepostOfInput | PostUpdateManyWithWhereWithoutRepostOfInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutResponseToNestedInput = {
+    create?: XOR<PostCreateWithoutResponseToInput, PostUncheckedCreateWithoutResponseToInput> | PostCreateWithoutResponseToInput[] | PostUncheckedCreateWithoutResponseToInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutResponseToInput | PostCreateOrConnectWithoutResponseToInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutResponseToInput | PostUpsertWithWhereUniqueWithoutResponseToInput[]
+    createMany?: PostCreateManyResponseToInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutResponseToInput | PostUpdateWithWhereUniqueWithoutResponseToInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutResponseToInput | PostUpdateManyWithWhereWithoutResponseToInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type ReactionUncheckedUpdateManyWithoutPostNestedInput = {
+    create?: XOR<ReactionCreateWithoutPostInput, ReactionUncheckedCreateWithoutPostInput> | ReactionCreateWithoutPostInput[] | ReactionUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: ReactionCreateOrConnectWithoutPostInput | ReactionCreateOrConnectWithoutPostInput[]
+    upsert?: ReactionUpsertWithWhereUniqueWithoutPostInput | ReactionUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: ReactionCreateManyPostInputEnvelope
+    set?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    disconnect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    delete?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    connect?: ReactionWhereUniqueInput | ReactionWhereUniqueInput[]
+    update?: ReactionUpdateWithWhereUniqueWithoutPostInput | ReactionUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: ReactionUpdateManyWithWhereWithoutPostInput | ReactionUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: ReactionScalarWhereInput | ReactionScalarWhereInput[]
+  }
+
+  export type PostCreateNestedOneWithoutReactionsInput = {
+    create?: XOR<PostCreateWithoutReactionsInput, PostUncheckedCreateWithoutReactionsInput>
+    connectOrCreate?: PostCreateOrConnectWithoutReactionsInput
+    connect?: PostWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutReactionsInput = {
+    create?: XOR<UserCreateWithoutReactionsInput, UserUncheckedCreateWithoutReactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReactionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumReactionTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ReactionType
+  }
+
+  export type PostUpdateOneRequiredWithoutReactionsNestedInput = {
+    create?: XOR<PostCreateWithoutReactionsInput, PostUncheckedCreateWithoutReactionsInput>
+    connectOrCreate?: PostCreateOrConnectWithoutReactionsInput
+    upsert?: PostUpsertWithoutReactionsInput
+    connect?: PostWhereUniqueInput
+    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutReactionsInput, PostUpdateWithoutReactionsInput>, PostUncheckedUpdateWithoutReactionsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutReactionsNestedInput = {
+    create?: XOR<UserCreateWithoutReactionsInput, UserUncheckedCreateWithoutReactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReactionsInput
+    upsert?: UserUpsertWithoutReactionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReactionsInput, UserUpdateWithoutReactionsInput>, UserUncheckedUpdateWithoutReactionsInput>
+  }
+
   export type RecipeCreateNestedOneWithoutMediasInput = {
     create?: XOR<RecipeCreateWithoutMediasInput, RecipeUncheckedCreateWithoutMediasInput>
     connectOrCreate?: RecipeCreateOrConnectWithoutMediasInput
@@ -17682,6 +21764,36 @@ export namespace Prisma {
     create?: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput>
     connectOrCreate?: StepCreateOrConnectWithoutMediasInput
     connect?: StepWhereUniqueInput
+  }
+
+  export type AlimentCreateNestedOneWithoutImageInput = {
+    create?: XOR<AlimentCreateWithoutImageInput, AlimentUncheckedCreateWithoutImageInput>
+    connectOrCreate?: AlimentCreateOrConnectWithoutImageInput
+    connect?: AlimentWhereUniqueInput
+  }
+
+  export type UstensilCreateNestedOneWithoutImageInput = {
+    create?: XOR<UstensilCreateWithoutImageInput, UstensilUncheckedCreateWithoutImageInput>
+    connectOrCreate?: UstensilCreateOrConnectWithoutImageInput
+    connect?: UstensilWhereUniqueInput
+  }
+
+  export type PostCreateNestedOneWithoutMediasInput = {
+    create?: XOR<PostCreateWithoutMediasInput, PostUncheckedCreateWithoutMediasInput>
+    connectOrCreate?: PostCreateOrConnectWithoutMediasInput
+    connect?: PostWhereUniqueInput
+  }
+
+  export type AlimentUncheckedCreateNestedOneWithoutImageInput = {
+    create?: XOR<AlimentCreateWithoutImageInput, AlimentUncheckedCreateWithoutImageInput>
+    connectOrCreate?: AlimentCreateOrConnectWithoutImageInput
+    connect?: AlimentWhereUniqueInput
+  }
+
+  export type UstensilUncheckedCreateNestedOneWithoutImageInput = {
+    create?: XOR<UstensilCreateWithoutImageInput, UstensilUncheckedCreateWithoutImageInput>
+    connectOrCreate?: UstensilCreateOrConnectWithoutImageInput
+    connect?: UstensilWhereUniqueInput
   }
 
   export type EnumMediaTypeFieldUpdateOperationsInput = {
@@ -17706,6 +21818,56 @@ export namespace Prisma {
     delete?: StepWhereInput | boolean
     connect?: StepWhereUniqueInput
     update?: XOR<XOR<StepUpdateToOneWithWhereWithoutMediasInput, StepUpdateWithoutMediasInput>, StepUncheckedUpdateWithoutMediasInput>
+  }
+
+  export type AlimentUpdateOneWithoutImageNestedInput = {
+    create?: XOR<AlimentCreateWithoutImageInput, AlimentUncheckedCreateWithoutImageInput>
+    connectOrCreate?: AlimentCreateOrConnectWithoutImageInput
+    upsert?: AlimentUpsertWithoutImageInput
+    disconnect?: AlimentWhereInput | boolean
+    delete?: AlimentWhereInput | boolean
+    connect?: AlimentWhereUniqueInput
+    update?: XOR<XOR<AlimentUpdateToOneWithWhereWithoutImageInput, AlimentUpdateWithoutImageInput>, AlimentUncheckedUpdateWithoutImageInput>
+  }
+
+  export type UstensilUpdateOneWithoutImageNestedInput = {
+    create?: XOR<UstensilCreateWithoutImageInput, UstensilUncheckedCreateWithoutImageInput>
+    connectOrCreate?: UstensilCreateOrConnectWithoutImageInput
+    upsert?: UstensilUpsertWithoutImageInput
+    disconnect?: UstensilWhereInput | boolean
+    delete?: UstensilWhereInput | boolean
+    connect?: UstensilWhereUniqueInput
+    update?: XOR<XOR<UstensilUpdateToOneWithWhereWithoutImageInput, UstensilUpdateWithoutImageInput>, UstensilUncheckedUpdateWithoutImageInput>
+  }
+
+  export type PostUpdateOneWithoutMediasNestedInput = {
+    create?: XOR<PostCreateWithoutMediasInput, PostUncheckedCreateWithoutMediasInput>
+    connectOrCreate?: PostCreateOrConnectWithoutMediasInput
+    upsert?: PostUpsertWithoutMediasInput
+    disconnect?: PostWhereInput | boolean
+    delete?: PostWhereInput | boolean
+    connect?: PostWhereUniqueInput
+    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutMediasInput, PostUpdateWithoutMediasInput>, PostUncheckedUpdateWithoutMediasInput>
+  }
+
+  export type AlimentUncheckedUpdateOneWithoutImageNestedInput = {
+    create?: XOR<AlimentCreateWithoutImageInput, AlimentUncheckedCreateWithoutImageInput>
+    connectOrCreate?: AlimentCreateOrConnectWithoutImageInput
+    upsert?: AlimentUpsertWithoutImageInput
+    disconnect?: AlimentWhereInput | boolean
+    delete?: AlimentWhereInput | boolean
+    connect?: AlimentWhereUniqueInput
+    update?: XOR<XOR<AlimentUpdateToOneWithWhereWithoutImageInput, AlimentUpdateWithoutImageInput>, AlimentUncheckedUpdateWithoutImageInput>
+  }
+
+  export type UstensilUncheckedUpdateOneWithoutImageNestedInput = {
+    create?: XOR<UstensilCreateWithoutImageInput, UstensilUncheckedCreateWithoutImageInput>
+    connectOrCreate?: UstensilCreateOrConnectWithoutImageInput
+    upsert?: UstensilUpsertWithoutImageInput
+    disconnect?: UstensilWhereInput | boolean
+    delete?: UstensilWhereInput | boolean
+    connect?: UstensilWhereUniqueInput
+    update?: XOR<XOR<UstensilUpdateToOneWithWhereWithoutImageInput, UstensilUpdateWithoutImageInput>, UstensilUncheckedUpdateWithoutImageInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -17942,6 +22104,23 @@ export namespace Prisma {
     _max?: NestedEnumUnitFilter<$PrismaModel>
   }
 
+  export type NestedEnumReactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumReactionTypeFilter<$PrismaModel> | $Enums.ReactionType
+  }
+
+  export type NestedEnumReactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumReactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.ReactionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumReactionTypeFilter<$PrismaModel>
+    _max?: NestedEnumReactionTypeFilter<$PrismaModel>
+  }
+
   export type NestedEnumMediaTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.MediaType | EnumMediaTypeFieldRefInput<$PrismaModel>
     in?: $Enums.MediaType[] | ListEnumMediaTypeFieldRefInput<$PrismaModel>
@@ -18053,6 +22232,108 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RecipeCreateWithoutAuthorInput = {
+    id?: string
+    name: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutRecipeInput
+    steps?: StepCreateNestedManyWithoutRecipeInput
+    ingredients?: IngredientCreateNestedManyWithoutRecipeInput
+    ustensils?: UstensilCreateNestedManyWithoutRecipesInput
+    posts?: PostCreateNestedManyWithoutRecipeInput
+  }
+
+  export type RecipeUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    name: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
+    steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
+    ingredients?: IngredientUncheckedCreateNestedManyWithoutRecipeInput
+    ustensils?: UstensilUncheckedCreateNestedManyWithoutRecipesInput
+    posts?: PostUncheckedCreateNestedManyWithoutRecipeInput
+  }
+
+  export type RecipeCreateOrConnectWithoutAuthorInput = {
+    where: RecipeWhereUniqueInput
+    create: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type RecipeCreateManyAuthorInputEnvelope = {
+    data: RecipeCreateManyAuthorInput | RecipeCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PostCreateWithoutAuthorInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type PostCreateManyAuthorInputEnvelope = {
+    data: PostCreateManyAuthorInput | PostCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReactionCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.ReactionType
+    created_at?: Date | string
+    updated_at?: Date | string
+    post: PostCreateNestedOneWithoutReactionsInput
+  }
+
+  export type ReactionUncheckedCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.ReactionType
+    postId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ReactionCreateOrConnectWithoutUserInput = {
+    where: ReactionWhereUniqueInput
+    create: XOR<ReactionCreateWithoutUserInput, ReactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReactionCreateManyUserInputEnvelope = {
+    data: ReactionCreateManyUserInput | ReactionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -18145,6 +22426,93 @@ export namespace Prisma {
     transports?: StringNullableFilter<"Authenticator"> | string | null
   }
 
+  export type RecipeUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: RecipeWhereUniqueInput
+    update: XOR<RecipeUpdateWithoutAuthorInput, RecipeUncheckedUpdateWithoutAuthorInput>
+    create: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type RecipeUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: RecipeWhereUniqueInput
+    data: XOR<RecipeUpdateWithoutAuthorInput, RecipeUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type RecipeUpdateManyWithWhereWithoutAuthorInput = {
+    where: RecipeScalarWhereInput
+    data: XOR<RecipeUpdateManyMutationInput, RecipeUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type RecipeScalarWhereInput = {
+    AND?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+    OR?: RecipeScalarWhereInput[]
+    NOT?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+    id?: StringFilter<"Recipe"> | string
+    name?: StringFilter<"Recipe"> | string
+    description?: StringFilter<"Recipe"> | string
+    authorId?: StringNullableFilter<"Recipe"> | string | null
+    created_at?: DateTimeFilter<"Recipe"> | Date | string
+    updated_at?: DateTimeFilter<"Recipe"> | Date | string
+  }
+
+  export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
+    create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type PostUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type PostUpdateManyWithWhereWithoutAuthorInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type PostScalarWhereInput = {
+    AND?: PostScalarWhereInput | PostScalarWhereInput[]
+    OR?: PostScalarWhereInput[]
+    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
+    id?: StringFilter<"Post"> | string
+    content?: StringFilter<"Post"> | string
+    published?: BoolFilter<"Post"> | boolean
+    recipeId?: StringNullableFilter<"Post"> | string | null
+    authorId?: StringNullableFilter<"Post"> | string | null
+    repostOfId?: StringNullableFilter<"Post"> | string | null
+    responseToId?: StringNullableFilter<"Post"> | string | null
+    created_at?: DateTimeFilter<"Post"> | Date | string
+    updated_at?: DateTimeFilter<"Post"> | Date | string
+  }
+
+  export type ReactionUpsertWithWhereUniqueWithoutUserInput = {
+    where: ReactionWhereUniqueInput
+    update: XOR<ReactionUpdateWithoutUserInput, ReactionUncheckedUpdateWithoutUserInput>
+    create: XOR<ReactionCreateWithoutUserInput, ReactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReactionUpdateWithWhereUniqueWithoutUserInput = {
+    where: ReactionWhereUniqueInput
+    data: XOR<ReactionUpdateWithoutUserInput, ReactionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ReactionUpdateManyWithWhereWithoutUserInput = {
+    where: ReactionScalarWhereInput
+    data: XOR<ReactionUpdateManyMutationInput, ReactionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ReactionScalarWhereInput = {
+    AND?: ReactionScalarWhereInput | ReactionScalarWhereInput[]
+    OR?: ReactionScalarWhereInput[]
+    NOT?: ReactionScalarWhereInput | ReactionScalarWhereInput[]
+    id?: StringFilter<"Reaction"> | string
+    type?: EnumReactionTypeFilter<"Reaction"> | $Enums.ReactionType
+    postId?: StringFilter<"Reaction"> | string
+    userId?: StringFilter<"Reaction"> | string
+    created_at?: DateTimeFilter<"Reaction"> | Date | string
+    updated_at?: DateTimeFilter<"Reaction"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -18155,6 +22523,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    Recipes?: RecipeCreateNestedManyWithoutAuthorInput
+    Posts?: PostCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -18167,6 +22538,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    Recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
+    Posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -18195,6 +22569,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -18207,6 +22584,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -18219,6 +22599,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    Recipes?: RecipeCreateNestedManyWithoutAuthorInput
+    Posts?: PostCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -18231,6 +22614,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    Recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
+    Posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -18259,6 +22645,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -18271,6 +22660,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAuthenticatorInput = {
@@ -18283,6 +22675,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    Recipes?: RecipeCreateNestedManyWithoutAuthorInput
+    Posts?: PostCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuthenticatorInput = {
@@ -18295,6 +22690,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
+    Posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuthenticatorInput = {
@@ -18323,6 +22721,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthenticatorInput = {
@@ -18335,6 +22736,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MediaCreateWithoutRecipeInput = {
@@ -18342,9 +22746,14 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
+    aliment_id?: string | null
+    ustensil_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     step?: StepCreateNestedOneWithoutMediasInput
+    aliment?: AlimentCreateNestedOneWithoutImageInput
+    ustensil?: UstensilCreateNestedOneWithoutImageInput
+    post?: PostCreateNestedOneWithoutMediasInput
   }
 
   export type MediaUncheckedCreateWithoutRecipeInput = {
@@ -18353,8 +22762,13 @@ export namespace Prisma {
     src: string
     alt: string
     step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    aliment?: AlimentUncheckedCreateNestedOneWithoutImageInput
+    ustensil?: UstensilUncheckedCreateNestedOneWithoutImageInput
   }
 
   export type MediaCreateOrConnectWithoutRecipeInput = {
@@ -18434,17 +22848,17 @@ export namespace Prisma {
   export type UstensilCreateWithoutRecipesInput = {
     id?: string
     name: string
-    image: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
+    image: MediaCreateNestedOneWithoutUstensilInput
     steps?: StepCreateNestedManyWithoutUstensilsInput
   }
 
   export type UstensilUncheckedCreateWithoutRecipesInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -18454,6 +22868,81 @@ export namespace Prisma {
   export type UstensilCreateOrConnectWithoutRecipesInput = {
     where: UstensilWhereUniqueInput
     create: XOR<UstensilCreateWithoutRecipesInput, UstensilUncheckedCreateWithoutRecipesInput>
+  }
+
+  export type PostCreateWithoutRecipeInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutRecipeInput = {
+    id?: string
+    content: string
+    published?: boolean
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutRecipeInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutRecipeInput, PostUncheckedCreateWithoutRecipeInput>
+  }
+
+  export type PostCreateManyRecipeInputEnvelope = {
+    data: PostCreateManyRecipeInput | PostCreateManyRecipeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutRecipesInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    Posts?: PostCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRecipesInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    Posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRecipesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
   }
 
   export type MediaUpsertWithWhereUniqueWithoutRecipeInput = {
@@ -18482,6 +22971,9 @@ export namespace Prisma {
     alt?: StringFilter<"Media"> | string
     recipe_id?: StringNullableFilter<"Media"> | string | null
     step_id?: StringNullableFilter<"Media"> | string | null
+    aliment_id?: StringNullableFilter<"Media"> | string | null
+    ustensil_id?: StringNullableFilter<"Media"> | string | null
+    post_id?: StringNullableFilter<"Media"> | string | null
     created_at?: DateTimeFilter<"Media"> | Date | string
     updated_at?: DateTimeFilter<"Media"> | Date | string
   }
@@ -18567,10 +23059,67 @@ export namespace Prisma {
     NOT?: UstensilScalarWhereInput | UstensilScalarWhereInput[]
     id?: StringFilter<"Ustensil"> | string
     name?: StringFilter<"Ustensil"> | string
-    image?: StringFilter<"Ustensil"> | string
+    image_id?: StringFilter<"Ustensil"> | string
     description?: StringFilter<"Ustensil"> | string
     created_at?: DateTimeFilter<"Ustensil"> | Date | string
     updated_at?: DateTimeFilter<"Ustensil"> | Date | string
+  }
+
+  export type PostUpsertWithWhereUniqueWithoutRecipeInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutRecipeInput, PostUncheckedUpdateWithoutRecipeInput>
+    create: XOR<PostCreateWithoutRecipeInput, PostUncheckedCreateWithoutRecipeInput>
+  }
+
+  export type PostUpdateWithWhereUniqueWithoutRecipeInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutRecipeInput, PostUncheckedUpdateWithoutRecipeInput>
+  }
+
+  export type PostUpdateManyWithWhereWithoutRecipeInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutRecipeInput>
+  }
+
+  export type UserUpsertWithoutRecipesInput = {
+    update: XOR<UserUpdateWithoutRecipesInput, UserUncheckedUpdateWithoutRecipesInput>
+    create: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRecipesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRecipesInput, UserUncheckedUpdateWithoutRecipesInput>
+  }
+
+  export type UserUpdateWithoutRecipesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    Posts?: PostUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRecipesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MediaCreateWithoutStepInput = {
@@ -18578,9 +23127,14 @@ export namespace Prisma {
     type: $Enums.MediaType
     src: string
     alt: string
+    aliment_id?: string | null
+    ustensil_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     recipe?: RecipeCreateNestedOneWithoutMediasInput
+    aliment?: AlimentCreateNestedOneWithoutImageInput
+    ustensil?: UstensilCreateNestedOneWithoutImageInput
+    post?: PostCreateNestedOneWithoutMediasInput
   }
 
   export type MediaUncheckedCreateWithoutStepInput = {
@@ -18589,8 +23143,13 @@ export namespace Prisma {
     src: string
     alt: string
     recipe_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    aliment?: AlimentUncheckedCreateNestedOneWithoutImageInput
+    ustensil?: UstensilUncheckedCreateNestedOneWithoutImageInput
   }
 
   export type MediaCreateOrConnectWithoutStepInput = {
@@ -18612,17 +23171,21 @@ export namespace Prisma {
     medias?: MediaCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilCreateNestedManyWithoutRecipesInput
+    posts?: PostCreateNestedManyWithoutRecipeInput
+    author?: UserCreateNestedOneWithoutRecipesInput
   }
 
   export type RecipeUncheckedCreateWithoutStepsInput = {
     id?: string
     name: string
     description: string
+    authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientUncheckedCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilUncheckedCreateNestedManyWithoutRecipesInput
+    posts?: PostUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutStepsInput = {
@@ -18633,16 +23196,16 @@ export namespace Prisma {
   export type AlimentCreateWithoutStepsInput = {
     id?: string
     name: string
-    image: string
     created_at?: Date | string
     updated_at?: Date | string
+    image: MediaCreateNestedOneWithoutAlimentInput
     ingredients?: IngredientCreateNestedManyWithoutAlimentInput
   }
 
   export type AlimentUncheckedCreateWithoutStepsInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     created_at?: Date | string
     updated_at?: Date | string
     ingredients?: IngredientUncheckedCreateNestedManyWithoutAlimentInput
@@ -18656,17 +23219,17 @@ export namespace Prisma {
   export type UstensilCreateWithoutStepsInput = {
     id?: string
     name: string
-    image: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
+    image: MediaCreateNestedOneWithoutUstensilInput
     recipes?: RecipeCreateNestedManyWithoutUstensilsInput
   }
 
   export type UstensilUncheckedCreateWithoutStepsInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     description: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -18714,17 +23277,21 @@ export namespace Prisma {
     medias?: MediaUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUpdateManyWithoutRecipesNestedInput
+    posts?: PostUpdateManyWithoutRecipeNestedInput
+    author?: UserUpdateOneWithoutRecipesNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUncheckedUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUncheckedUpdateManyWithoutRecipesNestedInput
+    posts?: PostUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type AlimentUpsertWithWhereUniqueWithoutStepsInput = {
@@ -18749,7 +23316,7 @@ export namespace Prisma {
     NOT?: AlimentScalarWhereInput | AlimentScalarWhereInput[]
     id?: StringFilter<"Aliment"> | string
     name?: StringFilter<"Aliment"> | string
-    image?: StringFilter<"Aliment"> | string
+    image_id?: StringFilter<"Aliment"> | string
     created_at?: DateTimeFilter<"Aliment"> | Date | string
     updated_at?: DateTimeFilter<"Aliment"> | Date | string
   }
@@ -18768,6 +23335,41 @@ export namespace Prisma {
   export type UstensilUpdateManyWithWhereWithoutStepsInput = {
     where: UstensilScalarWhereInput
     data: XOR<UstensilUpdateManyMutationInput, UstensilUncheckedUpdateManyWithoutStepsInput>
+  }
+
+  export type MediaCreateWithoutAlimentInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    recipe?: RecipeCreateNestedOneWithoutMediasInput
+    step?: StepCreateNestedOneWithoutMediasInput
+    ustensil?: UstensilCreateNestedOneWithoutImageInput
+    post?: PostCreateNestedOneWithoutMediasInput
+  }
+
+  export type MediaUncheckedCreateWithoutAlimentInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    recipe_id?: string | null
+    step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    ustensil?: UstensilUncheckedCreateNestedOneWithoutImageInput
+  }
+
+  export type MediaCreateOrConnectWithoutAlimentInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutAlimentInput, MediaUncheckedCreateWithoutAlimentInput>
   }
 
   export type StepCreateWithoutAlimentsInput = {
@@ -18829,6 +23431,47 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MediaUpsertWithoutAlimentInput = {
+    update: XOR<MediaUpdateWithoutAlimentInput, MediaUncheckedUpdateWithoutAlimentInput>
+    create: XOR<MediaCreateWithoutAlimentInput, MediaUncheckedCreateWithoutAlimentInput>
+    where?: MediaWhereInput
+  }
+
+  export type MediaUpdateToOneWithWhereWithoutAlimentInput = {
+    where?: MediaWhereInput
+    data: XOR<MediaUpdateWithoutAlimentInput, MediaUncheckedUpdateWithoutAlimentInput>
+  }
+
+  export type MediaUpdateWithoutAlimentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipe?: RecipeUpdateOneWithoutMediasNestedInput
+    step?: StepUpdateOneWithoutMediasNestedInput
+    ustensil?: UstensilUpdateOneWithoutImageNestedInput
+    post?: PostUpdateOneWithoutMediasNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutAlimentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    ustensil?: UstensilUncheckedUpdateOneWithoutImageNestedInput
+  }
+
   export type StepUpsertWithWhereUniqueWithoutAlimentsInput = {
     where: StepWhereUniqueInput
     update: XOR<StepUpdateWithoutAlimentsInput, StepUncheckedUpdateWithoutAlimentsInput>
@@ -18864,16 +23507,16 @@ export namespace Prisma {
   export type AlimentCreateWithoutIngredientsInput = {
     id?: string
     name: string
-    image: string
     created_at?: Date | string
     updated_at?: Date | string
+    image: MediaCreateNestedOneWithoutAlimentInput
     steps?: StepCreateNestedManyWithoutAlimentsInput
   }
 
   export type AlimentUncheckedCreateWithoutIngredientsInput = {
     id?: string
     name: string
-    image: string
+    image_id: string
     created_at?: Date | string
     updated_at?: Date | string
     steps?: StepUncheckedCreateNestedManyWithoutAlimentsInput
@@ -18893,17 +23536,21 @@ export namespace Prisma {
     medias?: MediaCreateNestedManyWithoutRecipeInput
     steps?: StepCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilCreateNestedManyWithoutRecipesInput
+    posts?: PostCreateNestedManyWithoutRecipeInput
+    author?: UserCreateNestedOneWithoutRecipesInput
   }
 
   export type RecipeUncheckedCreateWithoutIngredientsInput = {
     id?: string
     name: string
     description: string
+    authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
     steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilUncheckedCreateNestedManyWithoutRecipesInput
+    posts?: PostUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutIngredientsInput = {
@@ -18925,16 +23572,16 @@ export namespace Prisma {
   export type AlimentUpdateWithoutIngredientsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: MediaUpdateOneRequiredWithoutAlimentNestedInput
     steps?: StepUpdateManyWithoutAlimentsNestedInput
   }
 
   export type AlimentUncheckedUpdateWithoutIngredientsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     steps?: StepUncheckedUpdateManyWithoutAlimentsNestedInput
@@ -18960,17 +23607,56 @@ export namespace Prisma {
     medias?: MediaUpdateManyWithoutRecipeNestedInput
     steps?: StepUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUpdateManyWithoutRecipesNestedInput
+    posts?: PostUpdateManyWithoutRecipeNestedInput
+    author?: UserUpdateOneWithoutRecipesNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutIngredientsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
     steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUncheckedUpdateManyWithoutRecipesNestedInput
+    posts?: PostUncheckedUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type MediaCreateWithoutUstensilInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    recipe?: RecipeCreateNestedOneWithoutMediasInput
+    step?: StepCreateNestedOneWithoutMediasInput
+    aliment?: AlimentCreateNestedOneWithoutImageInput
+    post?: PostCreateNestedOneWithoutMediasInput
+  }
+
+  export type MediaUncheckedCreateWithoutUstensilInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    recipe_id?: string | null
+    step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    aliment?: AlimentUncheckedCreateNestedOneWithoutImageInput
+  }
+
+  export type MediaCreateOrConnectWithoutUstensilInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutUstensilInput, MediaUncheckedCreateWithoutUstensilInput>
   }
 
   export type RecipeCreateWithoutUstensilsInput = {
@@ -18982,17 +23668,21 @@ export namespace Prisma {
     medias?: MediaCreateNestedManyWithoutRecipeInput
     steps?: StepCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientCreateNestedManyWithoutRecipeInput
+    posts?: PostCreateNestedManyWithoutRecipeInput
+    author?: UserCreateNestedOneWithoutRecipesInput
   }
 
   export type RecipeUncheckedCreateWithoutUstensilsInput = {
     id?: string
     name: string
     description: string
+    authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
     steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientUncheckedCreateNestedManyWithoutRecipeInput
+    posts?: PostUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutUstensilsInput = {
@@ -19029,6 +23719,47 @@ export namespace Prisma {
     create: XOR<StepCreateWithoutUstensilsInput, StepUncheckedCreateWithoutUstensilsInput>
   }
 
+  export type MediaUpsertWithoutUstensilInput = {
+    update: XOR<MediaUpdateWithoutUstensilInput, MediaUncheckedUpdateWithoutUstensilInput>
+    create: XOR<MediaCreateWithoutUstensilInput, MediaUncheckedCreateWithoutUstensilInput>
+    where?: MediaWhereInput
+  }
+
+  export type MediaUpdateToOneWithWhereWithoutUstensilInput = {
+    where?: MediaWhereInput
+    data: XOR<MediaUpdateWithoutUstensilInput, MediaUncheckedUpdateWithoutUstensilInput>
+  }
+
+  export type MediaUpdateWithoutUstensilInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipe?: RecipeUpdateOneWithoutMediasNestedInput
+    step?: StepUpdateOneWithoutMediasNestedInput
+    aliment?: AlimentUpdateOneWithoutImageNestedInput
+    post?: PostUpdateOneWithoutMediasNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutUstensilInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    aliment?: AlimentUncheckedUpdateOneWithoutImageNestedInput
+  }
+
   export type RecipeUpsertWithWhereUniqueWithoutUstensilsInput = {
     where: RecipeWhereUniqueInput
     update: XOR<RecipeUpdateWithoutUstensilsInput, RecipeUncheckedUpdateWithoutUstensilsInput>
@@ -19043,17 +23774,6 @@ export namespace Prisma {
   export type RecipeUpdateManyWithWhereWithoutUstensilsInput = {
     where: RecipeScalarWhereInput
     data: XOR<RecipeUpdateManyMutationInput, RecipeUncheckedUpdateManyWithoutUstensilsInput>
-  }
-
-  export type RecipeScalarWhereInput = {
-    AND?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
-    OR?: RecipeScalarWhereInput[]
-    NOT?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
-    id?: StringFilter<"Recipe"> | string
-    name?: StringFilter<"Recipe"> | string
-    description?: StringFilter<"Recipe"> | string
-    created_at?: DateTimeFilter<"Recipe"> | Date | string
-    updated_at?: DateTimeFilter<"Recipe"> | Date | string
   }
 
   export type StepUpsertWithWhereUniqueWithoutUstensilsInput = {
@@ -19072,6 +23792,664 @@ export namespace Prisma {
     data: XOR<StepUpdateManyMutationInput, StepUncheckedUpdateManyWithoutUstensilsInput>
   }
 
+  export type MediaCreateWithoutPostInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    recipe?: RecipeCreateNestedOneWithoutMediasInput
+    step?: StepCreateNestedOneWithoutMediasInput
+    aliment?: AlimentCreateNestedOneWithoutImageInput
+    ustensil?: UstensilCreateNestedOneWithoutImageInput
+  }
+
+  export type MediaUncheckedCreateWithoutPostInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    recipe_id?: string | null
+    step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    aliment?: AlimentUncheckedCreateNestedOneWithoutImageInput
+    ustensil?: UstensilUncheckedCreateNestedOneWithoutImageInput
+  }
+
+  export type MediaCreateOrConnectWithoutPostInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutPostInput, MediaUncheckedCreateWithoutPostInput>
+  }
+
+  export type MediaCreateManyPostInputEnvelope = {
+    data: MediaCreateManyPostInput | MediaCreateManyPostInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RecipeCreateWithoutPostsInput = {
+    id?: string
+    name: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutRecipeInput
+    steps?: StepCreateNestedManyWithoutRecipeInput
+    ingredients?: IngredientCreateNestedManyWithoutRecipeInput
+    ustensils?: UstensilCreateNestedManyWithoutRecipesInput
+    author?: UserCreateNestedOneWithoutRecipesInput
+  }
+
+  export type RecipeUncheckedCreateWithoutPostsInput = {
+    id?: string
+    name: string
+    description: string
+    authorId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
+    steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
+    ingredients?: IngredientUncheckedCreateNestedManyWithoutRecipeInput
+    ustensils?: UstensilUncheckedCreateNestedManyWithoutRecipesInput
+  }
+
+  export type RecipeCreateOrConnectWithoutPostsInput = {
+    where: RecipeWhereUniqueInput
+    create: XOR<RecipeCreateWithoutPostsInput, RecipeUncheckedCreateWithoutPostsInput>
+  }
+
+  export type UserCreateWithoutPostsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    Recipes?: RecipeCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPostsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    Recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
+    Reactions?: ReactionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPostsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+  }
+
+  export type PostCreateWithoutRepostsInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutRepostsInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutRepostsInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutRepostsInput, PostUncheckedCreateWithoutRepostsInput>
+  }
+
+  export type PostCreateWithoutRepostOfInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutRepostOfInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutRepostOfInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutRepostOfInput, PostUncheckedCreateWithoutRepostOfInput>
+  }
+
+  export type PostCreateManyRepostOfInputEnvelope = {
+    data: PostCreateManyRepostOfInput | PostCreateManyRepostOfInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PostCreateWithoutResponsesInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutResponsesInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutResponsesInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutResponsesInput, PostUncheckedCreateWithoutResponsesInput>
+  }
+
+  export type PostCreateWithoutResponseToInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutResponseToInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutResponseToInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutResponseToInput, PostUncheckedCreateWithoutResponseToInput>
+  }
+
+  export type PostCreateManyResponseToInputEnvelope = {
+    data: PostCreateManyResponseToInput | PostCreateManyResponseToInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReactionCreateWithoutPostInput = {
+    id?: string
+    type: $Enums.ReactionType
+    created_at?: Date | string
+    updated_at?: Date | string
+    user: UserCreateNestedOneWithoutReactionsInput
+  }
+
+  export type ReactionUncheckedCreateWithoutPostInput = {
+    id?: string
+    type: $Enums.ReactionType
+    userId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ReactionCreateOrConnectWithoutPostInput = {
+    where: ReactionWhereUniqueInput
+    create: XOR<ReactionCreateWithoutPostInput, ReactionUncheckedCreateWithoutPostInput>
+  }
+
+  export type ReactionCreateManyPostInputEnvelope = {
+    data: ReactionCreateManyPostInput | ReactionCreateManyPostInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MediaUpsertWithWhereUniqueWithoutPostInput = {
+    where: MediaWhereUniqueInput
+    update: XOR<MediaUpdateWithoutPostInput, MediaUncheckedUpdateWithoutPostInput>
+    create: XOR<MediaCreateWithoutPostInput, MediaUncheckedCreateWithoutPostInput>
+  }
+
+  export type MediaUpdateWithWhereUniqueWithoutPostInput = {
+    where: MediaWhereUniqueInput
+    data: XOR<MediaUpdateWithoutPostInput, MediaUncheckedUpdateWithoutPostInput>
+  }
+
+  export type MediaUpdateManyWithWhereWithoutPostInput = {
+    where: MediaScalarWhereInput
+    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyWithoutPostInput>
+  }
+
+  export type RecipeUpsertWithoutPostsInput = {
+    update: XOR<RecipeUpdateWithoutPostsInput, RecipeUncheckedUpdateWithoutPostsInput>
+    create: XOR<RecipeCreateWithoutPostsInput, RecipeUncheckedCreateWithoutPostsInput>
+    where?: RecipeWhereInput
+  }
+
+  export type RecipeUpdateToOneWithWhereWithoutPostsInput = {
+    where?: RecipeWhereInput
+    data: XOR<RecipeUpdateWithoutPostsInput, RecipeUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type RecipeUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutRecipeNestedInput
+    steps?: StepUpdateManyWithoutRecipeNestedInput
+    ingredients?: IngredientUpdateManyWithoutRecipeNestedInput
+    ustensils?: UstensilUpdateManyWithoutRecipesNestedInput
+    author?: UserUpdateOneWithoutRecipesNestedInput
+  }
+
+  export type RecipeUncheckedUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
+    steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
+    ingredients?: IngredientUncheckedUpdateManyWithoutRecipeNestedInput
+    ustensils?: UstensilUncheckedUpdateManyWithoutRecipesNestedInput
+  }
+
+  export type UserUpsertWithoutPostsInput = {
+    update: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
+    create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPostsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type UserUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
+    Reactions?: ReactionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PostUpsertWithoutRepostsInput = {
+    update: XOR<PostUpdateWithoutRepostsInput, PostUncheckedUpdateWithoutRepostsInput>
+    create: XOR<PostCreateWithoutRepostsInput, PostUncheckedCreateWithoutRepostsInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutRepostsInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutRepostsInput, PostUncheckedUpdateWithoutRepostsInput>
+  }
+
+  export type PostUpdateWithoutRepostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutRepostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUpsertWithWhereUniqueWithoutRepostOfInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutRepostOfInput, PostUncheckedUpdateWithoutRepostOfInput>
+    create: XOR<PostCreateWithoutRepostOfInput, PostUncheckedCreateWithoutRepostOfInput>
+  }
+
+  export type PostUpdateWithWhereUniqueWithoutRepostOfInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutRepostOfInput, PostUncheckedUpdateWithoutRepostOfInput>
+  }
+
+  export type PostUpdateManyWithWhereWithoutRepostOfInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutRepostOfInput>
+  }
+
+  export type PostUpsertWithoutResponsesInput = {
+    update: XOR<PostUpdateWithoutResponsesInput, PostUncheckedUpdateWithoutResponsesInput>
+    create: XOR<PostCreateWithoutResponsesInput, PostUncheckedCreateWithoutResponsesInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutResponsesInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutResponsesInput, PostUncheckedUpdateWithoutResponsesInput>
+  }
+
+  export type PostUpdateWithoutResponsesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutResponsesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUpsertWithWhereUniqueWithoutResponseToInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutResponseToInput, PostUncheckedUpdateWithoutResponseToInput>
+    create: XOR<PostCreateWithoutResponseToInput, PostUncheckedCreateWithoutResponseToInput>
+  }
+
+  export type PostUpdateWithWhereUniqueWithoutResponseToInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutResponseToInput, PostUncheckedUpdateWithoutResponseToInput>
+  }
+
+  export type PostUpdateManyWithWhereWithoutResponseToInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutResponseToInput>
+  }
+
+  export type ReactionUpsertWithWhereUniqueWithoutPostInput = {
+    where: ReactionWhereUniqueInput
+    update: XOR<ReactionUpdateWithoutPostInput, ReactionUncheckedUpdateWithoutPostInput>
+    create: XOR<ReactionCreateWithoutPostInput, ReactionUncheckedCreateWithoutPostInput>
+  }
+
+  export type ReactionUpdateWithWhereUniqueWithoutPostInput = {
+    where: ReactionWhereUniqueInput
+    data: XOR<ReactionUpdateWithoutPostInput, ReactionUncheckedUpdateWithoutPostInput>
+  }
+
+  export type ReactionUpdateManyWithWhereWithoutPostInput = {
+    where: ReactionScalarWhereInput
+    data: XOR<ReactionUpdateManyMutationInput, ReactionUncheckedUpdateManyWithoutPostInput>
+  }
+
+  export type PostCreateWithoutReactionsInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaCreateNestedManyWithoutPostInput
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+  }
+
+  export type PostUncheckedCreateWithoutReactionsInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    medias?: MediaUncheckedCreateNestedManyWithoutPostInput
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+  }
+
+  export type PostCreateOrConnectWithoutReactionsInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutReactionsInput, PostUncheckedCreateWithoutReactionsInput>
+  }
+
+  export type UserCreateWithoutReactionsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    Recipes?: RecipeCreateNestedManyWithoutAuthorInput
+    Posts?: PostCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutReactionsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    Recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
+    Posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutReactionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReactionsInput, UserUncheckedCreateWithoutReactionsInput>
+  }
+
+  export type PostUpsertWithoutReactionsInput = {
+    update: XOR<PostUpdateWithoutReactionsInput, PostUncheckedUpdateWithoutReactionsInput>
+    create: XOR<PostCreateWithoutReactionsInput, PostUncheckedCreateWithoutReactionsInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutReactionsInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutReactionsInput, PostUncheckedUpdateWithoutReactionsInput>
+  }
+
+  export type PostUpdateWithoutReactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutReactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+  }
+
+  export type UserUpsertWithoutReactionsInput = {
+    update: XOR<UserUpdateWithoutReactionsInput, UserUncheckedUpdateWithoutReactionsInput>
+    create: XOR<UserCreateWithoutReactionsInput, UserUncheckedCreateWithoutReactionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReactionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReactionsInput, UserUncheckedUpdateWithoutReactionsInput>
+  }
+
+  export type UserUpdateWithoutReactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    Recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
   export type RecipeCreateWithoutMediasInput = {
     id?: string
     name: string
@@ -19081,17 +24459,21 @@ export namespace Prisma {
     steps?: StepCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilCreateNestedManyWithoutRecipesInput
+    posts?: PostCreateNestedManyWithoutRecipeInput
+    author?: UserCreateNestedOneWithoutRecipesInput
   }
 
   export type RecipeUncheckedCreateWithoutMediasInput = {
     id?: string
     name: string
     description: string
+    authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     steps?: StepUncheckedCreateNestedManyWithoutRecipeInput
     ingredients?: IngredientUncheckedCreateNestedManyWithoutRecipeInput
     ustensils?: UstensilUncheckedCreateNestedManyWithoutRecipesInput
+    posts?: PostUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutMediasInput = {
@@ -19128,6 +24510,89 @@ export namespace Prisma {
     create: XOR<StepCreateWithoutMediasInput, StepUncheckedCreateWithoutMediasInput>
   }
 
+  export type AlimentCreateWithoutImageInput = {
+    id?: string
+    name: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    steps?: StepCreateNestedManyWithoutAlimentsInput
+    ingredients?: IngredientCreateNestedManyWithoutAlimentInput
+  }
+
+  export type AlimentUncheckedCreateWithoutImageInput = {
+    id?: string
+    name: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    steps?: StepUncheckedCreateNestedManyWithoutAlimentsInput
+    ingredients?: IngredientUncheckedCreateNestedManyWithoutAlimentInput
+  }
+
+  export type AlimentCreateOrConnectWithoutImageInput = {
+    where: AlimentWhereUniqueInput
+    create: XOR<AlimentCreateWithoutImageInput, AlimentUncheckedCreateWithoutImageInput>
+  }
+
+  export type UstensilCreateWithoutImageInput = {
+    id?: string
+    name: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    recipes?: RecipeCreateNestedManyWithoutUstensilsInput
+    steps?: StepCreateNestedManyWithoutUstensilsInput
+  }
+
+  export type UstensilUncheckedCreateWithoutImageInput = {
+    id?: string
+    name: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    recipes?: RecipeUncheckedCreateNestedManyWithoutUstensilsInput
+    steps?: StepUncheckedCreateNestedManyWithoutUstensilsInput
+  }
+
+  export type UstensilCreateOrConnectWithoutImageInput = {
+    where: UstensilWhereUniqueInput
+    create: XOR<UstensilCreateWithoutImageInput, UstensilUncheckedCreateWithoutImageInput>
+  }
+
+  export type PostCreateWithoutMediasInput = {
+    id?: string
+    content: string
+    published?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    recipe?: RecipeCreateNestedOneWithoutPostsInput
+    author?: UserCreateNestedOneWithoutPostsInput
+    repostOf?: PostCreateNestedOneWithoutRepostsInput
+    reposts?: PostCreateNestedManyWithoutRepostOfInput
+    responseTo?: PostCreateNestedOneWithoutResponsesInput
+    responses?: PostCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutMediasInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    reposts?: PostUncheckedCreateNestedManyWithoutRepostOfInput
+    responses?: PostUncheckedCreateNestedManyWithoutResponseToInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutMediasInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutMediasInput, PostUncheckedCreateWithoutMediasInput>
+  }
+
   export type RecipeUpsertWithoutMediasInput = {
     update: XOR<RecipeUpdateWithoutMediasInput, RecipeUncheckedUpdateWithoutMediasInput>
     create: XOR<RecipeCreateWithoutMediasInput, RecipeUncheckedCreateWithoutMediasInput>
@@ -19148,17 +24613,21 @@ export namespace Prisma {
     steps?: StepUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUpdateManyWithoutRecipesNestedInput
+    posts?: PostUpdateManyWithoutRecipeNestedInput
+    author?: UserUpdateOneWithoutRecipesNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutMediasInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUncheckedUpdateManyWithoutRecipeNestedInput
     ustensils?: UstensilUncheckedUpdateManyWithoutRecipesNestedInput
+    posts?: PostUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type StepUpsertWithoutMediasInput = {
@@ -19196,6 +24665,107 @@ export namespace Prisma {
     ustensils?: UstensilUncheckedUpdateManyWithoutStepsNestedInput
   }
 
+  export type AlimentUpsertWithoutImageInput = {
+    update: XOR<AlimentUpdateWithoutImageInput, AlimentUncheckedUpdateWithoutImageInput>
+    create: XOR<AlimentCreateWithoutImageInput, AlimentUncheckedCreateWithoutImageInput>
+    where?: AlimentWhereInput
+  }
+
+  export type AlimentUpdateToOneWithWhereWithoutImageInput = {
+    where?: AlimentWhereInput
+    data: XOR<AlimentUpdateWithoutImageInput, AlimentUncheckedUpdateWithoutImageInput>
+  }
+
+  export type AlimentUpdateWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    steps?: StepUpdateManyWithoutAlimentsNestedInput
+    ingredients?: IngredientUpdateManyWithoutAlimentNestedInput
+  }
+
+  export type AlimentUncheckedUpdateWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    steps?: StepUncheckedUpdateManyWithoutAlimentsNestedInput
+    ingredients?: IngredientUncheckedUpdateManyWithoutAlimentNestedInput
+  }
+
+  export type UstensilUpsertWithoutImageInput = {
+    update: XOR<UstensilUpdateWithoutImageInput, UstensilUncheckedUpdateWithoutImageInput>
+    create: XOR<UstensilCreateWithoutImageInput, UstensilUncheckedCreateWithoutImageInput>
+    where?: UstensilWhereInput
+  }
+
+  export type UstensilUpdateToOneWithWhereWithoutImageInput = {
+    where?: UstensilWhereInput
+    data: XOR<UstensilUpdateWithoutImageInput, UstensilUncheckedUpdateWithoutImageInput>
+  }
+
+  export type UstensilUpdateWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipes?: RecipeUpdateManyWithoutUstensilsNestedInput
+    steps?: StepUpdateManyWithoutUstensilsNestedInput
+  }
+
+  export type UstensilUncheckedUpdateWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipes?: RecipeUncheckedUpdateManyWithoutUstensilsNestedInput
+    steps?: StepUncheckedUpdateManyWithoutUstensilsNestedInput
+  }
+
+  export type PostUpsertWithoutMediasInput = {
+    update: XOR<PostUpdateWithoutMediasInput, PostUncheckedUpdateWithoutMediasInput>
+    create: XOR<PostCreateWithoutMediasInput, PostUncheckedCreateWithoutMediasInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutMediasInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutMediasInput, PostUncheckedUpdateWithoutMediasInput>
+  }
+
+  export type PostUpdateWithoutMediasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutMediasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
   export type AccountCreateManyUserInput = {
     type: string
     provider: string
@@ -19226,6 +24796,33 @@ export namespace Prisma {
     credentialDeviceType: string
     credentialBackedUp: boolean
     transports?: string | null
+  }
+
+  export type RecipeCreateManyAuthorInput = {
+    id?: string
+    name: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type PostCreateManyAuthorInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ReactionCreateManyUserInput = {
+    id?: string
+    type: $Enums.ReactionType
+    postId: string
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -19324,12 +24921,114 @@ export namespace Prisma {
     transports?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type RecipeUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutRecipeNestedInput
+    steps?: StepUpdateManyWithoutRecipeNestedInput
+    ingredients?: IngredientUpdateManyWithoutRecipeNestedInput
+    ustensils?: UstensilUpdateManyWithoutRecipesNestedInput
+    posts?: PostUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type RecipeUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
+    steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
+    ingredients?: IngredientUncheckedUpdateManyWithoutRecipeNestedInput
+    ustensils?: UstensilUncheckedUpdateManyWithoutRecipesNestedInput
+    posts?: PostUncheckedUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type RecipeUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: PostUpdateOneRequiredWithoutReactionsNestedInput
+  }
+
+  export type ReactionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    postId?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    postId?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MediaCreateManyRecipeInput = {
     id?: string
     type: $Enums.MediaType
     src: string
     alt: string
     step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -19353,14 +25052,30 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
+  export type PostCreateManyRecipeInput = {
+    id?: string
+    content: string
+    published?: boolean
+    authorId?: string | null
+    repostOfId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
   export type MediaUpdateWithoutRecipeInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     step?: StepUpdateOneWithoutMediasNestedInput
+    aliment?: AlimentUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUpdateOneWithoutImageNestedInput
+    post?: PostUpdateOneWithoutMediasNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutRecipeInput = {
@@ -19369,8 +25084,13 @@ export namespace Prisma {
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    aliment?: AlimentUncheckedUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUncheckedUpdateOneWithoutImageNestedInput
   }
 
   export type MediaUncheckedUpdateManyWithoutRecipeInput = {
@@ -19379,6 +25099,9 @@ export namespace Prisma {
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19449,17 +25172,17 @@ export namespace Prisma {
   export type UstensilUpdateWithoutRecipesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: MediaUpdateOneRequiredWithoutUstensilNestedInput
     steps?: StepUpdateManyWithoutUstensilsNestedInput
   }
 
   export type UstensilUncheckedUpdateWithoutRecipesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19469,8 +25192,49 @@ export namespace Prisma {
   export type UstensilUncheckedUpdateManyWithoutRecipesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateManyWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19481,6 +25245,9 @@ export namespace Prisma {
     src: string
     alt: string
     recipe_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    post_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -19490,9 +25257,14 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     recipe?: RecipeUpdateOneWithoutMediasNestedInput
+    aliment?: AlimentUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUpdateOneWithoutImageNestedInput
+    post?: PostUpdateOneWithoutMediasNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutStepInput = {
@@ -19501,8 +25273,13 @@ export namespace Prisma {
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    aliment?: AlimentUncheckedUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUncheckedUpdateOneWithoutImageNestedInput
   }
 
   export type MediaUncheckedUpdateManyWithoutStepInput = {
@@ -19511,6 +25288,9 @@ export namespace Prisma {
     src?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    post_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19518,16 +25298,16 @@ export namespace Prisma {
   export type AlimentUpdateWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: MediaUpdateOneRequiredWithoutAlimentNestedInput
     ingredients?: IngredientUpdateManyWithoutAlimentNestedInput
   }
 
   export type AlimentUncheckedUpdateWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     ingredients?: IngredientUncheckedUpdateManyWithoutAlimentNestedInput
@@ -19536,7 +25316,7 @@ export namespace Prisma {
   export type AlimentUncheckedUpdateManyWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19544,17 +25324,17 @@ export namespace Prisma {
   export type UstensilUpdateWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: MediaUpdateOneRequiredWithoutUstensilNestedInput
     recipes?: RecipeUpdateManyWithoutUstensilsNestedInput
   }
 
   export type UstensilUncheckedUpdateWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19564,7 +25344,7 @@ export namespace Prisma {
   export type UstensilUncheckedUpdateManyWithoutStepsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image_id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19653,23 +25433,28 @@ export namespace Prisma {
     medias?: MediaUpdateManyWithoutRecipeNestedInput
     steps?: StepUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUpdateManyWithoutRecipeNestedInput
+    posts?: PostUpdateManyWithoutRecipeNestedInput
+    author?: UserUpdateOneWithoutRecipesNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutUstensilsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
     steps?: StepUncheckedUpdateManyWithoutRecipeNestedInput
     ingredients?: IngredientUncheckedUpdateManyWithoutRecipeNestedInput
+    posts?: PostUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateManyWithoutUstensilsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19704,6 +25489,198 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     recipe_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaCreateManyPostInput = {
+    id?: string
+    type: $Enums.MediaType
+    src: string
+    alt: string
+    recipe_id?: string | null
+    step_id?: string | null
+    aliment_id?: string | null
+    ustensil_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type PostCreateManyRepostOfInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    responseToId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type PostCreateManyResponseToInput = {
+    id?: string
+    content: string
+    published?: boolean
+    recipeId?: string | null
+    authorId?: string | null
+    repostOfId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ReactionCreateManyPostInput = {
+    id?: string
+    type: $Enums.ReactionType
+    userId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type MediaUpdateWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipe?: RecipeUpdateOneWithoutMediasNestedInput
+    step?: StepUpdateOneWithoutMediasNestedInput
+    aliment?: AlimentUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUpdateOneWithoutImageNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    aliment?: AlimentUncheckedUpdateOneWithoutImageNestedInput
+    ustensil?: UstensilUncheckedUpdateOneWithoutImageNestedInput
+  }
+
+  export type MediaUncheckedUpdateManyWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+    src?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    recipe_id?: NullableStringFieldUpdateOperationsInput | string | null
+    step_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aliment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    ustensil_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpdateWithoutRepostOfInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responseTo?: PostUpdateOneWithoutResponsesNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutRepostOfInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateManyWithoutRepostOfInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    responseToId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpdateWithoutResponseToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUpdateManyWithoutPostNestedInput
+    recipe?: RecipeUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneWithoutPostsNestedInput
+    repostOf?: PostUpdateOneWithoutRepostsNestedInput
+    reposts?: PostUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutResponseToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    medias?: MediaUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: PostUncheckedUpdateManyWithoutRepostOfNestedInput
+    responses?: PostUncheckedUpdateManyWithoutResponseToNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateManyWithoutResponseToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    recipeId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    repostOfId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionUpdateWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReactionsNestedInput
+  }
+
+  export type ReactionUncheckedUpdateWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    userId?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReactionUncheckedUpdateManyWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
+    userId?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

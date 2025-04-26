@@ -24,6 +24,9 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+  Recipes       Recipe[]
+  Posts         Post[]
+  Reactions     Reaction[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -92,6 +95,9 @@ model Recipe {
   steps       Step[]
   ingredients Ingredient[]
   ustensils   Ustensil[]
+  posts       Post[]
+  author      User?       @relation(fields: [authorId], references: [id])
+  authorId    String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -115,7 +121,8 @@ model Step {
 model Aliment {
   id          String       @id @default(cuid())
   name        String
-  image       String
+  image       Media @relation(fields: [image_id], references: [id])
+  image_id    String @unique()
   steps       Step[]
   ingredients Ingredient[]
 
@@ -140,10 +147,44 @@ model Ingredient {
 model Ustensil {
   id          String   @id @default(cuid())
   name        String
-  image       String
+  image       Media @relation(fields: [image_id], references: [id])
+  image_id    String @unique()
   description String
   recipes     Recipe[]
   steps       Step[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Post {
+  id        String    @id @default(cuid())
+  content   String
+  published Boolean   @default(false)
+  medias     Media[]
+  recipe    Recipe?   @relation(fields: [recipeId], references: [id])
+  recipeId  String?
+  author    User?     @relation(fields: [authorId], references: [id])
+  authorId  String?
+  repostOf Post? @relation("Repost", fields: [repostOfId], references: [id])
+  repostOfId String? @map("repost_of_id")
+  reposts   Post[] @relation("Repost")
+  responseTo Post? @relation("Response", fields: [responseToId], references: [id])
+  responseToId String? @map("response_of_id")
+  responses Post[] @relation("Response")
+  reactions  Reaction[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Reaction {
+  id        String    @id @default(cuid())
+  type      ReactionType
+  post      Post      @relation(fields: [postId], references: [id])
+  postId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -158,6 +199,12 @@ model Media {
   recipe_id String?
   step      Step?     @relation(fields: [step_id], references: [id])
   step_id   String?
+  aliment    Aliment?
+  aliment_id String?
+  ustensil   Ustensil?
+  ustensil_id String?
+  post      Post?     @relation(fields: [post_id], references: [id])
+  post_id   String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -183,4 +230,13 @@ enum Unit {
   bunch
   sprig
   leaf
+}
+
+enum ReactionType {
+  like
+  love
+  haha
+  wow
+  sad
+  angry
 }

@@ -172,6 +172,7 @@ exports.Prisma.RecipeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
+  authorId: 'authorId',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -189,7 +190,7 @@ exports.Prisma.StepScalarFieldEnum = {
 exports.Prisma.AlimentScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  image: 'image',
+  image_id: 'image_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -208,8 +209,29 @@ exports.Prisma.IngredientScalarFieldEnum = {
 exports.Prisma.UstensilScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  image: 'image',
+  image_id: 'image_id',
   description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.PostScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  published: 'published',
+  recipeId: 'recipeId',
+  authorId: 'authorId',
+  repostOfId: 'repostOfId',
+  responseToId: 'responseToId',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.ReactionScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  postId: 'postId',
+  userId: 'userId',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -221,6 +243,9 @@ exports.Prisma.MediaScalarFieldEnum = {
   alt: 'alt',
   recipe_id: 'recipe_id',
   step_id: 'step_id',
+  aliment_id: 'aliment_id',
+  ustensil_id: 'ustensil_id',
+  post_id: 'post_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -256,6 +281,15 @@ exports.Unit = exports.$Enums.Unit = {
   leaf: 'leaf'
 };
 
+exports.ReactionType = exports.$Enums.ReactionType = {
+  like: 'like',
+  love: 'love',
+  haha: 'haha',
+  wow: 'wow',
+  sad: 'sad',
+  angry: 'angry'
+};
+
 exports.MediaType = exports.$Enums.MediaType = {
   image: 'image',
   video: 'video'
@@ -272,6 +306,8 @@ exports.Prisma.ModelName = {
   Aliment: 'Aliment',
   Ingredient: 'Ingredient',
   Ustensil: 'Ustensil',
+  Post: 'Post',
+  Reaction: 'Reaction',
   Media: 'Media'
 };
 

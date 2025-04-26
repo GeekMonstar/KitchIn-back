@@ -4,6 +4,10 @@ import type { Request, Response } from 'express';
 export async function createUstensils(req: Request, res: Response): Promise<void> {
     try {
         const { ustensils } = req.body;
+        if (!ustensils || !Array.isArray(ustensils)) {
+            res.status(400).json({ error: 'Invalid request body' });
+            return;
+        }
         const newUstensils = await ustensilService.createUstensils(ustensils);
         res.status(201).json(newUstensils);
     } catch (err) {
