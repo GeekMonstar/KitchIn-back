@@ -15,76 +15,65 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String          @unique
-  emailVerified DateTime?
+  email         String     @unique
+  emailVerified Boolean
   image         String?
   accounts      Account[]
-  sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
+  sessions      Session[] // Optional for WebAuthn support
   Recipes       Recipe[]
   Posts         Post[]
   Reactions     Reaction[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Account {
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([provider, providerAccountId])
+  @@map("user")
 }
 
 model Session {
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@unique([token])
+  @@map("session")
 }
 
-model VerificationToken {
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
   identifier String
-  token      String
-  expires    DateTime
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
 
-  @@id([identifier, token])
-}
-
-// Optional for WebAuthn support
-model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([userId, credentialID])
+  @@map("verification")
 }
 
 model Recipe {
@@ -122,7 +111,7 @@ model Aliment {
   id          String       @id @default(cuid())
   name        String
   image       Media        @relation(fields: [image_id], references: [id])
-  image_id    String       @unique()
+  image_id    String       @unique
   steps       Step[]
   ingredients Ingredient[]
 
@@ -148,7 +137,7 @@ model Ustensil {
   id          String   @id @default(cuid())
   name        String
   image       Media    @relation(fields: [image_id], references: [id])
-  image_id    String   @unique()
+  image_id    String   @unique
   description String
   recipes     Recipe[]
   steps       Step[]
@@ -183,7 +172,7 @@ model Reaction {
   type   ReactionType
   post   Post         @relation(fields: [postId], references: [id])
   postId String
-  user   User         @relation(fields: [userId], references: [id])
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   created_at DateTime @default(now())

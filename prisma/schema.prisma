@@ -18,74 +18,64 @@ model User {
   id            String          @id @default(cuid())
   name          String?
   email         String          @unique
-  emailVerified DateTime?
+  emailVerified Boolean
   image         String?
   accounts      Account[]
-  sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
+  sessions      Session[] // Optional for WebAuthn support
   Recipes       Recipe[]
   Posts         Post[]
   Reactions     Reaction[]
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@map("user")
 }
- 
-model Account {
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
- 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
-  @@id([provider, providerAccountId])
-}
- 
+
 model Session {
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
 }
- 
-model VerificationToken {
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
   identifier String
-  token      String
-  expires    DateTime
- 
-  @@id([identifier, token])
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
 }
- 
-// Optional for WebAuthn support
-model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
- 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
-  @@id([userId, credentialID])
-}
+
 
 model Recipe {
   id          String       @id @default(cuid())
@@ -96,7 +86,7 @@ model Recipe {
   ingredients Ingredient[]
   ustensils   Ustensil[]
   posts       Post[]
-  author      User?       @relation(fields: [authorId], references: [id])
+  author      User?        @relation(fields: [authorId], references: [id])
   authorId    String?
 
   created_at DateTime @default(now())
@@ -121,8 +111,8 @@ model Step {
 model Aliment {
   id          String       @id @default(cuid())
   name        String
-  image       Media @relation(fields: [image_id], references: [id])
-  image_id    String @unique()
+  image       Media        @relation(fields: [image_id], references: [id])
+  image_id    String       @unique
   steps       Step[]
   ingredients Ingredient[]
 
@@ -147,8 +137,8 @@ model Ingredient {
 model Ustensil {
   id          String   @id @default(cuid())
   name        String
-  image       Media @relation(fields: [image_id], references: [id])
-  image_id    String @unique()
+  image       Media    @relation(fields: [image_id], references: [id])
+  image_id    String   @unique
   description String
   recipes     Recipe[]
   steps       Step[]
@@ -158,53 +148,53 @@ model Ustensil {
 }
 
 model Post {
-  id        String    @id @default(cuid())
-  content   String
-  published Boolean   @default(false)
-  medias     Media[]
-  recipe    Recipe?   @relation(fields: [recipeId], references: [id])
-  recipeId  String?
-  author    User?     @relation(fields: [authorId], references: [id])
-  authorId  String?
-  repostOf Post? @relation("Repost", fields: [repostOfId], references: [id])
-  repostOfId String? @map("repost_of_id")
-  reposts   Post[] @relation("Repost")
-  responseTo Post? @relation("Response", fields: [responseToId], references: [id])
-  responseToId String? @map("response_of_id")
-  responses Post[] @relation("Response")
-  reactions  Reaction[]
+  id           String     @id @default(cuid())
+  content      String
+  published    Boolean    @default(false)
+  medias       Media[]
+  recipe       Recipe?    @relation(fields: [recipeId], references: [id])
+  recipeId     String?
+  author       User?      @relation(fields: [authorId], references: [id])
+  authorId     String?
+  repostOf     Post?      @relation("Repost", fields: [repostOfId], references: [id])
+  repostOfId   String?    @map("repost_of_id")
+  reposts      Post[]     @relation("Repost")
+  responseTo   Post?      @relation("Response", fields: [responseToId], references: [id])
+  responseToId String?    @map("response_of_id")
+  responses    Post[]     @relation("Response")
+  reactions    Reaction[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Reaction {
-  id        String    @id @default(cuid())
-  type      ReactionType
-  post      Post      @relation(fields: [postId], references: [id])
-  postId    String
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String
+  id     String       @id @default(cuid())
+  type   ReactionType
+  post   Post         @relation(fields: [postId], references: [id])
+  postId String
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Media {
-  id        String    @id @default(cuid())
-  type      MediaType
-  src       String
-  alt       String
-  recipe    Recipe?   @relation(fields: [recipe_id], references: [id])
-  recipe_id String?
-  step      Step?     @relation(fields: [step_id], references: [id])
-  step_id   String?
-  aliment    Aliment?
-  aliment_id String?
-  ustensil   Ustensil?
+  id          String    @id @default(cuid())
+  type        MediaType
+  src         String
+  alt         String
+  recipe      Recipe?   @relation(fields: [recipe_id], references: [id])
+  recipe_id   String?
+  step        Step?     @relation(fields: [step_id], references: [id])
+  step_id     String?
+  aliment     Aliment?
+  aliment_id  String?
+  ustensil    Ustensil?
   ustensil_id String?
-  post      Post?     @relation(fields: [post_id], references: [id])
-  post_id   String?
+  post        Post?     @relation(fields: [post_id], references: [id])
+  post_id     String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
