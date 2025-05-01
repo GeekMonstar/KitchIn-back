@@ -167,6 +167,8 @@ exports.Prisma.RecipeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
+  duration: 'duration',
+  difficulty: 'difficulty',
   authorId: 'authorId',
   created_at: 'created_at',
   updated_at: 'updated_at'

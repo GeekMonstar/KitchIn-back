@@ -6728,14 +6728,28 @@ export namespace Prisma {
 
   export type AggregateRecipe = {
     _count: RecipeCountAggregateOutputType | null
+    _avg: RecipeAvgAggregateOutputType | null
+    _sum: RecipeSumAggregateOutputType | null
     _min: RecipeMinAggregateOutputType | null
     _max: RecipeMaxAggregateOutputType | null
+  }
+
+  export type RecipeAvgAggregateOutputType = {
+    duration: number | null
+    difficulty: number | null
+  }
+
+  export type RecipeSumAggregateOutputType = {
+    duration: number | null
+    difficulty: number | null
   }
 
   export type RecipeMinAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
+    duration: number | null
+    difficulty: number | null
     authorId: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -6745,6 +6759,8 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    duration: number | null
+    difficulty: number | null
     authorId: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -6754,6 +6770,8 @@ export namespace Prisma {
     id: number
     name: number
     description: number
+    duration: number
+    difficulty: number
     authorId: number
     created_at: number
     updated_at: number
@@ -6761,10 +6779,22 @@ export namespace Prisma {
   }
 
 
+  export type RecipeAvgAggregateInputType = {
+    duration?: true
+    difficulty?: true
+  }
+
+  export type RecipeSumAggregateInputType = {
+    duration?: true
+    difficulty?: true
+  }
+
   export type RecipeMinAggregateInputType = {
     id?: true
     name?: true
     description?: true
+    duration?: true
+    difficulty?: true
     authorId?: true
     created_at?: true
     updated_at?: true
@@ -6774,6 +6804,8 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    duration?: true
+    difficulty?: true
     authorId?: true
     created_at?: true
     updated_at?: true
@@ -6783,6 +6815,8 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    duration?: true
+    difficulty?: true
     authorId?: true
     created_at?: true
     updated_at?: true
@@ -6827,6 +6861,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: RecipeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RecipeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: RecipeMinAggregateInputType
@@ -6857,6 +6903,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: RecipeCountAggregateInputType | true
+    _avg?: RecipeAvgAggregateInputType
+    _sum?: RecipeSumAggregateInputType
     _min?: RecipeMinAggregateInputType
     _max?: RecipeMaxAggregateInputType
   }
@@ -6865,10 +6913,14 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId: string | null
     created_at: Date
     updated_at: Date
     _count: RecipeCountAggregateOutputType | null
+    _avg: RecipeAvgAggregateOutputType | null
+    _sum: RecipeSumAggregateOutputType | null
     _min: RecipeMinAggregateOutputType | null
     _max: RecipeMaxAggregateOutputType | null
   }
@@ -6891,6 +6943,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    duration?: boolean
+    difficulty?: boolean
     authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -6907,6 +6961,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    duration?: boolean
+    difficulty?: boolean
     authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -6917,6 +6973,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    duration?: boolean
+    difficulty?: boolean
     authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -6927,12 +6985,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    duration?: boolean
+    difficulty?: boolean
     authorId?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "authorId" | "created_at" | "updated_at", ExtArgs["result"]["recipe"]>
+  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "duration" | "difficulty" | "authorId" | "created_at" | "updated_at", ExtArgs["result"]["recipe"]>
   export type RecipeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     medias?: boolean | Recipe$mediasArgs<ExtArgs>
     steps?: boolean | Recipe$stepsArgs<ExtArgs>
@@ -6963,6 +7023,8 @@ export namespace Prisma {
       id: string
       name: string
       description: string
+      duration: number
+      difficulty: number
       authorId: string | null
       created_at: Date
       updated_at: Date
@@ -7398,6 +7460,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Recipe", 'String'>
     readonly name: FieldRef<"Recipe", 'String'>
     readonly description: FieldRef<"Recipe", 'String'>
+    readonly duration: FieldRef<"Recipe", 'Int'>
+    readonly difficulty: FieldRef<"Recipe", 'Int'>
     readonly authorId: FieldRef<"Recipe", 'String'>
     readonly created_at: FieldRef<"Recipe", 'DateTime'>
     readonly updated_at: FieldRef<"Recipe", 'DateTime'>
@@ -16276,6 +16340,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
+    duration: 'duration',
+    difficulty: 'difficulty',
     authorId: 'authorId',
     created_at: 'created_at',
     updated_at: 'updated_at'
@@ -16821,6 +16887,8 @@ export namespace Prisma {
     id?: StringFilter<"Recipe"> | string
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
+    duration?: IntFilter<"Recipe"> | number
+    difficulty?: IntFilter<"Recipe"> | number
     authorId?: StringNullableFilter<"Recipe"> | string | null
     created_at?: DateTimeFilter<"Recipe"> | Date | string
     updated_at?: DateTimeFilter<"Recipe"> | Date | string
@@ -16836,6 +16904,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    duration?: SortOrder
+    difficulty?: SortOrder
     authorId?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -16854,6 +16924,8 @@ export namespace Prisma {
     NOT?: RecipeWhereInput | RecipeWhereInput[]
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
+    duration?: IntFilter<"Recipe"> | number
+    difficulty?: IntFilter<"Recipe"> | number
     authorId?: StringNullableFilter<"Recipe"> | string | null
     created_at?: DateTimeFilter<"Recipe"> | Date | string
     updated_at?: DateTimeFilter<"Recipe"> | Date | string
@@ -16869,12 +16941,16 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    duration?: SortOrder
+    difficulty?: SortOrder
     authorId?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: RecipeCountOrderByAggregateInput
+    _avg?: RecipeAvgOrderByAggregateInput
     _max?: RecipeMaxOrderByAggregateInput
     _min?: RecipeMinOrderByAggregateInput
+    _sum?: RecipeSumOrderByAggregateInput
   }
 
   export type RecipeScalarWhereWithAggregatesInput = {
@@ -16884,6 +16960,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Recipe"> | string
     name?: StringWithAggregatesFilter<"Recipe"> | string
     description?: StringWithAggregatesFilter<"Recipe"> | string
+    duration?: IntWithAggregatesFilter<"Recipe"> | number
+    difficulty?: IntWithAggregatesFilter<"Recipe"> | number
     authorId?: StringNullableWithAggregatesFilter<"Recipe"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"Recipe"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Recipe"> | Date | string
@@ -17767,6 +17845,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaCreateNestedManyWithoutRecipeInput
@@ -17781,6 +17861,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -17795,6 +17877,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUpdateManyWithoutRecipeNestedInput
@@ -17809,6 +17893,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17823,6 +17909,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -17832,6 +17920,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17840,6 +17930,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18721,6 +18813,17 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type MediaListRelationFilter = {
     every?: MediaWhereInput
     some?: MediaWhereInput
@@ -18770,15 +18873,24 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    duration?: SortOrder
+    difficulty?: SortOrder
     authorId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+  }
+
+  export type RecipeAvgOrderByAggregateInput = {
+    duration?: SortOrder
+    difficulty?: SortOrder
   }
 
   export type RecipeMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    duration?: SortOrder
+    difficulty?: SortOrder
     authorId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -18788,12 +18900,19 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    duration?: SortOrder
+    difficulty?: SortOrder
     authorId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
+  export type RecipeSumOrderByAggregateInput = {
+    duration?: SortOrder
+    difficulty?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -18801,7 +18920,12 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type RecipeScalarRelationFilter = {
@@ -18855,22 +18979,6 @@ export namespace Prisma {
 
   export type StepSumOrderByAggregateInput = {
     order?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type MediaScalarRelationFilter = {
@@ -19520,6 +19628,14 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type MediaUpdateManyWithoutRecipeNestedInput = {
     create?: XOR<MediaCreateWithoutRecipeInput, MediaUncheckedCreateWithoutRecipeInput> | MediaCreateWithoutRecipeInput[] | MediaUncheckedCreateWithoutRecipeInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutRecipeInput | MediaCreateOrConnectWithoutRecipeInput[]
@@ -19710,14 +19826,6 @@ export namespace Prisma {
     create?: XOR<UstensilCreateWithoutStepsInput, UstensilUncheckedCreateWithoutStepsInput> | UstensilCreateWithoutStepsInput[] | UstensilUncheckedCreateWithoutStepsInput[]
     connectOrCreate?: UstensilCreateOrConnectWithoutStepsInput | UstensilCreateOrConnectWithoutStepsInput[]
     connect?: UstensilWhereUniqueInput | UstensilWhereUniqueInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type MediaUpdateManyWithoutStepNestedInput = {
@@ -20727,6 +20835,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaCreateNestedManyWithoutRecipeInput
@@ -20740,6 +20850,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaUncheckedCreateNestedManyWithoutRecipeInput
@@ -20913,6 +21025,8 @@ export namespace Prisma {
     id?: StringFilter<"Recipe"> | string
     name?: StringFilter<"Recipe"> | string
     description?: StringFilter<"Recipe"> | string
+    duration?: IntFilter<"Recipe"> | number
+    difficulty?: IntFilter<"Recipe"> | number
     authorId?: StringNullableFilter<"Recipe"> | string | null
     created_at?: DateTimeFilter<"Recipe"> | Date | string
     updated_at?: DateTimeFilter<"Recipe"> | Date | string
@@ -21542,6 +21656,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaCreateNestedManyWithoutRecipeInput
@@ -21555,6 +21671,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -21648,6 +21766,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUpdateManyWithoutRecipeNestedInput
@@ -21661,6 +21781,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21907,6 +22029,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaCreateNestedManyWithoutRecipeInput
@@ -21920,6 +22044,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -21978,6 +22104,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUpdateManyWithoutRecipeNestedInput
@@ -21991,6 +22119,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22039,6 +22169,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaCreateNestedManyWithoutRecipeInput
@@ -22052,6 +22184,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -22212,6 +22346,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     medias?: MediaCreateNestedManyWithoutRecipeInput
@@ -22225,6 +22361,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -22479,6 +22617,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUpdateManyWithoutRecipeNestedInput
@@ -22492,6 +22632,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22822,6 +22964,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
     steps?: StepCreateNestedManyWithoutRecipeInput
@@ -22835,6 +22979,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     authorId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -22976,6 +23122,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     steps?: StepUpdateManyWithoutRecipeNestedInput
@@ -22989,6 +23137,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23163,6 +23313,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    duration: number
+    difficulty: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -23265,6 +23417,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUpdateManyWithoutRecipeNestedInput
@@ -23278,6 +23432,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUncheckedUpdateManyWithoutRecipeNestedInput
@@ -23291,6 +23447,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23768,6 +23926,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     medias?: MediaUpdateManyWithoutRecipeNestedInput
@@ -23781,6 +23941,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23794,6 +23956,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    difficulty?: IntFieldUpdateOperationsInput | number
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -80,6 +80,8 @@ model Recipe {
   id          String       @id @default(cuid())
   name        String
   description String
+  duration    Int
+  difficulty  Int
   medias      Media[]
   steps       Step[]
   ingredients Ingredient[]

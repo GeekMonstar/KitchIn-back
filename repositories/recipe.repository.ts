@@ -11,6 +11,8 @@ export async function createRecipe(recipes: RecipeParams[]): Promise<Recipe[]> {
                 data: {
                     name: recipe.name,
                     description: recipe.description,
+                    duration: recipe.duration,
+                    difficulty: recipe.difficulty,
                     medias: {
                         create: recipe.medias
                     },
@@ -108,6 +110,8 @@ export async function deleteAllRecipes(): Promise<Prisma.BatchPayload> {
 export interface RecipeParams {
     name: string,
     description: string,
+    duration: number,
+    difficulty: number,
     medias: MediaParams[],
     steps: StepParams[]
     ingredients: IngredientParams[]

@@ -19,7 +19,7 @@ app
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"]
     }))
-    .all('/api/auth/{*any}', (req, res, next)=>{console.log("hello world!"); next();}, toNodeHandler(auth))
+    .all('/api/auth/{*any}', toNodeHandler(auth))
     .use(express.json())
     .use('/aliments', alimentRouter)
     .use('/ingredients', ingredientRouter)
