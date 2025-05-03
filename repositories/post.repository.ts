@@ -5,43 +5,45 @@ import type { ReactionParams } from "./reaction.repository"
 
 export async function createPosts(posts: PostParams[]): Promise<Post[]> {
     try {
+        console.log(posts);
         const allPosts = await Promise.all(posts.map(async (post) => {
-            const { content, medias, published, recipeId, authorId, repostOf, responseTo } = post
+            const { content, medias, published=true, recipeId, authorId, repostOf, responseTo } = post
             const newPost = await prisma.post.create({
                 data: {
                     content,
                     medias: {
                         createMany: {
-                            data: medias
+                            data: medias ? medias : []
                         }
                     },
                     published,
-                    recipe: {
+                    recipe: recipeId ? {
                         connect: { id: recipeId }
-                    },
+                    } : undefined,
                     author: {
                         connect: { id: authorId }
                     },
-                    reposts: {
-                        connect: repostOf ? { id: repostOf } : undefined
-                    },
-                    responses: {
-                        connect: responseTo ? { id: responseTo } : undefined
-                    },
-                    reactions: {
+                    reposts: repostOf ?{
+                        connect: { id: repostOf }
+                    }: undefined,
+                    responses: responseTo ? {
+                        connect: { id: responseTo }
+                    }: undefined,
+                    reactions: post.reactions ? {
                         createMany: {
                             data: post.reactions ? post.reactions.map(reaction => ({
                                 type: reaction.type as ReactionType,
                                 userId: reaction.userId
                             })) : []
                         }
-                    }
+                    }: undefined
                 }
             })
             return newPost
         }))
         return allPosts
     }catch (error) {
+        console.error("Error creating posts:", error)
         throw new Error((error as Error).message)
     }
 

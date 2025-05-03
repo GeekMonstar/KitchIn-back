@@ -7,6 +7,7 @@ import stepRouter from './routes/step.route';
 // import authRouter from './routes/auth.route';
 import { toNodeHandler } from 'better-auth/node';
 import { auth } from './utils/auth';
+import postRouter from './routes/post.route';
 
 const app = express()
 
@@ -25,5 +26,6 @@ app
     .use('/ingredients', ingredientRouter)
     .use('/recipes', recipeRouter)
     .use('/steps', stepRouter)
+    .use('/posts', postRouter)
 
 export default app;
