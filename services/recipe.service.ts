@@ -28,9 +28,9 @@ export async function getRecipe(id: string): Promise<Recipe> {
     }
 }
 
-export async function updateRecipe(recipe: Recipe): Promise<Recipe> {
+export async function updateRecipe(id: string, recipe: recipeRepository.RecipeParams): Promise<Recipe> {
     try {
-        const updatedRecipe = await recipeRepository.updateRecipe(recipe);
+        const updatedRecipe = await recipeRepository.updateRecipe(id, recipe);
         return updatedRecipe;
     } catch (err) {
         throw new Error((err as Error).message);

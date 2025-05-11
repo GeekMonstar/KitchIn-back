@@ -17,6 +17,16 @@ export async function createSteps(steps: StepParams[]): Promise<Step[]> {
                     },
                     medias: {
                         create: step.medias
+                    },
+                    aliments: {
+                        connect: step.aliments.map((alimentId) => ({
+                            id: alimentId
+                        }))
+                    },
+                    ustensils: {
+                        connect: step.ustensils.map((ustensilId) => ({
+                            id: ustensilId
+                        }))
                     }
                 }
             })
@@ -124,5 +134,7 @@ export interface StepParams {
     description: string,
     order: number,
     medias: MediaParams[],
-    recipeId: string
+    recipeId: string,
+    aliments: string[],
+    ustensils: string[]
 }

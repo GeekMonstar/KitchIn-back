@@ -51,7 +51,20 @@ export async function createPosts(posts: PostParams[]): Promise<Post[]> {
 
 export async function getPosts(): Promise<Post[]> {
     try {
-        const posts = await prisma.post.findMany();
+        const posts = await prisma.post.findMany({
+            include: {
+                medias: true,
+                author: true,
+                recipe: {
+                    include: {
+                        medias: true
+                    }
+                },
+                reactions: true,
+                reposts: true,
+                responses: true,
+            }
+        });
         return posts;
     }catch (error) {
         throw new Error((error as Error).message)
@@ -91,7 +104,7 @@ export async function updatePost(post: Post): Promise<Post> {
             where: { 
                 id: post.id
             },
-            data: post
+            data: {...post}
         });
         return updatedPost;
     }catch (error) {

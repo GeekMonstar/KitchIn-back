@@ -167,7 +167,8 @@ exports.Prisma.RecipeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  duration: 'duration',
+  preparationDuration: 'preparationDuration',
+  cookingDuration: 'cookingDuration',
   difficulty: 'difficulty',
   authorId: 'authorId',
   created_at: 'created_at',
@@ -275,7 +276,14 @@ exports.Unit = exports.$Enums.Unit = {
   piece: 'piece',
   bunch: 'bunch',
   sprig: 'sprig',
-  leaf: 'leaf'
+  leaf: 'leaf',
+  stalk: 'stalk',
+  clove: 'clove',
+  head: 'head',
+  bulb: 'bulb',
+  root: 'root',
+  pod: 'pod',
+  stick: 'stick'
 };
 
 exports.ReactionType = exports.$Enums.ReactionType = {

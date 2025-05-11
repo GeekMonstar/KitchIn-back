@@ -4,15 +4,15 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
-}
+  generator client {
+    provider = "prisma-client-js"
+    output   = "../generated/prisma"
+  }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+  datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+  }
 
 model User {
   id            String          @id @default(cuid())
@@ -81,15 +81,16 @@ model Recipe {
   id          String       @id @default(cuid())
   name        String
   description String
-  duration    Int
+  preparationDuration    Int
+  cookingDuration    Int
   difficulty  Int
   medias      Media[]
   steps       Step[]
   ingredients Ingredient[]
   ustensils   Ustensil[]
   posts       Post[]
-  author      User?        @relation(fields: [authorId], references: [id])
-  authorId    String?
+  author      User        @relation(fields: [authorId], references: [id])
+  authorId    String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -97,7 +98,7 @@ model Recipe {
 
 model Step {
   id          String     @id @default(cuid())
-  name        String
+  name        String?
   description String
   medias      Media[]
   order       Int
@@ -125,8 +126,8 @@ model Aliment {
 model Ingredient {
   id         String  @id @default(cuid())
   name       String
-  quantity   Float
-  unit       Unit
+  quantity   Float?
+  unit       Unit?
   aliment    Aliment @relation(fields: [aliment_id], references: [id])
   aliment_id String
   recipe     Recipe  @relation(fields: [recipe_id], references: [id])
@@ -141,7 +142,7 @@ model Ustensil {
   name        String
   image       Media    @relation(fields: [image_id], references: [id])
   image_id    String   @unique
-  description String
+  description String?
   recipes     Recipe[]
   steps       Step[]
 
@@ -222,6 +223,13 @@ enum Unit {
   bunch
   sprig
   leaf
+  stalk
+  clove
+  head
+  bulb
+  root
+  pod
+  stick
 }
 
 enum ReactionType {

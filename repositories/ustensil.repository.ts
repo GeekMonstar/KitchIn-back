@@ -1,5 +1,6 @@
 import type { Prisma, Ustensil } from "../generated/prisma";
 import prisma from "../utils/prisma";
+import type { MediaParams } from "./media.reposotory";
 
 export async function createUstensils(ustensils: UstensilParams[]): Promise<Ustensil[]> {
     try {
@@ -7,8 +8,10 @@ export async function createUstensils(ustensils: UstensilParams[]): Promise<Uste
             return await prisma.ustensil.create({
                 data: {
                     name: ustensil.name,
-                    image: ustensil.image,
-                    description: ustensil.description
+                    image: {
+                        create: ustensil.image
+                    },
+                    description: ustensil.description || undefined
                 }
             })
         }))
@@ -82,6 +85,6 @@ export async function deleteAllUstensils(): Promise<Prisma.BatchPayload> {
 
 export interface UstensilParams {
     name: string;
-    image: string;
+    image: MediaParams;
     description: string;
 }

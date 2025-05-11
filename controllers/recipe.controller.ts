@@ -41,8 +41,8 @@ export async function updateRecipe(req: Request, res: Response): Promise<void> {
             res.status(400).json({ error: "Missing id" });
             return;
         }
-        const recipe = req.body;
-        const updatedRecipe = await recipeService.updateRecipe({ ...recipe, id });
+        const {recipe} = req.body;
+        const updatedRecipe = await recipeService.updateRecipe(id, { ...recipe});
         res.status(200).json(updatedRecipe);
     } catch (err) {
         res.status(500).json({ error: (err as Error).message });

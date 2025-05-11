@@ -11,19 +11,54 @@ export async function createRecipe(recipes: RecipeParams[]): Promise<Recipe[]> {
                 data: {
                     name: recipe.name,
                     description: recipe.description,
-                    duration: recipe.duration,
-                    difficulty: recipe.difficulty,
+                    preparationDuration: recipe.preparationDuration,
+                    cookingDuration: recipe.cookingDuration,
+                    difficulty: recipe.difficulty || 1,
+                    author: {
+                        connect: {
+                            id: recipe.authorId
+                        }
+                    },
                     medias: {
                         create: recipe.medias
                     },
-                    steps: {
-                        create: recipe.steps.map((step) => {
+                    ingredients: {
+                        create: recipe.ingredients.map((ingredient) => {
                             return {
-                                name: step.name,
+                                name: ingredient.name,
+                                quantity: ingredient.quantity || null,
+                                unit: ingredient.unit || null,
+                                aliment: {
+                                    connect: {
+                                        id: ingredient.alimentId
+                                    }
+                                }
+                            }
+                        })
+                    },
+                    ustensils: {
+                        connect: recipe.ustensils.map((ustensilId) => ({
+                                id: ustensilId
+                        }))
+                    },
+                    steps: {
+                        create: recipe.steps.map((step, order) => {
+                            return {
+                                name: step.name || null,
                                 description: step.description,
-                                order: step.order,
+                                order,
                                 medias: {
                                     create: step.medias
+                                },
+                                aliments: {
+                                    connect: step.aliments.map((alimentId) => ({
+                                        id: alimentId
+                                    }))
+                                },
+                                ustensils: {
+                                    connect: step.ustensils.map((ustensilId) => ({
+                                        id: ustensilId
+                                    }))
                                 }
                             }
                         }
@@ -42,7 +77,11 @@ export async function getRecipes(): Promise<Recipe[]> {
     try {
         const recipes = await prisma.recipe.findMany({
             include: {
-                medias: true
+                medias: true,
+                ingredients: true,
+                ustensils: true,
+                steps: true,
+                author: true
             }
         });
         return recipes;
@@ -71,13 +110,19 @@ export async function getRecipe(id: string): Promise<Recipe> {
     }
 }
 
-export async function updateRecipe(recipe: Recipe): Promise<Recipe> {
+export async function updateRecipe(id: string, recipe: RecipeParams): Promise<Recipe> {
     try {
         const updatedRecipe = await prisma.recipe.update({
             where: {
-                id: recipe.id
+                id
             },
-            data: recipe
+            data: {
+                name: recipe.name || undefined,
+                description: recipe.description || undefined,
+                preparationDuration: recipe.preparationDuration || undefined,
+                cookingDuration: recipe.cookingDuration || undefined,
+                difficulty: recipe.difficulty || undefined,
+            }
         })
         return updatedRecipe;
     } catch (err) {
@@ -110,9 +155,12 @@ export async function deleteAllRecipes(): Promise<Prisma.BatchPayload> {
 export interface RecipeParams {
     name: string,
     description: string,
-    duration: number,
+    preparationDuration: number,
+    cookingDuration: number,
     difficulty: number,
+    authorId: string,
     medias: MediaParams[],
     steps: StepParams[]
-    ingredients: IngredientParams[]
+    ingredients: IngredientParams[],
+    ustensils: string[],
 }

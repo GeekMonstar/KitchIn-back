@@ -1,5 +1,6 @@
 import type { Aliment, Prisma } from "../generated/prisma";
 import prisma from "../utils/prisma";
+import type { MediaParams } from "./media.reposotory";
 
 export async function createAliments(aliments: AlimentParams[]): Promise<Aliment[]> {
     try {
@@ -7,7 +8,9 @@ export async function createAliments(aliments: AlimentParams[]): Promise<Aliment
             return prisma.aliment.create({
                 data: {
                     name: aliment.name,
-                    image: aliment.image
+                    image: {
+                        create: aliment.image
+                    }
                 }
             })
         }))
@@ -81,5 +84,5 @@ export async function deleteAllAliments(): Promise<Prisma.BatchPayload> {
 
 export interface AlimentParams {
     name: string,
-    image: string
+    image: MediaParams
 }

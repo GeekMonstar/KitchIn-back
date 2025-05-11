@@ -8,6 +8,7 @@ import stepRouter from './routes/step.route';
 import { toNodeHandler } from 'better-auth/node';
 import { auth } from './utils/auth';
 import postRouter from './routes/post.route';
+import ustensilRouter from './routes/ustensil.route';
 
 const app = express()
 
@@ -23,6 +24,7 @@ app
     .all('/api/auth/{*any}', toNodeHandler(auth))
     .use(express.json())
     .use('/aliments', alimentRouter)
+    .use('/ustensils', ustensilRouter)
     .use('/ingredients', ingredientRouter)
     .use('/recipes', recipeRouter)
     .use('/steps', stepRouter)
