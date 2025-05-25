@@ -19,10 +19,6 @@ jobs:
       id-token: write
 
     steps:
-      - name: test environment variables
-        run: |
-          echo "variable DATABASE_URL: ${{ env.DATABASE_URL }}"
-
       - name: Checkout repository
         uses: actions/checkout@v3
       
