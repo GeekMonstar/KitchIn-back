@@ -63,6 +63,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
+          echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u geekmonstar --password-stdin
             docker pull ${{ env.REGISTRY }}/$geekmonstar/${{ env.IMAGE_NAME }}:latest
             docker stop ${{ env.IMAGE_NAME }} || true
             docker rm ${{ env.IMAGE_NAME }} || true
