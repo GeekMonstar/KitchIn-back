@@ -42,9 +42,6 @@ jobs:
           images: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
           image_name: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
           tags: ${{ steps.get-latest-tag.outputs.tags }}
-          files:
-            - "Dockerfile"
-            - ".dockerignore"
 
       - name: Build and push image
         uses: docker/build-push-action@v2
