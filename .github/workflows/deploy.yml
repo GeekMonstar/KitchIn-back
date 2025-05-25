@@ -51,6 +51,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
+          build-args: |
+            DATABASE_URL=${{ env.DATABASE_URL }}
       
       - name: Deploy the new image
         uses: appleboy/ssh-action@master
