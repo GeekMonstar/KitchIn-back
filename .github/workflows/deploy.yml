@@ -41,7 +41,10 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
           image_name: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
-          tags: latest
+          tags: |
+            latest
+            {{version}}
+            {{branch}}
 
       - name: Build and push image
         uses: docker/build-push-action@v2
