@@ -26,4 +26,8 @@ COPY . .
 RUN echo "🎯 DATABASE_URL=$DATABASE_URL"
 
 RUN bunx prisma generate
-RUN bunx prisma migrate deploy && bun run build
+RUN bunx prisma migrate deploy
+
+EXPOSE 3000
+
+CMD ["bun", "index.ts"]
