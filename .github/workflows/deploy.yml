@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: recipe-api
-  DATABASE_URL: ${{ secrets.DATABASE_UR }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
       
 jobs:
   build-and-push-image:
@@ -35,33 +35,33 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Prepare metadata
-      id: metadata
-      uses: docker/metadata-action@v4
-      with:
-        images: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
-        image_name: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
-        tags: ${{ steps.get-latest-tag.outputs.tags }}
-        files:
-          - "Dockerfile"
-          - ".dockerignore"
+      - name: Prepare metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
+          image_name: ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
+          tags: ${{ steps.get-latest-tag.outputs.tags }}
+          files:
+            - "Dockerfile"
+            - ".dockerignore"
 
-    - name: Build and push image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        file: Dockerfile
-        push: true
-        tags: ${{ steps.metadata.outputs.tags }}
-    
-    - name: Deploy the new image
-      uses: appleboy/ssh-action@master  
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        script: |
-          docker pull ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.tags }}
-          docker stop ${{ env.IMAGE_NAME }} || true
-          docker rm ${{ env.IMAGE_NAME }} || true
-          docker run -d --restart=always --name ${{ env.IMAGE_NAME }} -p ${{ env.VPS_PORT }}:3000 -e DATABASE_URL=$DATABASE_URL ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.tags }}
+      - name: Build and push image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
+      
+      - name: Deploy the new image
+        uses: appleboy/ssh-action@master  
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            docker pull ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.tags }}
+            docker stop ${{ env.IMAGE_NAME }} || true
+            docker rm ${{ env.IMAGE_NAME }} || true
+            docker run -d --restart=always --name ${{ env.IMAGE_NAME }} -p ${{ secrets.VPS_PORT }}:3000 -e DATABASE_URL=$DATABASE_URL ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.tags }}
