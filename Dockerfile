@@ -3,12 +3,12 @@ FROM oven/bun:alpine AS base
 FROM base AS deps
 WORKDIR /app
 ADD package*.json bun.lock ./
-RUN bun ci
+RUN bun install --frozen-lockfile
 
 FROM base AS production-deps
 WORKDIR /app    
 ADD package*.json bun.lock ./
-RUN bun ci --omit=dev
+RUN bun install --frozen-lockfile --omit=dev
 
 FROM base AS build
 WORKDIR /app
