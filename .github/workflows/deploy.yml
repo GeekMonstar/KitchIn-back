@@ -60,7 +60,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: |
+          script: |*
+          echo "${{ secrets.GHCR_PAT }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
             docker pull ${{ env.REGISTRY }}/geekmonstar/${{ env.IMAGE_NAME }}
             docker stop ${{ env.IMAGE_NAME }} || true
             docker rm ${{ env.IMAGE_NAME }} || true
