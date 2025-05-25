@@ -2,11 +2,15 @@ FROM oven/bun:alpine AS base
 
 FROM base AS deps
 WORKDIR /app
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
 ADD package*.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 FROM base AS production-deps
-WORKDIR /app    
+WORKDIR /app
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL  
 ADD package*.json bun.lock ./
 RUN bun install --frozen-lockfile --omit=dev
 
