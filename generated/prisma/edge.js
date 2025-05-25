@@ -297,7 +297,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/juan/code/GeekMonstar/freelance/challenge/youself/back/generated/prisma",
+      "value": "/home/geekmonstar/code/exercises/KitchIn/KitchIn-back/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -311,7 +311,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/juan/code/GeekMonstar/freelance/challenge/youself/back/prisma/schema.prisma",
+    "sourceFilePath": "/home/geekmonstar/code/exercises/KitchIn/KitchIn-back/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
